@@ -3,11 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Egbe — You Found It. AI Runs It.</title>
-    <meta name="description" content="The first fully autonomous company platform. One founder, zero employees. AI executives run every function — from engineering to sales to finance.">
-    <meta property="og:title" content="Egbe — You Found It. AI Runs It.">
-    <meta property="og:description" content="The first fully autonomous company platform. One founder, zero employees. AI runs every executive function.">
+    <title>Egbe — AI runs your company so you don't have to</title>
+    <meta name="description" content="One founder, zero employees. Egbe is an AI platform that does the actual work — writes code, sends emails, runs the numbers. You call the shots.">
+    <meta name="keywords" content="AI company, solo founder, zero employee company, AI business automation, AI startup, one person business, AI operations">
+    <link rel="canonical" href="https://egbe.ai/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Egbe — AI runs your company so you don't have to">
+    <meta property="og:description" content="One founder, zero employees. AI does the actual work — code, content, outreach, ops. You call the shots.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://egbe.ai/">
+    <meta property="og:site_name" content="Egbe">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://egbe.ai/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Egbe — You found it. AI runs it.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Egbe — AI runs your company so you don't have to">
+    <meta name="twitter:description" content="One founder, zero employees. AI does the actual work. You call the shots.">
+    <meta name="twitter:image" content="https://egbe.ai/og-image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Egbe",
+        "url": "https://egbe.ai",
+        "description": "AI platform that runs your company. One founder, zero employees.",
+        "email": "hello@egbe.ai",
+        "foundingDate": "2025"
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
@@ -16,12 +47,14 @@
 
         :root {
             --bg: #08080a;
-            --bg-elevated: #0f0f13;
+            --bg-elevated: #111114;
+            --bg-card: #131316;
             --text: #e8e6e1;
             --text-dim: #7a7872;
             --text-muted: #4a4843;
             --accent: #c4f74d;
             --accent-dim: #a3d63a;
+            --border: rgba(74, 72, 67, 0.25);
             --serif: 'Instrument Serif', Georgia, serif;
             --sans: 'DM Sans', -apple-system, sans-serif;
         }
@@ -81,14 +114,15 @@
             left: 0;
             right: 0;
             z-index: 100;
-            padding: 1.5rem 0;
+            padding: 1.25rem 0;
             transition: background 0.4s, backdrop-filter 0.4s;
         }
 
         nav.scrolled {
-            background: rgba(8, 8, 10, 0.8);
+            background: rgba(8, 8, 10, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
         }
 
         nav .container {
@@ -109,8 +143,14 @@
             color: var(--accent);
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .nav-status {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
             letter-spacing: 0.15em;
             text-transform: uppercase;
@@ -127,6 +167,23 @@
             border-radius: 50%;
             background: var(--accent);
             animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .nav-cta {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--bg);
+            background: var(--accent);
+            padding: 0.55rem 1.4rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(196, 247, 77, 0.25);
         }
 
         @keyframes pulse-dot {
@@ -162,7 +219,6 @@
             line-height: 0.95;
             letter-spacing: -0.03em;
             color: var(--text);
-            max-width: 14ch;
             margin-bottom: 2.5rem;
             opacity: 0;
             animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
@@ -173,14 +229,50 @@
             color: var(--accent);
         }
 
-        .hero-sub {
-            font-size: clamp(1.1rem, 2.2vw, 1.4rem);
-            color: var(--text-dim);
-            max-width: 48ch;
-            line-height: 1.6;
-            font-weight: 300;
+        .hero-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 3rem;
             opacity: 0;
             animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            color: var(--text-dim);
+            max-width: 44ch;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bg);
+            background: var(--accent);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(196, 247, 77, 0.3);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.2s;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(3px);
         }
 
         .hero-line {
@@ -228,7 +320,7 @@
 
         /* ── Sections ── */
         section {
-            padding: clamp(5rem, 12vw, 10rem) 0;
+            padding: clamp(5rem, 10vw, 8rem) 0;
             position: relative;
         }
 
@@ -257,88 +349,103 @@
         }
 
         /* ── How section ── */
-        .how-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(3rem, 8vw, 8rem);
-            align-items: start;
+        .how-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 5rem);
         }
 
-        @media (max-width: 768px) {
-            .how-section {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .how-left .label {
+        .how-header .label {
             font-size: 0.75rem;
             font-weight: 500;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
 
-        .how-left h2 {
+        .how-header h2 {
             font-family: var(--serif);
             font-size: clamp(2rem, 4.5vw, 3.5rem);
             font-weight: 400;
             letter-spacing: -0.02em;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            max-width: 20ch;
+            margin: 0 auto 1.25rem;
         }
 
-        .how-left p {
+        .how-header p {
             color: var(--text-dim);
             font-weight: 300;
             font-size: 1.05rem;
             line-height: 1.7;
+            max-width: 52ch;
+            margin: 0 auto;
         }
 
-        .how-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
             counter-reset: step;
         }
 
-        .how-step {
+        .how-card {
             counter-increment: step;
-            padding: 2rem 0;
-            border-bottom: 1px solid rgba(74, 72, 67, 0.3);
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1.5rem;
-            align-items: start;
+            background: var(--bg-card);
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: background 0.3s;
         }
 
-        .how-step:first-child {
-            padding-top: 0;
+        .how-card:hover {
+            background: var(--bg-elevated);
         }
 
-        .how-step::before {
-            content: counter(step, decimal-leading-zero);
+        .how-card-num {
             font-family: var(--serif);
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--text-muted);
             line-height: 1;
+            letter-spacing: -0.03em;
         }
 
-        .how-step h4 {
+        .how-card-num::before {
+            content: counter(step, decimal-leading-zero);
+        }
+
+        .how-card h4 {
             font-family: var(--serif);
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 400;
-            margin-bottom: 0.4rem;
+            line-height: 1.2;
         }
 
-        .how-step p {
-            font-size: 0.9rem;
+        .how-card p {
+            font-size: 0.88rem;
             color: var(--text-dim);
-            line-height: 1.6;
+            line-height: 1.65;
             font-weight: 300;
         }
 
-        /* ── Closing ── */
+        @media (max-width: 900px) {
+            .how-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 540px) {
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── Closing / CTA ── */
         .closing {
             text-align: center;
             padding: clamp(6rem, 14vw, 12rem) 0;
@@ -350,7 +457,7 @@
             font-weight: 400;
             letter-spacing: -0.03em;
             line-height: 1.05;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .closing h2 em {
@@ -363,13 +470,40 @@
             color: var(--text-dim);
             font-weight: 300;
             max-width: 50ch;
-            margin: 0 auto;
+            margin: 0 auto 2.5rem;
+        }
+
+        .closing-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--bg);
+            background: var(--accent);
+            padding: 1.1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .closing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(196, 247, 77, 0.3);
+        }
+
+        .closing-cta svg {
+            transition: transform 0.2s;
+        }
+
+        .closing-cta:hover svg {
+            transform: translateX(3px);
         }
 
         /* ── Footer ── */
         footer {
             padding: 3rem 0;
-            border-top: 1px solid rgba(74, 72, 67, 0.2);
+            border-top: 1px solid var(--border);
         }
 
         footer .container {
@@ -412,7 +546,6 @@
             transform: translateY(0);
         }
 
-        /* staggered children */
         .reveal-stagger > * {
             opacity: 0;
             transform: translateY(30px);
@@ -421,12 +554,9 @@
         }
 
         .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
-        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.08s; }
-        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.16s; }
-        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.24s; }
-        .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.32s; }
-        .reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.40s; }
-        .reveal-stagger.visible > *:nth-child(7) { transition-delay: 0.48s; }
+        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
 
         .reveal-stagger.visible > * {
             opacity: 1;
@@ -442,7 +572,11 @@
         /* ── Responsive ── */
         @media (max-width: 640px) {
             .scroll-cue { display: none; }
-            .roles-grid { grid-template-columns: 1fr; }
+            .hero-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-cta { display: none; }
             footer .container {
                 flex-direction: column;
                 gap: 1rem;
@@ -461,7 +595,10 @@
     <nav>
         <div class="container">
             <a href="/" class="logo">Egbe<span>.</span></a>
-            <div class="nav-status">Building</div>
+            <div class="nav-right">
+                <div class="nav-status">Building</div>
+                <a href="mailto:hello@egbe.ai" class="nav-cta">Get in touch</a>
+            </div>
         </div>
     </nav>
 
@@ -469,8 +606,14 @@
     <section class="hero">
         <div class="container">
             <p class="hero-overline">The zero-employee company</p>
-            <h1>You found it. <em>AI runs it.</em></h1>
-            <p class="hero-sub">One human founder. Zero employees. AI agents serve as your CTO, CMO, CFO, and every executive in between — building, operating, and scaling your company autonomously.</p>
+            <h1>You found it.<br><em>AI runs it.</em></h1>
+            <div class="hero-bottom">
+                <p class="hero-sub">No co-founder. No first hires. AI does the actual work: writes the code, sends the emails, runs the numbers. You call the shots.</p>
+                <a href="mailto:hello@egbe.ai" class="hero-cta">
+                    Talk to us
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
         </div>
         <div class="hero-line"></div>
         <div class="scroll-cue">
@@ -485,7 +628,7 @@
     <section class="premise">
         <div class="container">
             <p class="premise-text reveal">
-                <span>You shouldn't need to hire 50 people to run a company.</span> You need an AI executive team that never sleeps, never quits, and scales infinitely.
+                <span>Most tools help you work faster.</span><br>Egbe does the work for you.
             </p>
         </div>
     </section>
@@ -495,37 +638,31 @@
     <!-- How -->
     <section>
         <div class="container">
-            <div class="how-section">
-                <div class="how-left reveal">
-                    <p class="label">How It Works</p>
-                    <h2>Founder sets the vision. AI executes everything.</h2>
-                    <p>You bring the idea and the ambition. Egbe assembles an autonomous executive team that builds, launches, and grows your company — without a single hire.</p>
+            <div class="how-header reveal">
+                <p class="label">How It Works</p>
+                <h2>You have the idea.<br>Egbe makes it real.</h2>
+                <p>Describe your business. AI figures out what needs to happen and does it.</p>
+            </div>
+            <div class="how-grid reveal-stagger">
+                <div class="how-card">
+                    <div class="how-card-num"></div>
+                    <h4>Tell it what you want</h4>
+                    <p>Your idea, your market, your goal. Plain English. That's enough to get started.</p>
                 </div>
-                <div class="how-steps reveal-stagger">
-                    <div class="how-step">
-                        <div>
-                            <h4>Describe your company</h4>
-                            <p>Tell Egbe what you're building, who it's for, and where you want to go. That's your only job.</p>
-                        </div>
-                    </div>
-                    <div class="how-step">
-                        <div>
-                            <h4>AI executives activate</h4>
-                            <p>A full C-suite of specialized AI agents spins up — each owning a function, each accountable to you.</p>
-                        </div>
-                    </div>
-                    <div class="how-step">
-                        <div>
-                            <h4>They run the company</h4>
-                            <p>Agents coordinate across departments, make decisions, ship work, and report back. You approve what matters.</p>
-                        </div>
-                    </div>
-                    <div class="how-step">
-                        <div>
-                            <h4>The company evolves</h4>
-                            <p>Every interaction, every metric, every outcome makes the AI team smarter. Your company compounds daily.</p>
-                        </div>
-                    </div>
+                <div class="how-card">
+                    <div class="how-card-num"></div>
+                    <h4>AI picks up the work</h4>
+                    <p>It writes code, creates landing pages, drafts emails, sets up payments. Real tasks, not suggestions.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-num"></div>
+                    <h4>It ships, you steer</h4>
+                    <p>Everything runs autonomously. But you can step in and change direction any time you want.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-num"></div>
+                    <h4>It gets better over time</h4>
+                    <p>The AI learns what works for your business. Week two is faster than week one.</p>
                 </div>
             </div>
         </div>
@@ -536,8 +673,12 @@
     <!-- Closing -->
     <section class="closing">
         <div class="container">
-            <h2 class="reveal">One founder.<br>Zero employees.<br><em>Infinite leverage.</em></h2>
-            <p class="reveal">Egbe is building the first platform where a single human founder can run an entire company through AI.</p>
+            <h2 class="reveal">One person.<br>A whole business.<br><em>No bullshit.</em></h2>
+            <p class="reveal">The first companies are already running on Egbe.</p>
+            <a href="mailto:hello@egbe.ai" class="closing-cta reveal">
+                Get in touch
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
         </div>
     </section>
 
@@ -591,7 +732,6 @@ window.addEventListener('scroll', () => {
         time += 0.002;
         ctx.clearRect(0, 0, width, height);
 
-        // Subtle gradient orbs that drift
         const orbs = [
             { x: width * 0.2 + Math.sin(time * 0.7) * 100, y: height * 0.3 + Math.cos(time * 0.5) * 80, r: Math.min(width, height) * 0.35, color: 'rgba(196, 247, 77, 0.015)' },
             { x: width * 0.8 + Math.cos(time * 0.6) * 120, y: height * 0.6 + Math.sin(time * 0.4) * 100, r: Math.min(width, height) * 0.4, color: 'rgba(196, 247, 77, 0.01)' },
