@@ -256,69 +256,6 @@
             color: var(--text-dim);
         }
 
-        /* ── Roles grid ── */
-        .roles-header {
-            margin-bottom: clamp(3rem, 6vw, 5rem);
-        }
-
-        .roles-header .label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .roles-header h2 {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 4.5vw, 3.5rem);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-
-        .roles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1px;
-            background: var(--text-muted);
-            border: 1px solid var(--text-muted);
-            border-radius: 2px;
-        }
-
-        .role-card {
-            background: var(--bg);
-            padding: clamp(2rem, 4vw, 3rem);
-            position: relative;
-            transition: background 0.4s;
-        }
-
-        .role-card:hover {
-            background: var(--bg-elevated);
-        }
-
-        .role-card .role-icon {
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-            display: block;
-        }
-
-        .role-card h3 {
-            font-family: var(--serif);
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.01em;
-        }
-
-        .role-card p {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
         /* ── How section ── */
         .how-section {
             display: grid;
@@ -550,46 +487,6 @@
             <p class="premise-text reveal">
                 <span>You shouldn't need to hire 50 people to run a company.</span> You need an AI executive team that never sleeps, never quits, and scales infinitely.
             </p>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Roles -->
-    <section>
-        <div class="container">
-            <div class="roles-grid reveal-stagger">
-                <div class="role-card">
-                    <span class="role-icon">&#9670;</span>
-                    <h3>AI Chief Product Officer</h3>
-                    <p>Owns the roadmap, prioritizes ruthlessly, and makes product decisions from market signals, user behavior, and founder vision.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-icon">&#9672;</span>
-                    <h3>AI Chief Technology Officer</h3>
-                    <p>Architects systems, ships production code, manages infrastructure, and keeps everything running at scale — no engineering team needed.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-icon">&#9671;</span>
-                    <h3>AI Chief Marketing Officer</h3>
-                    <p>Builds brand, runs campaigns across every channel, creates content, and grows your audience from zero to traction.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-icon">&#9673;</span>
-                    <h3>AI Head of Sales</h3>
-                    <p>Finds prospects, runs outreach sequences, handles objections, and closes deals around the clock.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-icon">&#9674;</span>
-                    <h3>AI Head of Support</h3>
-                    <p>Resolves every customer issue instantly, learns from each interaction, and turns support into a growth engine.</p>
-                </div>
-                <div class="role-card">
-                    <span class="role-icon">&#9675;</span>
-                    <h3>AI Chief Financial Officer</h3>
-                    <p>Tracks every dollar, manages budgets, handles compliance, forecasts growth, and keeps the operation financially sound.</p>
-                </div>
-            </div>
         </div>
     </section>
 
