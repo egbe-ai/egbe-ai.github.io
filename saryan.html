@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>Egbe — AI runs your company so you don't have to</title>
+    <meta name="description" content="One founder, zero employees. Egbe is an AI platform that does the actual work — writes code, sends emails, runs the numbers. You call the shots.">
+    <meta name="keywords" content="AI company, solo founder, zero employee company, AI business automation, AI startup, one person business, AI operations">
+    <link rel="canonical" href="https://egbe.ai/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Egbe — AI runs your company so you don't have to">
+    <meta property="og:description" content="One founder, zero employees. AI does the actual work — code, content, outreach, ops. You call the shots.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://egbe.ai/">
+    <meta property="og:site_name" content="Egbe">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://egbe.ai/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Egbe — You found it. AI runs it.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Egbe — AI runs your company so you don't have to">
+    <meta name="twitter:description" content="One founder, zero employees. AI does the actual work. You call the shots.">
+    <meta name="twitter:image" content="https://egbe.ai/og-image.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Egbe",
+        "url": "https://egbe.ai",
+        "description": "AI platform that runs your company. One founder, zero employees.",
+        "email": "hello@egbe.ai",
+        "foundingDate": "2025"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+        :root {
+            /* ── Saryan Palette ── */
+            --sky-deep: #0E1A2B;
+            --sky: #1B3A5C;
+            --sky-mid: #24517A;
+            --sky-light: #2D6B9E;
+            --terra: #C4541A;
+            --terra-dark: #9B3F12;
+            --terra-light: #D4652E;
+            --ochre: #E8A838;
+            --ochre-light: #F2C94C;
+            --ochre-pale: #F5D76E;
+            --olive: #5C7A3D;
+            --olive-light: #7A9E4C;
+            --olive-dark: #3A5228;
+            --cream: #F5E6C8;
+            --cream-light: #FEF8ED;
+            --sand: #E8D5B0;
+            --purple-deep: #2A1845;
+            --purple: #4A2D6B;
+            --pink: #D4788F;
+            --brown: #5C4A32;
+            --brown-light: #8B7355;
+
+            /* ── Semantic ── */
+            --text-on-sky: #F5E6C8;
+            --text-on-sky-dim: rgba(245, 230, 200, 0.6);
+            --text-on-sky-muted: rgba(245, 230, 200, 0.3);
+            --text-on-cream: #1A1408;
+            --text-on-cream-dim: rgba(26, 20, 8, 0.55);
+            --text-on-cream-muted: rgba(26, 20, 8, 0.25);
+            --text-on-terra: #FEF8ED;
+            --text-on-terra-dim: rgba(254, 248, 237, 0.7);
+
+            /* ── Typography ── */
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: var(--sky-deep);
+            color: var(--text-on-sky);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ── Canvas texture overlay (painterly grain) ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 512px 512px;
+        }
+
+        /* ── Ambient canvas ── */
+        #bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── Layout ── */
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 5vw, 4rem);
+        }
+
+        /* ══════════════════════════════════════════
+           NAV
+        ══════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 0;
+            transition: background 0.5s, backdrop-filter 0.5s, border-color 0.5s;
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(27, 58, 92, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom-color: rgba(245, 230, 200, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 1.75rem;
+            letter-spacing: -0.02em;
+            color: var(--cream);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--ochre);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-status {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-on-sky-dim);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--ochre);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .nav-cta {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--sky-deep);
+            background: var(--ochre);
+            padding: 0.55rem 1.4rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 24px rgba(232, 168, 56, 0.35);
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ══════════════════════════════════════════
+           HERO — Saryan landscape
+        ══════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 0 0;
+            position: relative;
+            background: linear-gradient(
+                180deg,
+                var(--sky-deep) 0%,
+                #14294A 20%,
+                var(--sky) 45%,
+                var(--sky-mid) 65%,
+                #3A7AAE 80%,
+                #D4884A 92%,
+                #C4541A 100%
+            );
+            overflow: hidden;
+        }
+
+        /* Saryan sun */
+        .hero-sun {
+            position: absolute;
+            top: 8%;
+            right: 12%;
+            width: clamp(180px, 22vw, 380px);
+            height: clamp(180px, 22vw, 380px);
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                #F5D76E 0%,
+                #F2C94C 20%,
+                #E8A838 40%,
+                rgba(232, 168, 56, 0.5) 60%,
+                rgba(232, 168, 56, 0.15) 75%,
+                transparent 90%
+            );
+            animation: sun-breathe 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes sun-breathe {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding-bottom: clamp(12rem, 28vw, 22rem);
+        }
+
+        .hero-overline {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ochre-light);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(3.2rem, 8vw, 7.5rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--cream);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--ochre-light);
+        }
+
+        .hero-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 3rem;
+            opacity: 0;
+            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            color: var(--text-on-sky-dim);
+            max-width: 44ch;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--sky-deep);
+            background: var(--ochre);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 168, 56, 0.4);
+        }
+
+        .hero-cta svg { transition: transform 0.2s; }
+        .hero-cta:hover svg { transform: translateX(3px); }
+
+        /* ── Mountain silhouettes ── */
+        .mountains {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .mountains svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .mountain-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .mountain-layer:nth-child(1) { z-index: 1; }
+        .mountain-layer:nth-child(2) { z-index: 2; }
+        .mountain-layer:nth-child(3) { z-index: 3; }
+        .mountain-layer:nth-child(4) { z-index: 4; }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: clamp(6rem, 14vw, 10rem);
+            right: clamp(1.5rem, 5vw, 4rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+            z-index: 5;
+        }
+
+        .scroll-cue span {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-on-sky-muted);
+            writing-mode: vertical-rl;
+        }
+
+        .scroll-cue .line {
+            width: 1px;
+            height: 40px;
+            background: var(--text-on-sky-muted);
+            animation: scroll-line 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-line {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+
+        /* ══════════════════════════════════════════
+           PREMISE — terracotta field
+        ══════════════════════════════════════════ */
+        .premise {
+            background: var(--terra);
+            padding: clamp(5rem, 12vw, 10rem) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative arch */
+        .premise::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(600px, 80vw);
+            height: min(600px, 80vw);
+            border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+            border: 1px solid rgba(254, 248, 237, 0.1);
+            pointer-events: none;
+        }
+
+        .premise-text {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 4vw, 3rem);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            max-width: 28ch;
+            margin: 0 auto;
+            color: var(--text-on-terra);
+            position: relative;
+            z-index: 1;
+        }
+
+        .premise-text span {
+            color: var(--text-on-terra-dim);
+        }
+
+        /* ── Wavy transition: terra → cream ── */
+        .wave-terra-cream {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-top: -1px;
+            background: var(--terra);
+        }
+
+        .wave-terra-cream svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* ══════════════════════════════════════════
+           HOW — cream/sand field
+        ══════════════════════════════════════════ */
+        .how-section {
+            background: var(--cream);
+            padding: clamp(5rem, 10vw, 8rem) 0;
+            position: relative;
+        }
+
+        .how-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 5rem);
+        }
+
+        .how-header .label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--terra);
+            margin-bottom: 1.25rem;
+        }
+
+        .how-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            max-width: 20ch;
+            margin: 0 auto 1.25rem;
+            color: var(--text-on-cream);
+        }
+
+        .how-header p {
+            color: var(--text-on-cream-dim);
+            font-weight: 300;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 52ch;
+            margin: 0 auto;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(1rem, 2vw, 1.5rem);
+            counter-reset: step;
+        }
+
+        .how-card {
+            counter-increment: step;
+            background: var(--cream-light);
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 12px rgba(26, 20, 8, 0.06);
+        }
+
+        .how-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .how-card:nth-child(1)::before { background: var(--terra); }
+        .how-card:nth-child(2)::before { background: var(--sky); }
+        .how-card:nth-child(3)::before { background: var(--olive); }
+        .how-card:nth-child(4)::before { background: var(--ochre); }
+
+        .how-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(26, 20, 8, 0.1);
+        }
+
+        /* Decorative geometric shape per card */
+        .how-card::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            opacity: 0.07;
+        }
+
+        .how-card:nth-child(1)::after { background: var(--terra); }
+        .how-card:nth-child(2)::after { background: var(--sky); width: 100px; height: 100px; border-radius: 0; transform: rotate(45deg); }
+        .how-card:nth-child(3)::after { background: var(--olive); border-radius: 50% 50% 0 0; width: 90px; height: 60px; }
+        .how-card:nth-child(4)::after { background: var(--ochre); }
+
+        .how-card-num {
+            font-family: var(--serif);
+            font-size: 2.5rem;
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        .how-card-num::before {
+            content: counter(step, decimal-leading-zero);
+        }
+
+        .how-card:nth-child(1) .how-card-num { color: var(--terra); }
+        .how-card:nth-child(2) .how-card-num { color: var(--sky); }
+        .how-card:nth-child(3) .how-card-num { color: var(--olive); }
+        .how-card:nth-child(4) .how-card-num { color: var(--ochre); }
+
+        .how-card h4 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text-on-cream);
+        }
+
+        .how-card p {
+            font-size: 0.88rem;
+            color: var(--text-on-cream-dim);
+            line-height: 1.65;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Wavy transition: cream → deep blue ── */
+        .wave-cream-blue {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-top: -1px;
+            background: var(--cream);
+        }
+
+        .wave-cream-blue svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* ══════════════════════════════════════════
+           CLOSING — deep blue with mountain tops
+        ══════════════════════════════════════════ */
+        .closing {
+            background: linear-gradient(180deg, var(--sky-deep) 0%, #0A1420 100%);
+            text-align: center;
+            padding: clamp(6rem, 14vw, 12rem) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative floating shapes */
+        .closing-decor {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .closing-decor:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: var(--ochre);
+            top: -80px;
+            left: -80px;
+        }
+
+        .closing-decor:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: var(--terra);
+            bottom: -40px;
+            right: 10%;
+        }
+
+        .closing-decor:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            background: var(--olive-light);
+            top: 30%;
+            right: -30px;
+        }
+
+        .closing h2 {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+            position: relative;
+            z-index: 1;
+        }
+
+        .closing h2 em {
+            font-style: italic;
+            color: var(--ochre);
+        }
+
+        .closing p {
+            font-size: 1.1rem;
+            color: var(--text-on-sky-dim);
+            font-weight: 300;
+            max-width: 50ch;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .closing-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--sky-deep);
+            background: var(--ochre);
+            padding: 1.1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .closing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 168, 56, 0.4);
+        }
+
+        .closing-cta svg { transition: transform 0.2s; }
+        .closing-cta:hover svg { transform: translateX(3px); }
+
+        /* ══════════════════════════════════════════
+           FOOTER
+        ══════════════════════════════════════════ */
+        footer {
+            padding: 3rem 0;
+            background: #070E18;
+            border-top: 1px solid rgba(245, 230, 200, 0.08);
+        }
+
+        footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        footer .logo {
+            font-size: 1.25rem;
+        }
+
+        footer p {
+            font-size: 0.75rem;
+            color: var(--text-on-sky-muted);
+            letter-spacing: 0.05em;
+        }
+
+        footer a {
+            color: var(--text-on-sky-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--ochre);
+        }
+
+        /* ══════════════════════════════════════════
+           ANIMATIONS
+        ══════════════════════════════════════════ */
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.12s; }
+        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.24s; }
+        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.36s; }
+
+        .reveal-stagger.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Selection ── */
+        ::selection {
+            background: var(--ochre);
+            color: var(--sky-deep);
+        }
+
+        /* ══════════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .how-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .scroll-cue { display: none; }
+            .hero-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-cta { display: none; }
+            .hero-sun {
+                top: 4%;
+                right: -5%;
+            }
+            footer .container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="page-wrapper">
+
+    <!-- Nav -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">Egbe<span>.</span></a>
+            <div class="nav-right">
+                <div class="nav-status">Building</div>
+                <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="nav-cta">Join waitlist</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero — Saryan landscape -->
+    <section class="hero">
+        <div class="hero-sun"></div>
+
+        <div class="container hero-content">
+            <p class="hero-overline">The zero-employee company</p>
+            <h1>You found it.<br><em>AI runs it.</em></h1>
+            <div class="hero-bottom">
+                <p class="hero-sub">The whole company runs on AI. Tech, outreach, ops. Fully transparent, fully autonomous — step in when you want to.</p>
+                <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="hero-cta">
+                    Join waitlist
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Layered mountain silhouettes -->
+        <div class="mountains">
+            <!-- Layer 1: far — deep purple -->
+            <div class="mountain-layer" style="bottom:0">
+                <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:clamp(160px,22vw,320px)">
+                    <path d="M0,320 L0,180 L90,200 L180,100 L270,160 L360,60 L450,130 L540,40 L660,120 L780,70 L900,140 L1020,80 L1140,150 L1260,90 L1360,160 L1440,130 L1440,320 Z" fill="#2A1845"/>
+                </svg>
+            </div>
+            <!-- Layer 2: mid — dark terracotta -->
+            <div class="mountain-layer" style="bottom:0">
+                <svg viewBox="0 0 1440 260" preserveAspectRatio="none" style="height:clamp(120px,17vw,260px)">
+                    <path d="M0,260 L0,170 L120,140 L240,190 L380,100 L500,160 L640,80 L780,150 L920,110 L1060,170 L1200,120 L1340,180 L1440,150 L1440,260 Z" fill="#6B3420"/>
+                </svg>
+            </div>
+            <!-- Layer 3: near — dark olive -->
+            <div class="mountain-layer" style="bottom:0">
+                <svg viewBox="0 0 1440 180" preserveAspectRatio="none" style="height:clamp(80px,12vw,180px)">
+                    <path d="M0,180 L0,110 L180,90 L360,120 L540,80 L720,110 L900,85 L1080,115 L1260,90 L1440,105 L1440,180 Z" fill="#3A5228"/>
+                </svg>
+            </div>
+            <!-- Layer 4: closest — warm brown (bleeds into terracotta premise) -->
+            <div class="mountain-layer" style="bottom:0">
+                <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="height:clamp(40px,6vw,100px)">
+                    <path d="M0,100 L0,60 L240,50 L480,65 L720,45 L960,60 L1200,48 L1440,58 L1440,100 Z" fill="#C4541A"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="scroll-cue">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- Premise — terracotta field -->
+    <section class="premise">
+        <div class="container">
+            <p class="premise-text reveal">
+                <span>Most tools help you work faster.</span><br>Egbe does the work for you.
+            </p>
+        </div>
+    </section>
+
+    <!-- Wave: terracotta → cream -->
+    <div class="wave-terra-cream">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:clamp(40px,5vw,80px)">
+            <path d="M0,0 C240,80 480,80 720,40 C960,0 1200,60 1440,30 L1440,80 L0,80 Z" fill="#F5E6C8"/>
+        </svg>
+    </div>
+
+    <!-- How It Works — cream/sand field -->
+    <section class="how-section">
+        <div class="container">
+            <div class="how-header reveal">
+                <p class="label">How It Works</p>
+                <h2>You have the idea.<br>Egbe makes it real.</h2>
+                <p>Describe your business. AI figures out what needs to happen and does it.</p>
+            </div>
+            <div class="how-grid reveal-stagger">
+                <div class="how-card">
+                    <div class="how-card-num"></div>
+                    <h4>Tell it what you want</h4>
+                    <p>Your idea, your market, your goal. Plain English. That's enough to get started.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-num"></div>
+                    <h4>AI picks up the work</h4>
+                    <p>It writes code, creates landing pages, drafts emails, sets up payments. Real tasks, not suggestions.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-num"></div>
+                    <h4>It ships, you steer</h4>
+                    <p>Everything runs autonomously. But you can step in and change direction any time you want.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-num"></div>
+                    <h4>It gets better over time</h4>
+                    <p>The AI learns what works for your business. Week two is faster than week one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave: cream → deep blue -->
+    <div class="wave-cream-blue">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:clamp(40px,5vw,80px)">
+            <path d="M0,0 C360,70 720,70 1080,35 C1260,17 1380,50 1440,25 L1440,80 L0,80 Z" fill="#0E1A2B"/>
+        </svg>
+    </div>
+
+    <!-- Closing — deep blue night -->
+    <section class="closing">
+        <div class="closing-decor"></div>
+        <div class="closing-decor"></div>
+        <div class="closing-decor"></div>
+        <div class="container">
+            <h2 class="reveal">One person.<br>A whole business.<br><em>No overhead.</em></h2>
+            <p class="reveal">The first companies are already running on Egbe.</p>
+            <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="closing-cta reveal">
+                Join waitlist
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="/" class="logo">Egbe<span>.</span></a>
+            <p>&copy; 2026 Egbe AI &middot; <a href="mailto:hello@egbe.ai">hello@egbe.ai</a></p>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+// ── Scroll reveal ──
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
+
+// ── Nav scroll effect ──
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ── Subtle parallax on mountain layers ──
+const mountainLayers = document.querySelectorAll('.mountain-layer');
+const hero = document.querySelector('.hero');
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const heroH = hero.offsetHeight;
+    if (scrollY < heroH) {
+        const progress = scrollY / heroH;
+        mountainLayers.forEach((layer, i) => {
+            const speed = (mountainLayers.length - i) * 15;
+            layer.style.transform = `translateY(${progress * speed}px)`;
+        });
+    }
+}, { passive: true });
+
+// ── Ambient canvas — warm Saryan-inspired floating shapes ──
+(function() {
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, dpr;
+    let time = 0;
+
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function draw() {
+        time += 0.0015;
+        ctx.clearRect(0, 0, width, height);
+
+        // Warm glowing orbs in Saryan's palette
+        const orbs = [
+            { x: width * 0.15 + Math.sin(time * 0.5) * 80, y: height * 0.25 + Math.cos(time * 0.4) * 60, r: Math.min(width, height) * 0.3, color: 'rgba(232, 168, 56, 0.012)' },
+            { x: width * 0.85 + Math.cos(time * 0.4) * 100, y: height * 0.55 + Math.sin(time * 0.3) * 80, r: Math.min(width, height) * 0.35, color: 'rgba(196, 84, 26, 0.01)' },
+            { x: width * 0.5 + Math.sin(time * 0.6) * 60, y: height * 0.8 + Math.cos(time * 0.5) * 50, r: Math.min(width, height) * 0.28, color: 'rgba(92, 122, 61, 0.008)' },
+        ];
+
+        orbs.forEach(orb => {
+            const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
+            gradient.addColorStop(0, orb.color);
+            gradient.addColorStop(1, 'transparent');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+})();
+</script>
+
+</body>
+</html>
