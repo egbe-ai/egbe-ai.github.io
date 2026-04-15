@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <title>Egbe — AI runs your company so you don't have to</title>
-    <meta name="description" content="One founder, zero employees. Egbe is an AI platform that does the actual work — writes code, sends emails, runs the numbers. You call the shots.">
-    <meta name="keywords" content="AI company, solo founder, zero employee company, AI business automation, AI startup, one person business, AI operations">
+    <title>Egbe — AI that builds and runs tech businesses for solo founders</title>
+    <meta name="description" content="Egbe is an autonomous AI platform for solo founders. Bring an idea — AI takes it from research to a shipped product, finds users, and handles support and operations.">
+    <meta name="keywords" content="AI company, solo founder, autonomous AI, AI business automation, AI startup builder, one person business, AI operations, AI marketing, build and run tech businesses">
     <link rel="canonical" href="https://egbe.ai/">
 
     <!-- Open Graph -->
@@ -34,9 +34,23 @@
         "@type": "Organization",
         "name": "Egbe",
         "url": "https://egbe.ai",
-        "description": "AI platform that runs your company. One founder, zero employees.",
+        "description": "Egbe is an autonomous AI platform that builds and runs tech businesses for solo founders. It takes an idea, validates it, ships a product, finds users, and handles ongoing operations and support.",
         "email": "hello@egbe.ai",
-        "foundingDate": "2025"
+        "foundingDate": "2025",
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "email": "hello@egbe.ai",
+                "contactType": "customer support",
+                "availableLanguage": ["English"]
+            },
+            {
+                "@type": "ContactPoint",
+                "email": "team@egbe.ai",
+                "contactType": "team",
+                "availableLanguage": ["English"]
+            }
+        ]
     }
     </script>
 
@@ -748,6 +762,86 @@
         .closing-cta:hover svg { transform: translateX(3px); }
 
         /* ══════════════════════════════════════════
+           CONTACT
+        ══════════════════════════════════════════ */
+        .contact {
+            background: linear-gradient(180deg, #0A1420 0%, #070E18 100%);
+            padding: clamp(4rem, 9vw, 7rem) 0;
+            border-top: 1px solid rgba(245, 230, 200, 0.06);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 6vw, 5rem);
+            align-items: start;
+        }
+
+        .contact-intro .label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ochre);
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-intro h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--cream);
+            margin-bottom: 1.25rem;
+        }
+
+        .contact-intro p {
+            color: var(--text-on-sky-dim);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 44ch;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .contact-item .contact-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-on-sky-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item .contact-value {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            line-height: 1.35;
+            color: var(--cream);
+        }
+
+        .contact-item a.contact-value {
+            color: var(--ochre-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a.contact-value:hover {
+            color: var(--ochre);
+        }
+
+        @media (max-width: 720px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ══════════════════════════════════════════
            FOOTER
         ══════════════════════════════════════════ */
         footer {
@@ -895,7 +989,7 @@
             <p class="hero-overline">The zero-employee company</p>
             <h1>You found it.<br><em>AI runs it.</em></h1>
             <div class="hero-bottom">
-                <p class="hero-sub">The whole company runs on AI. Tech, outreach, ops. Fully transparent, fully autonomous — step in when you want to.</p>
+                <p class="hero-sub">Bring the idea. Egbe takes it from research to a shipped product, finds your first users, and handles support and ops. Fully autonomous — you steer the big calls.</p>
                 <div class="cta-group">
                     <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="hero-cta cta-primary">
                         Join waitlist
@@ -962,28 +1056,28 @@
             <div class="how-header reveal">
                 <p class="label">How It Works</p>
                 <h2>You have the idea.<br>Egbe makes it real.</h2>
-                <p>Describe your business. AI figures out what needs to happen and does it.</p>
+                <p>Built for solo founders with an idea and no team. Describe what you want to build — Egbe figures out what needs to happen, does most of it autonomously, and checks in with you on the calls only you can make.</p>
             </div>
             <div class="how-grid reveal-stagger">
                 <div class="how-card">
                     <div class="how-card-num"></div>
-                    <h4>Tell it what you want</h4>
-                    <p>Your idea, your market, your goal. Plain English. That's enough to get started.</p>
+                    <h4>Describe the idea</h4>
+                    <p>Share your idea in plain English. Egbe asks clarifying questions to pin down the audience, problem, and shape of the product.</p>
                 </div>
                 <div class="how-card">
                     <div class="how-card-num"></div>
-                    <h4>AI picks up the work</h4>
-                    <p>It writes code, creates landing pages, drafts emails, sets up payments. Real tasks, not suggestions.</p>
+                    <h4>Research &amp; shape the product</h4>
+                    <p>AI runs market and competitor research, identifies who to serve first, and turns the idea into a concrete product it can actually ship.</p>
                 </div>
                 <div class="how-card">
                     <div class="how-card-num"></div>
-                    <h4>It ships, you steer</h4>
-                    <p>Everything runs autonomously. But you can step in and change direction any time you want.</p>
+                    <h4>Build, ship, find users</h4>
+                    <p>AI writes the code, launches the product, and tests marketing channels to bring in real users — while you weigh in on key direction calls.</p>
                 </div>
                 <div class="how-card">
                     <div class="how-card-num"></div>
-                    <h4>It gets better over time</h4>
-                    <p>The AI learns what works for your business. Week two is faster than week one.</p>
+                    <h4>Run support &amp; operations</h4>
+                    <p>Customer support, day-to-day operations, iteration on what works — Egbe handles it. You stay focused on the few decisions that move the business.</p>
                 </div>
             </div>
         </div>
@@ -1010,6 +1104,33 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
                 <a href="https://dashboard.egbe.ai" class="closing-preview cta-secondary">Try preview today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-intro reveal">
+                    <p class="label">Contact</p>
+                    <h2>Talk to the team behind Egbe.</h2>
+                    <p>We're a small team building autonomous AI for solo founders who want to launch and run real tech businesses. Questions, partnerships, press, or just curious — reach out, a human will reply.</p>
+                </div>
+                <div class="contact-details reveal">
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <a class="contact-value" href="mailto:team@egbe.ai">team@egbe.ai</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Product preview</div>
+                        <a class="contact-value" href="https://dashboard.egbe.ai">dashboard.egbe.ai</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Waitlist</div>
+                        <a class="contact-value" href="https://forms.gle/fpDowu7tnj6xVnZd8">Join the waitlist</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
