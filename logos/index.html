@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egbe Logos</title>
+    <meta name="description" content="Browse and download Egbe logo variants in 2K and 4K resolutions.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <style>
+        @font-face {
+            font-family: "Instrument Serif";
+            src: url("./InstrumentSerif-Regular.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        :root {
+            --bg: #07131f;
+            --bg-soft: rgba(11, 27, 43, 0.8);
+            --panel: rgba(13, 30, 46, 0.82);
+            --panel-strong: rgba(10, 23, 36, 0.94);
+            --border: rgba(242, 201, 76, 0.14);
+            --border-strong: rgba(242, 201, 76, 0.28);
+            --text: #f7edd5;
+            --text-soft: rgba(247, 237, 213, 0.72);
+            --text-muted: rgba(247, 237, 213, 0.52);
+            --accent: #f2c94c;
+            --accent-strong: #c4541a;
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+            --radius: 26px;
+            --checker-a: rgba(255, 255, 255, 0.1);
+            --checker-b: rgba(255, 255, 255, 0.03);
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font: 16px/1.55 "Avenir Next", "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(196, 84, 26, 0.24), transparent 30%),
+                radial-gradient(circle at top right, rgba(36, 81, 122, 0.36), transparent 32%),
+                linear-gradient(180deg, #0a1725 0%, #07131f 52%, #050c14 100%);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.12;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 36px 36px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 85%);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        code {
+            padding: 0.12rem 0.38rem;
+            border: 1px solid rgba(242, 201, 76, 0.16);
+            border-radius: 999px;
+            background: rgba(242, 201, 76, 0.08);
+            color: var(--accent);
+            font: 0.92em/1.2 ui-monospace, "SFMono-Regular", monospace;
+        }
+
+        .page {
+            position: relative;
+            width: min(1240px, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: 2rem 0 4rem;
+        }
+
+        .hero,
+        .section,
+        .card {
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .hero {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            margin-bottom: 1.5rem;
+            padding: 1rem 0 1.25rem;
+        }
+
+        .hero-shell {
+            display: grid;
+            gap: 1.4rem;
+            grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: calc(var(--radius) + 6px);
+            background: linear-gradient(180deg, rgba(8, 19, 30, 0.92), rgba(8, 17, 27, 0.82));
+            box-shadow: var(--shadow);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-bottom: 0.8rem;
+            padding: 0.45rem 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(242, 201, 76, 0.08);
+            color: var(--accent);
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font: 400 clamp(3rem, 7vw, 5.8rem) / 0.9 "Instrument Serif", Georgia, serif;
+            letter-spacing: -0.04em;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            max-width: 42rem;
+            margin: 1rem 0 0;
+            color: var(--text-soft);
+            font-size: 1.05rem;
+        }
+
+        .hero-meta {
+            display: grid;
+            gap: 0.85rem;
+            align-content: start;
+        }
+
+        .meta-card {
+            padding: 1rem 1.05rem;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--bg-soft);
+        }
+
+        .meta-label {
+            display: block;
+            margin-bottom: 0.2rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .meta-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 0.2rem;
+        }
+
+        .meta-links a,
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 2.4rem;
+            padding: 0.65rem 0.95rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text);
+            text-decoration: none;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .meta-links a:hover,
+        .download-link:hover {
+            transform: translateY(-1px);
+            border-color: var(--border-strong);
+            background: rgba(242, 201, 76, 0.09);
+        }
+
+        .section {
+            padding: 1.4rem;
+            border: 1px solid var(--border);
+            border-radius: calc(var(--radius) + 2px);
+            background: linear-gradient(180deg, rgba(8, 18, 29, 0.94), rgba(7, 16, 26, 0.84));
+            box-shadow: var(--shadow);
+        }
+
+        .section-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: end;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .section h2 {
+            margin: 0;
+            font: 400 clamp(2rem, 4vw, 3rem) / 0.95 "Instrument Serif", Georgia, serif;
+            letter-spacing: -0.03em;
+        }
+
+        .section p {
+            margin: 0.45rem 0 0;
+            color: var(--text-soft);
+        }
+
+        .section-note {
+            max-width: 18rem;
+            color: var(--text-muted);
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            display: grid;
+            grid-template-rows: auto auto;
+            min-height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--panel);
+        }
+
+        .preview {
+            position: relative;
+            display: grid;
+            place-items: center;
+            min-height: 250px;
+            padding: 1.4rem;
+            isolation: isolate;
+        }
+
+        .preview::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(45deg, var(--checker-a) 25%, transparent 25%, transparent 75%, var(--checker-a) 75%),
+                linear-gradient(45deg, var(--checker-a) 25%, transparent 25%, transparent 75%, var(--checker-a) 75%);
+            background-position: 0 0, 20px 20px;
+            background-size: 40px 40px;
+            opacity: 0;
+            transition: opacity 180ms ease;
+        }
+
+        .preview img {
+            display: block;
+            width: min(100%, 360px);
+            max-height: 215px;
+            object-fit: contain;
+            filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.25));
+        }
+
+        .preview.theme-light {
+            background: linear-gradient(180deg, #fcf5e7, #e7d8ba);
+        }
+
+        .preview.theme-dark {
+            background: linear-gradient(180deg, #13273c, #091320);
+        }
+
+        .preview.theme-accent {
+            background: linear-gradient(180deg, #cf622a, #a64717);
+        }
+
+        .preview.theme-gray {
+            background: linear-gradient(180deg, #dad7cf, #bdb8ad);
+        }
+
+        .preview.theme-navy {
+            background: linear-gradient(180deg, #1e3354, #101b2f);
+        }
+
+        .preview.theme-contrast {
+            background: linear-gradient(180deg, #111111, #050505);
+        }
+
+        .preview.theme-transparent {
+            background: linear-gradient(180deg, rgba(14, 26, 43, 0.82), rgba(14, 26, 43, 0.6));
+        }
+
+        .preview.theme-transparent::before {
+            opacity: 1;
+        }
+
+        .card-body {
+            display: grid;
+            gap: 1rem;
+            padding: 1.1rem 1.1rem 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: linear-gradient(180deg, rgba(7, 15, 24, 0.16), rgba(7, 15, 24, 0.36));
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.8rem;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.06rem;
+            line-height: 1.2;
+        }
+
+        .variant-tag {
+            flex: none;
+            align-self: start;
+            padding: 0.32rem 0.58rem;
+            border-radius: 999px;
+            background: rgba(242, 201, 76, 0.1);
+            color: var(--accent);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--text-soft);
+        }
+
+        .download-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .download-link {
+            flex: 1 1 7rem;
+        }
+
+        .download-link strong {
+            margin-right: 0.35rem;
+            color: var(--accent);
+        }
+
+        .footer {
+            padding: 1rem 0 0;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        @media (max-width: 880px) {
+            .page {
+                width: min(100% - 1rem, 1240px);
+                padding-top: 1rem;
+            }
+
+            .hero {
+                position: static;
+            }
+
+            .hero-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .section-head {
+                align-items: start;
+            }
+
+            .section-note {
+                max-width: none;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                width: calc(100% - 0.75rem);
+                padding-bottom: 2.5rem;
+            }
+
+            .hero-shell,
+            .section {
+                padding: 1rem;
+                border-radius: 24px;
+            }
+
+            .card-top {
+                flex-direction: column;
+            }
+
+            .download-link {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header class="hero">
+            <div class="hero-shell">
+                <div>
+                    <div class="eyebrow">Brand Assets</div>
+                    <h1>Egbe<span>.</span> Logos</h1>
+                    <p>All exported logo variants in one place, with direct access to the original <code>2K</code> and <code>4K</code> PNGs from this folder.</p>
+                </div>
+                <div class="hero-meta">
+                    <div class="meta-card">
+                        <span class="meta-label">Available</span>
+                        <div class="meta-value">13 variants, each in 2K and 4K</div>
+                    </div>
+                    <div class="meta-card">
+                        <span class="meta-label">Quick Links</span>
+                        <div class="meta-links">
+                            <a href="#logo-gallery-title">Jump to gallery</a>
+                            <a href="./2K/logo-2048.png">Open default 2K</a>
+                            <a href="./4K/logo-4096.png">Open default 4K</a>
+                            <a href="/">Back to site</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="section" aria-labelledby="logo-gallery-title">
+            <div class="section-head">
+                <div>
+                    <h2 id="logo-gallery-title">Gallery</h2>
+                    <p>Preview a variant below, then open the source file you need.</p>
+                </div>
+                <div class="section-note">Transparent variants use a checkerboard backdrop so the logo edges stay visible.</div>
+            </div>
+            <div id="logo-grid" class="grid" aria-live="polite"></div>
+            <noscript>
+                <p>JavaScript is required for the grouped gallery, but the source files are still available in <code>logos/2K</code> and <code>logos/4K</code>.</p>
+            </noscript>
+        </section>
+
+        <p class="footer">Built from the files currently present in <code>logos/2K</code> and <code>logos/4K</code>.</p>
+    </main>
+
+    <script>
+        const assetFiles = [
+            "2K/logo-2048.png",
+            "2K/white-bg-2048.png",
+            "2K/accent-bg-2048.png",
+            "2K/accent-bg-white-2048.png",
+            "2K/dark-accent-2048.png",
+            "2K/dark-whitedot-2048.png",
+            "2K/navy-bg-2048.png",
+            "2K/gray-bg-2048.png",
+            "2K/mono-black-2048.png",
+            "2K/mono-white-2048.png",
+            "2K/transparent-light-2048.png",
+            "2K/transparent-dark-2048.png",
+            "2K/transparent-accent-2048.png",
+            "4K/logo-4096.png",
+            "4K/white-bg-4096.png",
+            "4K/accent-bg-4096.png",
+            "4K/accent-bg-white-4096.png",
+            "4K/dark-accent-4096.png",
+            "4K/dark-whitedot-4096.png",
+            "4K/navy-bg-4096.png",
+            "4K/gray-bg-4096.png",
+            "4K/mono-black-4096.png",
+            "4K/mono-white-4096.png",
+            "4K/transparent-light-4096.png",
+            "4K/transparent-dark-4096.png",
+            "4K/transparent-accent-4096.png"
+        ];
+
+        const variantMeta = {
+            "logo": {
+                title: "Primary",
+                description: "Default brand mark on the standard light canvas.",
+                theme: "light",
+                tag: "Default"
+            },
+            "white-bg": {
+                title: "White Background",
+                description: "Clean light-background export for documents and presentations.",
+                theme: "light",
+                tag: "Light"
+            },
+            "accent-bg": {
+                title: "Accent Background",
+                description: "Logo set on the warm accent background.",
+                theme: "accent",
+                tag: "Accent"
+            },
+            "accent-bg-white": {
+                title: "Accent Background White Dot",
+                description: "Accent background version with a white dot treatment.",
+                theme: "accent",
+                tag: "Accent"
+            },
+            "dark-accent": {
+                title: "Dark Accent",
+                description: "Dark canvas with the accent dot highlighted.",
+                theme: "dark",
+                tag: "Dark"
+            },
+            "dark-whitedot": {
+                title: "Dark White Dot",
+                description: "Dark version with a brighter dot for contrast.",
+                theme: "dark",
+                tag: "Dark"
+            },
+            "navy-bg": {
+                title: "Navy Background",
+                description: "Deep blue background variant for darker layouts.",
+                theme: "navy",
+                tag: "Dark"
+            },
+            "gray-bg": {
+                title: "Gray Background",
+                description: "Neutral background treatment for softer compositions.",
+                theme: "gray",
+                tag: "Neutral"
+            },
+            "mono-black": {
+                title: "Mono Black",
+                description: "Single-color black logo for print and constrained usage.",
+                theme: "light",
+                tag: "Mono"
+            },
+            "mono-white": {
+                title: "Mono White",
+                description: "Single-color white logo intended for dark surfaces.",
+                theme: "contrast",
+                tag: "Mono"
+            },
+            "transparent-light": {
+                title: "Transparent Light",
+                description: "Transparent background export for lighter placements.",
+                theme: "transparent",
+                tag: "Transparent"
+            },
+            "transparent-dark": {
+                title: "Transparent Dark",
+                description: "Transparent background export for dark placements.",
+                theme: "transparent",
+                tag: "Transparent"
+            },
+            "transparent-accent": {
+                title: "Transparent Accent",
+                description: "Transparent background export with accent styling preserved.",
+                theme: "transparent",
+                tag: "Transparent"
+            }
+        };
+
+        const variantOrder = [
+            "logo",
+            "white-bg",
+            "accent-bg",
+            "accent-bg-white",
+            "dark-accent",
+            "dark-whitedot",
+            "navy-bg",
+            "gray-bg",
+            "mono-black",
+            "mono-white",
+            "transparent-light",
+            "transparent-dark",
+            "transparent-accent"
+        ];
+
+        const groupedVariants = assetFiles.reduce((variants, file) => {
+            const match = file.match(/^(2K|4K)\/(.+)-(\d+)\.png$/);
+            if (!match) {
+                return variants;
+            }
+
+            const [, size, variantKey, pixels] = match;
+            if (!variants[variantKey]) {
+                variants[variantKey] = {};
+            }
+
+            variants[variantKey][size] = {
+                href: file,
+                label: size,
+                pixels
+            };
+
+            return variants;
+        }, {});
+
+        const grid = document.getElementById("logo-grid");
+
+        variantOrder.forEach((variantKey) => {
+            const files = groupedVariants[variantKey];
+            const meta = variantMeta[variantKey];
+
+            if (!files || !meta) {
+                return;
+            }
+
+            const card = document.createElement("article");
+            card.className = "card";
+
+            const preview = document.createElement("div");
+            preview.className = `preview theme-${meta.theme}`;
+
+            const image = document.createElement("img");
+            image.src = files["2K"] ? files["2K"].href : files["4K"].href;
+            image.alt = `${meta.title} Egbe logo preview`;
+            image.loading = "lazy";
+            preview.appendChild(image);
+
+            const body = document.createElement("div");
+            body.className = "card-body";
+
+            const top = document.createElement("div");
+            top.className = "card-top";
+
+            const headingWrap = document.createElement("div");
+            const title = document.createElement("h3");
+            title.textContent = meta.title;
+            const description = document.createElement("p");
+            description.textContent = meta.description;
+            headingWrap.append(title, description);
+
+            const tag = document.createElement("span");
+            tag.className = "variant-tag";
+            tag.textContent = meta.tag;
+
+            top.append(headingWrap, tag);
+
+            const downloads = document.createElement("div");
+            downloads.className = "download-row";
+
+            ["2K", "4K"].forEach((size) => {
+                if (!files[size]) {
+                    return;
+                }
+
+                const link = document.createElement("a");
+                link.className = "download-link";
+                link.href = files[size].href;
+                link.textContent = `${size} (${files[size].pixels}px)`;
+                link.download = "";
+                link.setAttribute("aria-label", `Open ${meta.title} logo ${size} PNG`);
+                downloads.appendChild(link);
+            });
+
+            body.append(top, downloads);
+            card.append(preview, body);
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
