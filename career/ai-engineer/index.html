@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <title>AI Engineer — Egbe Careers</title>
+    <meta name="description" content="AI Engineer position at Egbe. Details coming soon.">
+    <link rel="canonical" href="https://egbe.ai/career/ai-engineer">
+    <meta http-equiv="refresh" content="0; url=https://egbe-ai-engineer.replit.app/">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4NHZYTGG6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-K4NHZYTGG6');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+        :root {
+            --sky-deep: #0E1A2B;
+            --sky: #1B3A5C;
+            --sky-mid: #24517A;
+            --terra: #C4541A;
+            --ochre: #E8A838;
+            --ochre-light: #F2C94C;
+            --cream: #F5E6C8;
+            --cream-light: #FEF8ED;
+
+            --text-on-sky: #F5E6C8;
+            --text-on-sky-dim: rgba(245, 230, 200, 0.6);
+            --text-on-sky-muted: rgba(245, 230, 200, 0.3);
+
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: var(--sky-deep);
+            color: var(--text-on-sky);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 512px 512px;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 clamp(1.5rem, 5vw, 4rem);
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 0;
+            transition: background 0.5s, backdrop-filter 0.5s, border-color 0.5s;
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(27, 58, 92, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom-color: rgba(245, 230, 200, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 1.75rem;
+            letter-spacing: -0.02em;
+            color: var(--cream);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--ochre); }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-on-sky-dim);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: var(--cream); }
+
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .nav-cta {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            padding: 0.55rem 1.4rem;
+        }
+
+        .cta-primary, .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+        }
+
+        .cta-primary { color: var(--sky-deep); background: var(--ochre); }
+        .cta-secondary {
+            color: var(--cream);
+            background: rgba(245, 230, 200, 0.08);
+            border: 1px solid rgba(245, 230, 200, 0.2);
+        }
+
+        .cta-primary:hover, .cta-secondary:hover { transform: translateY(-1px); }
+        .cta-primary:hover { box-shadow: 0 4px 24px rgba(232, 168, 56, 0.35); }
+
+        /* ── Main ── */
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(8rem, 18vw, 14rem) 0 clamp(4rem, 8vw, 7rem);
+            background: linear-gradient(180deg, var(--sky-deep) 0%, #14294A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-sun {
+            position: absolute;
+            top: 8%;
+            right: 10%;
+            width: clamp(100px, 12vw, 200px);
+            height: clamp(100px, 12vw, 200px);
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                #F5D76E 0%,
+                #E8A838 35%,
+                rgba(232, 168, 56, 0.3) 60%,
+                transparent 85%
+            );
+            animation: sun-breathe 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sun-breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+
+        .main-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-on-sky-muted);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .breadcrumb a {
+            color: var(--text-on-sky-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover { color: var(--ochre); }
+
+        .breadcrumb-sep { opacity: 0.4; }
+
+        .role-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ochre);
+            border: 1px solid rgba(232, 168, 56, 0.3);
+            border-radius: 100px;
+            padding: 0.35rem 1rem;
+            margin-bottom: 1.75rem;
+            opacity: 0;
+            animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .main-content h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 400;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            color: var(--cream);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .main-content p {
+            font-size: 1.05rem;
+            color: var(--text-on-sky-dim);
+            font-weight: 300;
+            max-width: 40ch;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            opacity: 0;
+            animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-on-sky-dim);
+            text-decoration: none;
+            transition: color 0.2s, gap 0.2s;
+            opacity: 0;
+            animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+        }
+
+        .back-link:hover { color: var(--ochre); gap: 0.75rem; }
+
+        /* ── Footer ── */
+        footer {
+            padding: 3rem 0;
+            background: #070E18;
+            border-top: 1px solid rgba(245, 230, 200, 0.08);
+        }
+
+        footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        footer .logo { font-size: 1.25rem; }
+
+        footer p {
+            font-size: 0.75rem;
+            color: var(--text-on-sky-muted);
+            letter-spacing: 0.05em;
+        }
+
+        footer a {
+            color: var(--text-on-sky-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover { color: var(--ochre); }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::selection { background: var(--ochre); color: var(--sky-deep); }
+
+        @media (max-width: 640px) {
+            .nav-right .cta-group { display: none; }
+            footer .container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="page-wrapper">
+
+    <!-- Nav -->
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">Egbe<span>.</span></a>
+            <div class="nav-right">
+                <a href="/career" class="nav-link">Careers</a>
+                <div class="cta-group">
+                    <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="nav-cta cta-primary">Join waitlist</a>
+                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-secondary">Try preview</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <section class="main">
+        <div class="main-sun"></div>
+        <div class="container">
+            <div class="main-content">
+                <div class="breadcrumb">
+                    <a href="/career">Careers</a>
+                    <span class="breadcrumb-sep">/</span>
+                    <span>AI Engineer</span>
+                </div>
+                <div class="role-tag">Engineering &middot; Full-time &middot; Remote</div>
+                <h1>AI Engineer</h1>
+                <p>Full position details are on their way. Check back soon — or reach out directly.</p>
+                <a href="mailto:team@egbe.ai" class="back-link">
+                    team@egbe.ai
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="/" class="logo">Egbe<span>.</span></a>
+            <p>&copy; 2026 Egbe AI &middot; <a href="mailto:hello@egbe.ai">hello@egbe.ai</a></p>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+(function() {
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, dpr, time = 0;
+
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function draw() {
+        time += 0.0015;
+        ctx.clearRect(0, 0, width, height);
+        const orbs = [
+            { x: width * 0.2 + Math.sin(time * 0.5) * 80, y: height * 0.3 + Math.cos(time * 0.4) * 60, r: Math.min(width, height) * 0.3, color: 'rgba(232, 168, 56, 0.012)' },
+            { x: width * 0.8 + Math.cos(time * 0.4) * 100, y: height * 0.6 + Math.sin(time * 0.3) * 80, r: Math.min(width, height) * 0.35, color: 'rgba(196, 84, 26, 0.01)' },
+        ];
+        orbs.forEach(orb => {
+            const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
+            gradient.addColorStop(0, orb.color);
+            gradient.addColorStop(1, 'transparent');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+        });
+        requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+})();
+</script>
+
+</body>
+</html>
