@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <title>Egbe — AI that builds and runs tech businesses for solo founders</title>
+    <title>Egbe — The AI platform that builds and runs tech businesses for solo founders</title>
     <meta name="description" content="Egbe is an autonomous AI platform for solo founders. Bring an idea — AI takes it from research to a shipped product, finds users, and handles support and operations.">
     <meta name="keywords" content="AI company, solo founder, autonomous AI, AI business automation, AI startup builder, one person business, AI operations, AI marketing, build and run tech businesses">
     <link rel="canonical" href="https://egbe.ai/">
@@ -33,10 +33,20 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Egbe",
+        "legalName": "Egbe, Inc.",
         "url": "https://egbe.ai",
-        "description": "Egbe is an autonomous AI platform that builds and runs tech businesses for solo founders. It takes an idea, validates it, ships a product, finds users, and handles ongoing operations and support.",
+        "description": "Egbe is an autonomous AI subscription platform that builds and runs tech businesses for solo founders. It takes an idea, validates it, ships a product, finds users, and handles ongoing operations and support.",
         "email": "hello@egbe.ai",
-        "foundingDate": "2025",
+        "foundingDate": "2026",
+        "sameAs": ["https://www.linkedin.com/company/egbe-ai/"],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "8 The Green, Suite 14245",
+            "addressLocality": "Dover",
+            "addressRegion": "DE",
+            "postalCode": "19901",
+            "addressCountry": "US"
+        },
         "contactPoint": [
             {
                 "@type": "ContactPoint",
@@ -888,6 +898,141 @@
         }
 
         /* ══════════════════════════════════════════
+           PRODUCT · PRICING · TEAM  (cream field)
+        ══════════════════════════════════════════ */
+        .product, .pricing, .team {
+            background: var(--cream);
+            padding: clamp(4rem, 9vw, 7rem) 0;
+            position: relative;
+        }
+        #product, #pricing, #team { scroll-margin-top: 90px; }
+
+        .section-head { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+        .section-head .label {
+            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--terra); margin-bottom: 1.25rem;
+        }
+        .section-head h2 {
+            font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: 400; letter-spacing: -0.02em; line-height: 1.1;
+            max-width: 24ch; margin: 0 auto 1.25rem; color: var(--text-on-cream);
+        }
+        .section-head p {
+            color: var(--text-on-cream-dim); font-weight: 300; font-size: 1.05rem;
+            line-height: 1.7; max-width: 58ch; margin: 0 auto;
+        }
+
+        /* placeholder frame (shared) */
+        .frame-ph {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 0.4rem; text-align: center; padding: 1.5rem; width: 100%; height: 100%;
+            color: var(--text-on-cream-muted); font-size: 0.82rem; line-height: 1.5;
+        }
+        .frame-ph strong { font-family: var(--serif); font-weight: 400; font-size: 1.05rem; color: var(--text-on-cream-dim); }
+
+        /* demo */
+        .demo-frame {
+            border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 9;
+            background: linear-gradient(160deg, var(--sky) 0%, var(--sky-deep) 100%);
+            border: 1px solid rgba(26, 20, 8, 0.1); box-shadow: 0 14px 44px rgba(26, 20, 8, 0.12);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+        }
+        .demo-frame video, .demo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .demo-frame .frame-ph { color: var(--text-on-sky-dim); }
+        .demo-frame .frame-ph strong { color: var(--cream); }
+        .demo-frame .play {
+            width: 56px; height: 56px; border-radius: 50%; margin-bottom: 0.5rem;
+            background: var(--ochre); color: var(--sky-deep);
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* screenshots */
+        .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 2.5vw, 2rem); }
+        .shot { display: flex; flex-direction: column; gap: 1rem; }
+        .shot-frame {
+            border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 10;
+            background: var(--cream-light); border: 1px solid rgba(26, 20, 8, 0.1);
+            box-shadow: 0 8px 30px rgba(26, 20, 8, 0.08);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .shot-cap h4 { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; color: var(--text-on-cream); margin-bottom: 0.35rem; }
+        .shot-cap p { font-size: 0.88rem; color: var(--text-on-cream-dim); font-weight: 300; line-height: 1.6; }
+
+        /* real product media */
+        .demo-frame { aspect-ratio: 1.9; margin-bottom: 1.25rem; }
+        .demo-frame img { object-position: top center; }
+        .demo-cap { text-align: center; max-width: 62ch; margin: 0 auto clamp(2.25rem, 4vw, 3.25rem); color: var(--text-on-cream-dim); font-weight: 300; font-size: 0.95rem; line-height: 1.65; }
+        .shot-frame img { object-position: top center; }
+        .shots--two { grid-template-columns: repeat(2, 1fr); max-width: 860px; margin-left: auto; margin-right: auto; }
+
+        /* pricing */
+        .price-card {
+            max-width: 940px; margin: 0 auto; position: relative; overflow: hidden;
+            background: var(--cream-light); border: 1px solid rgba(26, 20, 8, 0.1); border-radius: 22px;
+            box-shadow: 0 14px 44px rgba(26, 20, 8, 0.1);
+            display: grid; grid-template-columns: 0.85fr 1.15fr;
+        }
+        .price-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--ochre); z-index: 1; }
+        .price-main { padding: clamp(2rem, 4vw, 3rem); display: flex; flex-direction: column; align-items: flex-start; }
+        .price-incl { padding: clamp(2rem, 4vw, 3rem); border-left: 1px solid rgba(26, 20, 8, 0.1); background: rgba(245, 230, 200, 0.35); }
+        .price-plan { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 1rem; }
+        .price-amount { font-family: var(--serif); font-size: clamp(3rem, 7vw, 4.5rem); line-height: 1; color: var(--text-on-cream); }
+        .price-amount span { font-family: var(--sans); font-size: 1.05rem; font-weight: 400; color: var(--text-on-cream-dim); }
+        .price-usage { font-size: 0.85rem; color: var(--text-on-cream-muted); margin-top: 0.4rem; }
+        .price-credit { display: inline-block; margin-top: 0.7rem; padding: 0.32rem 0.75rem; border-radius: 100px; background: rgba(92, 122, 61, 0.12); color: var(--olive-dark); font-size: 0.78rem; font-weight: 500; }
+        .price-sub { color: var(--text-on-cream-dim); font-weight: 300; line-height: 1.6; margin: 1.25rem 0 1.75rem; }
+        .price-main .cta-primary { width: 100%; padding: 1rem 1.5rem; font-size: 0.95rem; font-weight: 500; }
+        .price-foot { font-size: 0.78rem; color: var(--text-on-cream-muted); margin-top: 0.9rem; }
+        .price-incl-title { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-on-cream-muted); margin-bottom: 1.25rem; }
+        .price-features { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        .price-features li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.9rem; font-weight: 300; line-height: 1.55; color: var(--text-on-cream-dim); }
+        .price-features li strong { font-weight: 500; color: var(--text-on-cream); }
+        .price-features svg { flex-shrink: 0; margin-top: 3px; color: var(--olive); }
+
+        .price-billing { max-width: 760px; margin: 2rem auto 0; text-align: center; font-size: 0.9rem; font-weight: 300; line-height: 1.65; color: var(--text-on-cream-dim); }
+        .price-billing strong { font-weight: 500; color: var(--text-on-cream); }
+
+        .price-extras { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.5rem); max-width: 880px; margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; }
+        .price-extra { background: var(--cream-light); border: 1px solid rgba(26, 20, 8, 0.08); border-radius: 14px; padding: 1.5rem; text-align: center; }
+        .price-extra h4 { font-family: var(--serif); font-weight: 400; font-size: 1.15rem; color: var(--text-on-cream); margin-bottom: 0.4rem; }
+        .price-extra p { font-size: 0.85rem; font-weight: 300; color: var(--text-on-cream-dim); line-height: 1.55; }
+
+        .price-anchor { max-width: 640px; margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; text-align: center; }
+        .price-anchor p { font-family: var(--serif); font-size: clamp(1.3rem, 3vw, 1.85rem); line-height: 1.4; color: var(--text-on-cream); }
+        .price-anchor strong { color: var(--terra); font-weight: 400; }
+
+        .price-final { text-align: center; margin-top: clamp(2rem, 4vw, 2.75rem); }
+        .price-final .cta-primary { padding: 1.1rem 2.5rem; font-size: 1.05rem; font-weight: 500; }
+        .price-final .cta-primary:hover { box-shadow: 0 8px 30px rgba(232, 168, 56, 0.4); }
+
+        @media (max-width: 760px) {
+            .price-card { grid-template-columns: 1fr; }
+            .price-incl { border-left: none; border-top: 1px solid rgba(26, 20, 8, 0.1); }
+            .price-extras { grid-template-columns: 1fr; max-width: 460px; }
+        }
+
+        /* team / company */
+        .team-linkedin {
+            display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.75rem;
+            padding: 0.8rem 1.6rem; border-radius: 100px; background: var(--sky); color: var(--cream);
+            font-size: 0.9rem; font-weight: 500; text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+        .team-linkedin:hover { transform: translateY(-1px); background: var(--sky-mid); box-shadow: 0 6px 22px rgba(27, 58, 92, 0.3); }
+        .team-linkedin svg { flex-shrink: 0; }
+        .company-facts { display: grid; grid-template-columns: repeat(3, auto); justify-content: center; gap: clamp(2rem, 6vw, 5rem); margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+        .fact { text-align: center; display: flex; flex-direction: column; gap: 0.3rem; }
+        .fact-k { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-on-cream-muted); }
+        .fact-v { font-family: var(--serif); font-size: 1.2rem; color: var(--text-on-cream); }
+        @media (max-width: 540px) { .company-facts { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+        @media (max-width: 760px) {
+            .shots { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+        }
+
+        /* ══════════════════════════════════════════
            ANIMATIONS
         ══════════════════════════════════════════ */
         @keyframes fade-up {
@@ -984,11 +1129,13 @@
         <div class="container">
             <a href="/" class="logo">Egbe<span>.</span></a>
             <div class="nav-right">
-                <div class="nav-status">Building</div>
+                <div class="nav-status">Live</div>
+                <a href="#product" class="nav-link">Product</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#team" class="nav-link">Team</a>
                 <a href="https://careers.egbe.ai/" class="nav-link">Careers</a>
                 <div class="cta-group">
-                    <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="nav-cta cta-primary">Join waitlist</a>
-                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-secondary">Try preview today</a>
+                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-primary">Start building</a>
                 </div>
             </div>
         </div>
@@ -1004,11 +1151,11 @@
             <div class="hero-bottom">
                 <p class="hero-sub">Bring the idea. Egbe takes it from research to a shipped product, finds your first users, and handles support and ops. Fully autonomous — you steer the big calls.</p>
                 <div class="cta-group">
-                    <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="hero-cta cta-primary">
-                        Join waitlist
+                    <a href="https://dashboard.egbe.ai" class="hero-cta cta-primary">
+                        Start building
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
-                    <a href="https://dashboard.egbe.ai" class="hero-preview cta-secondary">Try preview today</a>
+                    <a href="#pricing" class="hero-preview cta-secondary">See pricing</a>
                 </div>
             </div>
         </div>
@@ -1096,6 +1243,123 @@
         </div>
     </section>
 
+    <!-- Product — what Egbe is, screenshots & demo -->
+    <section class="product" id="product">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="label">The Product</p>
+                <h2>See it in action.</h2>
+                <p>A real look inside Egbe — the dashboard where your AI co-founder does the work, and you stay in control.</p>
+            </div>
+
+            <!-- Featured: the agent's task board -->
+            <div class="demo-frame reveal">
+                <img src="shots/tasks.png" alt="Egbe dashboard — the AI agent's task board with To do, Recurring, In progress, Done and Failed columns" loading="lazy">
+            </div>
+            <p class="demo-cap reveal">Your AI co-founder plans and prioritizes its own tasks, then ships them hour by hour. Step in anytime from the same board to steer, reprioritize, or add work of your own.</p>
+
+            <div class="shots shots--two reveal-stagger">
+                <div class="shot">
+                    <div class="shot-frame"><img src="shots/overview.png" alt="Egbe dashboard overview — agent status, budget wallet balance, and recent activity" loading="lazy"></div>
+                    <div class="shot-cap">
+                        <h4>Your command center</h4>
+                        <p>Agent status, wallet balance, and live activity — every business you run on Egbe, at a glance.</p>
+                    </div>
+                </div>
+                <div class="shot">
+                    <div class="shot-frame"><img src="shots/usage.png" alt="Egbe usage dashboard — metered limits for apps, databases, payments, and storage" loading="lazy"></div>
+                    <div class="shot-cap">
+                        <h4>Costs under your control</h4>
+                        <p>Apps, databases, payments, storage — every resource the agent uses is metered against the budget you set.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="label">Pricing</p>
+                <h2>One plan. Your entire startup team.</h2>
+            </div>
+
+            <div class="price-card reveal">
+                <div class="price-main">
+                    <div class="price-amount">$99<span>/month</span></div>
+                    <p class="price-usage">+ pay-as-you-go usage</p>
+                    <p class="price-credit">$50 in free usage credit to start</p>
+                    <p class="price-sub">Everything you need to go from idea to paying customers.</p>
+                    <a href="https://dashboard.egbe.ai" class="cta-primary">Start building
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                    <p class="price-foot">Cancel anytime · Up and running in minutes</p>
+                </div>
+                <div class="price-incl">
+                    <p class="price-incl-title">What's included</p>
+                    <ul class="price-features">
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Your own AI co-founder, 24/7</strong> — ships a real step every hour</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Builds &amp; ships real products</strong> — apps, landing pages, and signup flows on your own domain</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>A whole team in one agent</strong> — product, engineering, marketing, and ops built in</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Payments built in</strong> — Stripe checkout and payment links, set up for you</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Growth on autopilot</strong> — ads, cold email, lead gen, and content</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>All infrastructure included</strong> — hosting, databases, email, analytics, domains</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Weekly founder reports</strong> — what shipped and what's next, in plain English</span></li>
+                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Founder dashboard &amp; task tracker</strong> — assign and review work; the agent plans its own tasks too</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="price-billing reveal"><strong>How billing works:</strong> Your $99/month covers your co-founder and the entire platform. AI compute and ad spend run on a simple top-up wallet — and we start you with <strong>$50 in free usage credit</strong>, so you can launch before paying for any usage. You set the budget and only pay for what you use. No surprises, no overages.</p>
+
+            <div class="price-extras reveal-stagger">
+                <div class="price-extra">
+                    <h4>No setup, no DevOps</h4>
+                    <p>We provision your servers, databases, email, and domains.</p>
+                </div>
+                <div class="price-extra">
+                    <h4>No code required</h4>
+                    <p>Describe your idea in a chat — your agent does the rest.</p>
+                </div>
+                <div class="price-extra">
+                    <h4>Cancel anytime</h4>
+                    <p>No contracts, no lock-in.</p>
+                </div>
+            </div>
+
+            <div class="price-anchor reveal">
+                <p>A junior engineer plus a marketer costs <strong>$10,000+/month</strong>. Your Egbe co-founder is <strong>$99</strong> — and it never sleeps.</p>
+            </div>
+
+            <div class="price-final reveal">
+                <a href="https://dashboard.egbe.ai" class="cta-primary">Get your co-founder — $99/mo
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team / Company -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-head reveal">
+                <p class="label">Team</p>
+                <h2>The people behind Egbe.</h2>
+                <p>We're a small team building autonomous AI for solo founders who want to launch and run real tech businesses. Meet the people and follow our progress on LinkedIn.</p>
+                <a href="https://www.linkedin.com/company/egbe-ai/" target="_blank" rel="noopener" class="team-linkedin">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                    See the team on LinkedIn
+                </a>
+            </div>
+            <div class="company-facts reveal-stagger">
+                <div class="fact"><span class="fact-k">Founded</span><span class="fact-v">2026</span></div>
+                <div class="fact"><span class="fact-k">Company</span><span class="fact-v">Egbe, Inc.</span></div>
+                <div class="fact"><span class="fact-k">Headquarters</span><span class="fact-v">USA</span></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Wave: cream → deep blue -->
     <div class="wave-cream-blue">
         <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:clamp(40px,5vw,80px)">
@@ -1112,38 +1376,11 @@
             <h2 class="reveal">One person.<br>A whole business.<br><em>No overhead.</em></h2>
             <p class="reveal">The first companies are already running on Egbe.</p>
             <div class="cta-group reveal" style="justify-content:center;">
-                <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="closing-cta cta-primary">
-                    Join waitlist
+                <a href="https://dashboard.egbe.ai" class="closing-cta cta-primary">
+                    Start building
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
-                <a href="https://dashboard.egbe.ai" class="closing-preview cta-secondary">Try preview today</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-intro reveal">
-                    <p class="label">Contact</p>
-                    <h2>Talk to the team behind Egbe.</h2>
-                    <p>We're a small team building autonomous AI for solo founders who want to launch and run real tech businesses. Questions, partnerships, press, or just curious — reach out, a human will reply.</p>
-                </div>
-                <div class="contact-details reveal">
-                    <div class="contact-item">
-                        <div class="contact-label">Email</div>
-                        <a class="contact-value" href="mailto:team@egbe.ai">team@egbe.ai</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">Product preview</div>
-                        <a class="contact-value" href="https://dashboard.egbe.ai">dashboard.egbe.ai</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-label">Waitlist</div>
-                        <a class="contact-value" href="https://forms.gle/fpDowu7tnj6xVnZd8">Join the waitlist</a>
-                    </div>
-                </div>
+                <a href="mailto:hello@egbe.ai" class="closing-preview cta-secondary">Contact us</a>
             </div>
         </div>
     </section>
@@ -1152,7 +1389,7 @@
     <footer>
         <div class="container">
             <a href="/" class="logo">Egbe<span>.</span></a>
-            <p>&copy; 2026 Egbe AI &middot; <a href="https://careers.egbe.ai/">Careers</a> &middot; <a href="mailto:hello@egbe.ai">hello@egbe.ai</a></p>
+            <p>&copy; 2026 Egbe, Inc. &middot; <a href="https://www.linkedin.com/company/egbe-ai/" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="https://careers.egbe.ai/">Careers</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/terms/">Terms</a> &middot; <a href="mailto:hello@egbe.ai">hello@egbe.ai</a></p>
         </div>
     </footer>
 
