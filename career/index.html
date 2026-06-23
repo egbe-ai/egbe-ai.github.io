@@ -296,6 +296,38 @@
             gap: 1rem;
         }
 
+        .job-empty {
+            padding: clamp(2rem, 4vw, 3rem);
+            border-radius: 16px;
+            background: rgba(245, 230, 200, 0.04);
+            border: 1px solid rgba(245, 230, 200, 0.1);
+            text-align: center;
+        }
+        .job-empty-text {
+            color: var(--text-on-sky-dim);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 48ch;
+            margin: 0 auto 1.75rem;
+        }
+        .job-empty-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.6rem;
+            border-radius: 100px;
+            background: var(--ochre);
+            color: var(--sky-deep);
+            font-size: 0.92rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .job-empty-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 168, 56, 0.4);
+        }
+
         .job-card {
             display: flex;
             align-items: center;
@@ -440,8 +472,7 @@
             <div class="nav-right">
                 <a href="/career" class="nav-link active">Careers</a>
                 <div class="cta-group">
-                    <a href="https://forms.gle/fpDowu7tnj6xVnZd8" class="nav-cta cta-primary">Join waitlist</a>
-                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-secondary">Try preview</a>
+                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-primary">Start building</a>
                 </div>
             </div>
         </div>
@@ -451,7 +482,7 @@
     <section class="page-hero">
         <div class="page-hero-sun"></div>
         <div class="container">
-            <p class="overline">Join the team</p>
+            <p class="overline">Careers</p>
             <h1>We're building<br><em>something real.</em></h1>
             <p>We're a small team making AI that runs entire businesses autonomously. We move fast, care about craft, and prefer clarity over process. If that sounds like your kind of work — we'd like to hear from you.</p>
         </div>
@@ -461,20 +492,16 @@
     <section class="positions">
         <div class="container">
             <div class="positions-header reveal">
-                <p class="label">Open positions</p>
-                <h2>Who we're looking for</h2>
+                <p class="label">Careers</p>
+                <h2>No open positions right now.</h2>
             </div>
             <div class="job-list reveal">
-                <a href="/career/ai-engineer" class="job-card">
-                    <div class="job-card-left">
-                        <span class="job-tag">Engineering</span>
-                        <div class="job-title">AI Engineer</div>
-                        <div class="job-meta">Full-time &middot; Remote</div>
-                    </div>
-                    <div class="job-arrow">
+                <div class="job-empty">
+                    <p class="job-empty-text">We're not actively hiring at the moment — but we're always glad to hear from exceptional people. If you think you'd be a great fit for Egbe, tell us who you are and what you'd want to work on.</p>
+                    <a href="mailto:hello@egbe.ai?subject=Working%20with%20Egbe" class="job-empty-cta">Email hello@egbe.ai
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -483,7 +510,7 @@
     <footer>
         <div class="container">
             <a href="/" class="logo">Egbe<span>.</span></a>
-            <p>&copy; 2026 Egbe AI &middot; <a href="mailto:hello@egbe.ai">hello@egbe.ai</a></p>
+            <p>&copy; 2026 Egbe, Inc. &middot; <a href="mailto:hello@egbe.ai">hello@egbe.ai</a></p>
         </div>
     </footer>
 
