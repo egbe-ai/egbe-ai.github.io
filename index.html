@@ -74,6 +74,37 @@
         gtag('config', 'G-K4NHZYTGG6');
     </script>
 
+    <!-- Umami: shared with dashboard.egbe.ai to track landing -> signup -> product funnel -->
+    <script>
+        (function () {
+            try {
+                var VID_KEY = 'egbe_vid';
+                var vid = localStorage.getItem(VID_KEY);
+                if (!vid) {
+                    vid = 'v_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+                    localStorage.setItem(VID_KEY, vid);
+                }
+                window.__egbeVid = vid;
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.querySelectorAll('a[href^="https://dashboard.egbe.ai"]').forEach(function (a) {
+                        try {
+                            var url = new URL(a.href);
+                            url.searchParams.set('vid', vid);
+                            a.href = url.toString();
+                        } catch (e) {}
+                    });
+                });
+            } catch (e) {}
+        })();
+    </script>
+    <script
+        async
+        defer
+        data-website-id="8c616e8c-63a2-4edd-ab6a-7777f7909122"
+        src="https://analytics.hz.egbe.dev/script.js"
+        onload="window.umami && window.umami.identify(window.__egbeVid)"
+    ></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
@@ -1135,7 +1166,7 @@
                 <a href="#team" class="nav-link">Team</a>
                 <a href="/career/" class="nav-link">Careers</a>
                 <div class="cta-group">
-                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-primary">Start building</a>
+                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-primary" data-umami-event="nav_start_building">Start building</a>
                 </div>
             </div>
         </div>
@@ -1151,11 +1182,11 @@
             <div class="hero-bottom">
                 <p class="hero-sub">Bring the idea. Egbe takes it from research to a shipped product, finds your first users, and handles support and ops. Fully autonomous — you steer the big calls.</p>
                 <div class="cta-group">
-                    <a href="https://dashboard.egbe.ai" class="hero-cta cta-primary">
+                    <a href="https://dashboard.egbe.ai" class="hero-cta cta-primary" data-umami-event="hero_start_building">
                         Start building
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
-                    <a href="https://calendar.app.google/R8c44Ps1EiUtC6RRA" class="hero-preview cta-secondary" target="_blank" rel="noopener">Book a demo</a>
+                    <a href="https://calendar.app.google/R8c44Ps1EiUtC6RRA" class="hero-preview cta-secondary" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a>
                 </div>
             </div>
         </div>
@@ -1376,11 +1407,11 @@
             <h2 class="reveal">One person.<br>A whole business.<br><em>No overhead.</em></h2>
             <p class="reveal">The first companies are already running on Egbe.</p>
             <div class="cta-group reveal" style="justify-content:center;">
-                <a href="https://dashboard.egbe.ai" class="closing-cta cta-primary">
+                <a href="https://dashboard.egbe.ai" class="closing-cta cta-primary" data-umami-event="closing_start_building">
                     Start building
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
-                <a href="https://calendar.app.google/R8c44Ps1EiUtC6RRA" class="closing-preview cta-secondary" target="_blank" rel="noopener">Book a demo</a>
+                <a href="https://calendar.app.google/R8c44Ps1EiUtC6RRA" class="closing-preview cta-secondary" target="_blank" rel="noopener" data-umami-event="closing_book_demo">Book a demo</a>
             </div>
         </div>
     </section>
