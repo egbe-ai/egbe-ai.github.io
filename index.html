@@ -261,12 +261,17 @@
             flex-wrap: wrap;
         }
 
-        .cta-col {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.8rem;
+        .hero-cta-wrap {
+            position: relative;
             flex-shrink: 0;
+        }
+
+        .hero-cta-wrap .cta-note {
+            position: absolute;
+            top: calc(100% + 0.55rem);
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
         }
 
         .cta-note {
@@ -1116,8 +1121,14 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
-            .hero-bottom .cta-col {
+            .hero-bottom .hero-cta-wrap {
                 width: 100%;
+            }
+            .hero-bottom .hero-cta-wrap .cta-note {
+                position: static;
+                transform: none;
+                text-align: center;
+                margin-top: 0.55rem;
             }
             .hero-bottom .cta-group,
             .closing .cta-group {
@@ -1178,15 +1189,15 @@
             <h1>You found it.<br><em>AI runs it.</em></h1>
             <div class="hero-bottom">
                 <p class="hero-sub">Bring the idea. Egbe takes it from research to a shipped product, finds your first users, and handles support and ops. Fully autonomous — you steer the big calls.</p>
-                <div class="cta-col">
-                    <div class="cta-group">
+                <div class="cta-group">
+                    <div class="hero-cta-wrap">
                         <a href="https://dashboard.egbe.ai" class="hero-cta cta-primary" data-umami-event="hero_start_building">
                             Start free trial
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </a>
-                        <a href="https://calendar.app.google/R8c44Ps1EiUtC6RRA" class="hero-preview cta-secondary" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a>
+                        <p class="cta-note">No credit card required</p>
                     </div>
-                    <p class="cta-note">No credit card required</p>
+                    <a href="https://calendar.app.google/R8c44Ps1EiUtC6RRA" class="hero-preview cta-secondary" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a>
                 </div>
             </div>
         </div>
