@@ -74,7 +74,9 @@
         gtag('config', 'G-K4NHZYTGG6');
     </script>
 
-    <!-- Umami: shared with dashboard.egbe.ai to track landing -> signup -> product funnel -->
+    <!-- Umami: landing has its own website ID so acquisition is not mixed with
+         authenticated dashboard usage. The stable visitor ID is forwarded to
+         dashboard sign-up attribution through the existing vid parameter. -->
     <script>
         (function () {
             try {
@@ -100,7 +102,7 @@
     <script
         async
         defer
-        data-website-id="8c616e8c-63a2-4edd-ab6a-7777f7909122"
+        data-website-id="c716a650-f912-43f1-8b60-1b9b2ca53e78"
         src="https://analytics.hz.egbe.dev/script.js"
         onload="window.umami && window.umami.identify(window.__egbeVid)"
     ></script>
