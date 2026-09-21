@@ -325,8 +325,19 @@
             .facts { flex-direction: column; gap: 20px; }
             .facts div + div { border-left: 0; }
             .faq details p { padding-right: 0; }
+
+            /* running on egbe — on a phone four full cards are two screens of scrolling;
+               here they become rows: thumbnail, name, what it is */
+            .running { padding-top: 56px; }
+            .running-lead { margin-bottom: 20px; }
+            .products { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
+            .product { display: grid; grid-template-columns: 104px minmax(0, 1fr); column-gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+            .product-shot { grid-row: 1 / span 2; align-self: start; border-radius: 10px; }
+            .product:hover .product-shot, .product:focus-visible .product-shot { transform: none; box-shadow: 0 0 0 1px var(--line); }
+            .product h3 { align-self: end; margin: 0 0 2px; font-size: 1rem; }
+            .product p { align-self: start; font-size: 0.875rem; line-height: 1.4; }
+            .product small { display: none; }
         }
-        @media (max-width: 440px) { .products { grid-template-columns: 1fr; } }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .window { animation: none; }
