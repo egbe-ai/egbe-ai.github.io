@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FFFFFF">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <title>Careers — Egbe</title>
     <meta name="description" content="Join the team building autonomous AI that runs tech businesses for solo founders. Egbe is hiring.">
-    <link rel="canonical" href="https://egbe.ai/career">
+    <link rel="canonical" href="https://egbe.ai/career/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Careers — Egbe">
+    <meta property="og:description" content="Join the team building autonomous AI that runs tech businesses for solo founders.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://egbe.ai/career/">
+    <meta property="og:site_name" content="Egbe">
+    <meta property="og:image" content="https://egbe.ai/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4NHZYTGG6"></script>
@@ -19,554 +31,174 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        /* Same system as the landing (/index.html): white page, cool grey panels,
+           one periwinkle accent; panels 28px, cards 24px, anything clickable is a pill. */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --sky-deep: #0E1A2B;
-            --sky: #1B3A5C;
-            --sky-mid: #24517A;
-            --sky-light: #2D6B9E;
-            --terra: #C4541A;
-            --terra-dark: #9B3F12;
-            --terra-light: #D4652E;
-            --ochre: #E8A838;
-            --ochre-light: #F2C94C;
-            --ochre-pale: #F5D76E;
-            --olive: #5C7A3D;
-            --olive-light: #7A9E4C;
-            --cream: #F5E6C8;
-            --cream-light: #FEF8ED;
-            --sand: #E8D5B0;
-            --purple-deep: #2A1845;
-            --brown: #5C4A32;
-            --brown-light: #8B7355;
+            --bg: #FFFFFF;
+            --alt: #F3F4F9;
+            --ink: #1B1C2E;
+            --ink-2: #54566B;
+            --ink-3: #686A82;
+            --ghost: #85879E;
+            --line: #E3E5EE;
+            --line-2: #CDD0DF;
+            --accent: #5266EB;
+            --accent-2: #4153D4;
 
-            --text-on-sky: #F5E6C8;
-            --text-on-sky-dim: rgba(245, 230, 200, 0.6);
-            --text-on-sky-muted: rgba(245, 230, 200, 0.3);
-            --text-on-cream: #1A1408;
-            --text-on-cream-dim: rgba(26, 20, 8, 0.55);
-
-            --serif: 'Instrument Serif', Georgia, serif;
-            --sans: 'DM Sans', -apple-system, sans-serif;
+            --sans: 'Figtree', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
         }
 
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6; overflow-x: hidden; }
+        main { flex: 1; }
+        a { color: inherit; }
+        ::selection { background: var(--accent); color: #fff; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+        .wrap { max-width: 1176px; margin: 0 auto; padding: 0 28px; }
+        .panel { margin: 0 12px; border-radius: 28px; }
+
+        h1, h2, h3 { font-weight: 500; text-wrap: balance; }
+        h1 { font-size: clamp(2.625rem, 5vw, 4rem); line-height: 1.06; letter-spacing: -0.028em; }
+        h2 { font-size: clamp(2rem, 3.4vw, 2.875rem); line-height: 1.1; letter-spacing: -0.024em; }
+        .dim { color: var(--ghost); }
+        .label { display: block; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 20px; }
+
+        /* ── buttons ── */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 24px; border-radius: 99px; border: 1px solid transparent; font-size: 1rem; font-weight: 500; text-decoration: none; white-space: nowrap; cursor: pointer; font-family: inherit; transition: background-color 0.15s, border-color 0.15s; }
+        .btn-accent { background: var(--accent); color: #fff; }
+        .btn-accent:hover { background: var(--accent-2); }
+        .btn-sm { height: 38px; padding: 0 18px; font-size: 0.9375rem; }
+        .btn svg { transition: transform 0.15s; }
+        .btn:hover svg { transform: translateX(2px); }
+
+        /* ── nav ── */
+        .nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+        .nav.is-stuck { border-bottom-color: var(--line); }
+        .nav .wrap { height: 68px; display: flex; align-items: center; gap: 36px; }
+        .wordmark { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.035em; line-height: 1; color: var(--ink); text-decoration: none; }
+        .wordmark span { color: var(--accent); }
+        .nav-links { display: flex; gap: 30px; margin: 0 auto; }
+        .nav-links a { font-size: 0.9688rem; color: var(--ink-2); text-decoration: none; transition: color 0.15s; }
+        .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
+
+        /* ── hero ── */
+        .hero { background: var(--alt); padding: clamp(72px, 9vw, 128px) 0; text-align: center; }
+        .kicker { font-size: 0.9375rem; font-weight: 500; color: var(--ink-3); margin-bottom: 18px; }
+        .hero h1 { margin-bottom: 22px; }
+        .lede { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--ink-2); max-width: 36em; margin: 0 auto; text-wrap: pretty; }
+
+        /* ── positions ── */
+        .section { padding: clamp(72px, 9vw, 128px) 0; }
+        .roles-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+        .empty { border: 1px solid var(--line-2); border-radius: 24px; padding: clamp(28px, 3.4vw, 40px); }
+        .empty p { color: var(--ink-2); max-width: 34em; margin-bottom: 28px; text-wrap: pretty; }
+
+        /* a role, when there is one — see the template in the markup below */
+        .roles { border-top: 1px solid var(--line-2); }
+        .role { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+        .role h3 { font-size: 1.375rem; line-height: 1.25; letter-spacing: -0.015em; }
+        .role small { display: block; margin-top: 6px; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }
+        .role-arrow { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; color: var(--ink-2); transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.15s; }
+        .role:hover .role-arrow, .role:focus-visible .role-arrow { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateX(2px); }
+
+        footer { padding: 36px 0 56px; font-size: 0.9375rem; color: var(--ink-3); }
+        .foot { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; flex-wrap: wrap; }
+        .foot address { font-style: normal; margin-top: 10px; line-height: 1.5; }
+        .foot nav { display: flex; gap: 8px 26px; flex-wrap: wrap; padding-top: 6px; }
+        .foot nav a { color: var(--ink-2); text-decoration: none; }
+        .foot nav a:hover, .foot nav a[aria-current="page"] { color: var(--ink); }
+
+        @media (max-width: 960px) {
+            .nav-links { display: none; }
+            .nav .btn { margin-left: auto; }
+            .roles-grid { grid-template-columns: 1fr; }
         }
-
-        body {
-            background: var(--sky-deep);
-            color: var(--text-on-sky);
-            font-family: var(--sans);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 512px 512px;
-        }
-
-        #bg-canvas {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .page-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 clamp(1.5rem, 5vw, 4rem);
-        }
-
-        /* ── Nav ── */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.25rem 0;
-            transition: background 0.5s, backdrop-filter 0.5s, border-color 0.5s;
-            border-bottom: 1px solid transparent;
-        }
-
-        nav.scrolled {
-            background: rgba(27, 58, 92, 0.8);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom-color: rgba(245, 230, 200, 0.1);
-        }
-
-        nav .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: var(--serif);
-            font-size: 1.75rem;
-            letter-spacing: -0.02em;
-            color: var(--cream);
-            text-decoration: none;
-        }
-
-        .logo span { color: var(--ochre); }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--text-on-sky-dim);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-            transition: color 0.2s;
-        }
-
-        .nav-link:hover, .nav-link.active { color: var(--cream); }
-
-        .cta-group {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-cta {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            padding: 0.55rem 1.4rem;
-        }
-
-        .cta-primary, .cta-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            border-radius: 100px;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
-        }
-
-        .cta-primary {
-            color: var(--sky-deep);
-            background: var(--ochre);
-        }
-
-        .cta-secondary {
-            color: var(--cream);
-            background: rgba(245, 230, 200, 0.08);
-            border: 1px solid rgba(245, 230, 200, 0.2);
-        }
-
-        .cta-primary:hover, .cta-secondary:hover { transform: translateY(-1px); }
-        .cta-primary:hover { box-shadow: 0 4px 24px rgba(232, 168, 56, 0.35); }
-        .cta-secondary:hover {
-            background: rgba(245, 230, 200, 0.14);
-            border-color: rgba(245, 230, 200, 0.32);
-        }
-
-        /* ── Page hero ── */
-        .page-hero {
-            padding: clamp(8rem, 16vw, 13rem) 0 clamp(4rem, 8vw, 7rem);
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(180deg, var(--sky-deep) 0%, #14294A 60%, var(--sky) 100%);
-        }
-
-        .page-hero-sun {
-            position: absolute;
-            top: 5%;
-            right: 8%;
-            width: clamp(120px, 14vw, 240px);
-            height: clamp(120px, 14vw, 240px);
-            border-radius: 50%;
-            background: radial-gradient(
-                circle,
-                #F5D76E 0%,
-                #F2C94C 20%,
-                #E8A838 40%,
-                rgba(232, 168, 56, 0.4) 60%,
-                transparent 85%
-            );
-            animation: sun-breathe 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes sun-breathe {
-            0%, 100% { transform: scale(1); opacity: 0.85; }
-            50% { transform: scale(1.06); opacity: 1; }
-        }
-
-        .page-hero .overline {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--ochre-light);
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-        }
-
-        .page-hero h1 {
-            font-family: var(--serif);
-            font-size: clamp(2.8rem, 7vw, 6rem);
-            font-weight: 400;
-            line-height: 0.95;
-            letter-spacing: -0.03em;
-            color: var(--cream);
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
-        }
-
-        .page-hero h1 em {
-            font-style: italic;
-            color: var(--ochre-light);
-        }
-
-        .page-hero p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--text-on-sky-dim);
-            max-width: 52ch;
-            line-height: 1.7;
-            font-weight: 300;
-            opacity: 0;
-            animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-        }
-
-        /* ── Positions section ── */
-        .positions {
-            padding: clamp(4rem, 8vw, 7rem) 0 clamp(6rem, 12vw, 10rem);
-            background: linear-gradient(180deg, var(--sky) 0%, var(--sky-deep) 100%);
-        }
-
-        .positions-header {
-            margin-bottom: clamp(2.5rem, 5vw, 4rem);
-        }
-
-        .positions-header .label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--ochre);
-            margin-bottom: 0.75rem;
-        }
-
-        .positions-header h2 {
-            font-family: var(--serif);
-            font-size: clamp(1.6rem, 3vw, 2.4rem);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            color: var(--cream);
-        }
-
-        .job-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .job-empty {
-            padding: clamp(2rem, 4vw, 3rem);
-            border-radius: 16px;
-            background: rgba(245, 230, 200, 0.04);
-            border: 1px solid rgba(245, 230, 200, 0.1);
-            text-align: center;
-        }
-        .job-empty-text {
-            color: var(--text-on-sky-dim);
-            font-weight: 300;
-            line-height: 1.7;
-            max-width: 48ch;
-            margin: 0 auto 1.75rem;
-        }
-        .job-empty-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.8rem 1.6rem;
-            border-radius: 100px;
-            background: var(--ochre);
-            color: var(--sky-deep);
-            font-size: 0.92rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .job-empty-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(232, 168, 56, 0.4);
-        }
-
-        .job-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2.5rem);
-            border-radius: 16px;
-            background: rgba(245, 230, 200, 0.04);
-            border: 1px solid rgba(245, 230, 200, 0.1);
-            text-decoration: none;
-            color: inherit;
-            transition: background 0.25s, border-color 0.25s, transform 0.25s;
-        }
-
-        .job-card:hover {
-            background: rgba(245, 230, 200, 0.08);
-            border-color: rgba(245, 230, 200, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .job-card-left {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .job-tag {
-            font-size: 0.65rem;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--ochre);
-        }
-
-        .job-title {
-            font-family: var(--serif);
-            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-            font-weight: 400;
-            color: var(--cream);
-            line-height: 1.2;
-        }
-
-        .job-meta {
-            font-size: 0.82rem;
-            color: var(--text-on-sky-muted);
-            font-weight: 300;
-        }
-
-        .job-arrow {
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid rgba(245, 230, 200, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-on-sky-dim);
-            transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
-        }
-
-        .job-card:hover .job-arrow {
-            background: var(--ochre);
-            border-color: var(--ochre);
-            color: var(--sky-deep);
-            transform: translateX(2px);
-        }
-
-        /* ── Footer ── */
-        footer {
-            padding: 3rem 0;
-            background: #070E18;
-            border-top: 1px solid rgba(245, 230, 200, 0.08);
-        }
-
-        footer .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        footer .logo { font-size: 1.25rem; }
-
-        footer p {
-            font-size: 0.75rem;
-            color: var(--text-on-sky-muted);
-            letter-spacing: 0.05em;
-        }
-
-        footer a {
-            color: var(--text-on-sky-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        footer a:hover { color: var(--ochre); }
-
-        /* ── Animations ── */
-        @keyframes fade-up {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        ::selection {
-            background: var(--ochre);
-            color: var(--sky-deep);
-        }
-
         @media (max-width: 640px) {
-            .nav-right .cta-group { display: none; }
-            footer .container {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-            .job-card { flex-direction: column; align-items: flex-start; }
+            .wrap { padding: 0 20px; }
+            .panel { margin: 0 6px; border-radius: 22px; }
+            .empty .btn { width: 100%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .btn:hover svg, .role:hover .role-arrow { transform: none; }
         }
     </style>
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
+<header class="nav" id="nav">
+    <div class="wrap">
+        <a href="/" class="wordmark" aria-label="Egbe — home">Egbe<span>.</span></a>
+        <nav class="nav-links" aria-label="Primary">
+            <a href="/#product">Product</a>
+            <a href="/#pricing">Pricing</a>
+            <a href="/#team">Team</a>
+            <a href="/career/" aria-current="page">Careers</a>
+        </nav>
+        <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-sm">Start free trial</a>
+    </div>
+</header>
 
-<div class="page-wrapper">
-
-    <!-- Nav -->
-    <nav>
-        <div class="container">
-            <a href="/" class="logo">Egbe<span>.</span></a>
-            <div class="nav-right">
-                <a href="/career" class="nav-link active">Careers</a>
-                <div class="cta-group">
-                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-primary">Start free trial</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Page hero -->
-    <section class="page-hero">
-        <div class="page-hero-sun"></div>
-        <div class="container">
-            <p class="overline">Careers</p>
-            <h1>We're building<br><em>something real.</em></h1>
-            <p>We're a small team making AI that runs entire businesses autonomously. We move fast, care about craft, and prefer clarity over process. If that sounds like your kind of work — we'd like to hear from you.</p>
+<main>
+    <section class="hero panel">
+        <div class="wrap">
+            <p class="kicker">Careers</p>
+            <h1><span class="dim">We're building</span><br>something real.</h1>
+            <p class="lede">We're a small team making AI that runs entire businesses autonomously. We move fast, care about craft, and prefer clarity over process. If that sounds like your kind of work — we'd like to hear from you.</p>
         </div>
     </section>
 
     <!-- Open positions -->
-    <section class="positions">
-        <div class="container">
-            <div class="positions-header reveal">
-                <p class="label">Careers</p>
+    <section class="section" id="positions">
+        <div class="wrap roles-grid">
+            <div>
+                <span class="label">Careers</span>
                 <h2>No open positions right now.</h2>
             </div>
-            <div class="job-list reveal">
-                <div class="job-empty">
-                    <p class="job-empty-text">We're not actively hiring at the moment — but we're always glad to hear from exceptional people. If you think you'd be a great fit for Egbe, tell us who you are and what you'd want to work on.</p>
-                    <a href="mailto:hello@egbe.ai?subject=Working%20with%20Egbe" class="job-empty-cta">Email hello@egbe.ai
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
-                </div>
+            <!-- When a role opens, put this in place of .empty (one <a class="role"> per role):
+            <div class="roles">
+                <a class="role" href="/career/ai-engineer/">
+                    <div><h3>AI Engineer</h3><small>Engineering · Full-time · Remote</small></div>
+                    <span class="role-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                </a>
+            </div>
+            -->
+            <div class="empty">
+                <p>We're not actively hiring at the moment — but we're always glad to hear from exceptional people. If you think you'd be a great fit for Egbe, tell us who you are and what you'd want to work on.</p>
+                <a href="mailto:hello@egbe.ai?subject=Working%20with%20Egbe" class="btn btn-accent">Email hello@egbe.ai
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
             </div>
         </div>
     </section>
+</main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <a href="/" class="logo">Egbe<span>.</span></a>
-            <p>&copy; 2026 Egbe, Inc. &middot; <a href="mailto:hello@egbe.ai">hello@egbe.ai</a></p>
-        </div>
-    </footer>
-
-</div>
+<footer>
+    <div class="wrap foot">
+        <div><a href="/" class="wordmark" aria-label="Egbe — home">Egbe<span>.</span></a><address>&copy; 2026 Egbe, Inc.<br>8 The Green, Suite 14245, Dover, DE 19901, USA</address></div>
+        <nav aria-label="Footer">
+            <a href="https://www.linkedin.com/company/egbe-ai/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://x.com/Egbe_ai" target="_blank" rel="noopener">X</a>
+            <a href="/career/" aria-current="page">Careers</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
+            <a href="mailto:hello@egbe.ai">hello@egbe.ai</a>
+        </nav>
+    </div>
+</footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
-
-(function() {
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, dpr, time = 0;
-
-    function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        canvas.style.width = width + 'px';
-        canvas.style.height = height + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function draw() {
-        time += 0.0015;
-        ctx.clearRect(0, 0, width, height);
-        const orbs = [
-            { x: width * 0.15 + Math.sin(time * 0.5) * 80, y: height * 0.25 + Math.cos(time * 0.4) * 60, r: Math.min(width, height) * 0.3, color: 'rgba(232, 168, 56, 0.012)' },
-            { x: width * 0.85 + Math.cos(time * 0.4) * 100, y: height * 0.55 + Math.sin(time * 0.3) * 80, r: Math.min(width, height) * 0.35, color: 'rgba(196, 84, 26, 0.01)' },
-            { x: width * 0.5 + Math.sin(time * 0.6) * 60, y: height * 0.8 + Math.cos(time * 0.5) * 50, r: Math.min(width, height) * 0.28, color: 'rgba(92, 122, 61, 0.008)' },
-        ];
-        orbs.forEach(orb => {
-            const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
-            gradient.addColorStop(0, orb.color);
-            gradient.addColorStop(1, 'transparent');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, width, height);
-        });
-        requestAnimationFrame(draw);
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-    draw();
+// nav hairline once the page has scrolled
+(function () {
+    var nav = document.getElementById('nav');
+    var onScroll = function () { nav.classList.toggle('is-stuck', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 })();
 </script>
 

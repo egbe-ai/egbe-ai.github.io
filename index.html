@@ -109,1413 +109,1012 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&text=AEOTabcegiklnrstvwy&display=swap" rel="stylesheet">
     <style>
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        /* ── egbe.ai landing ──
+           White page, cool grey panels, light-weight type, one periwinkle accent.
+           Rules the page keeps:
+           · two-tone headlines always read  set-up (dim) → pay-off (ink);
+           · full-width sections have centred heads, two-column sections have left heads;
+           · captions sit left-aligned under their picture;
+           · panels 28px, cards 24px, media 14px, anything clickable is a pill;
+           · product windows: the new dashboard's layout in the landing's own tones,
+             periwinkle for what you can press, green for what is done. */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* ── Saryan Palette ── */
-            --sky-deep: #0E1A2B;
-            --sky: #1B3A5C;
-            --sky-mid: #24517A;
-            --sky-light: #2D6B9E;
-            --terra: #C4541A;
-            --terra-dark: #9B3F12;
-            --terra-light: #D4652E;
-            --ochre: #E8A838;
-            --ochre-light: #F2C94C;
-            --ochre-pale: #F5D76E;
-            --olive: #5C7A3D;
-            --olive-light: #7A9E4C;
-            --olive-dark: #3A5228;
-            --cream: #F5E6C8;
-            --cream-light: #FEF8ED;
-            --sand: #E8D5B0;
-            --purple-deep: #2A1845;
-            --purple: #4A2D6B;
-            --pink: #D4788F;
-            --brown: #5C4A32;
-            --brown-light: #8B7355;
-
-            /* ── Semantic ── */
-            --text-on-sky: #F5E6C8;
-            --text-on-sky-dim: rgba(245, 230, 200, 0.6);
-            --text-on-sky-muted: rgba(245, 230, 200, 0.3);
-            --text-on-cream: #1A1408;
-            --text-on-cream-dim: rgba(26, 20, 8, 0.55);
-            --text-on-cream-muted: rgba(26, 20, 8, 0.25);
-            --text-on-terra: #FEF8ED;
-            --text-on-terra-dim: rgba(254, 248, 237, 0.7);
-
-            /* ── Typography ── */
-            --serif: 'Instrument Serif', Georgia, serif;
-            --sans: 'DM Sans', -apple-system, sans-serif;
-        }
-
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            background: var(--sky-deep);
-            color: var(--text-on-sky);
-            font-family: var(--sans);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* ── Canvas texture overlay (painterly grain) ── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 512px 512px;
-        }
-
-        /* ── Ambient canvas ── */
-        #bg-canvas {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* ── Layout ── */
-        .page-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 clamp(1.5rem, 5vw, 4rem);
-        }
-
-        /* ══════════════════════════════════════════
-           NAV
-        ══════════════════════════════════════════ */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.25rem 0;
-            transition: background 0.5s, backdrop-filter 0.5s, border-color 0.5s;
-            border-bottom: 1px solid transparent;
-        }
-
-        nav.scrolled {
-            background: rgba(27, 58, 92, 0.8);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom-color: rgba(245, 230, 200, 0.1);
-        }
-
-        nav .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: var(--serif);
-            font-size: 1.75rem;
-            letter-spacing: -0.02em;
-            color: var(--cream);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--ochre);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--text-on-sky-dim);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-            transition: color 0.2s;
-        }
-
-        .nav-link:hover { color: var(--cream); }
-
-        .cta-group {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-cta-wrap {
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .hero-cta-wrap .cta-note {
-            position: absolute;
-            top: calc(100% + 0.55rem);
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-        }
-
-        .cta-note {
-            font-size: 0.78rem;
-            letter-spacing: 0.03em;
-            color: var(--text-on-sky-dim);
-            margin: 0;
-        }
-
-        .nav-cta {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            padding: 0.55rem 1.4rem;
-        }
-
-        .cta-primary,
-        .cta-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            border-radius: 100px;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
-        }
-
-        .cta-primary {
-            color: var(--sky-deep);
-            background: var(--ochre);
-        }
-
-        .cta-secondary {
-            color: var(--cream);
-            background: rgba(245, 230, 200, 0.08);
-            border: 1px solid rgba(245, 230, 200, 0.2);
-        }
-
-        .cta-primary:hover,
-        .cta-secondary:hover {
-            transform: translateY(-1px);
-        }
-
-        .cta-primary:hover {
-            box-shadow: 0 4px 24px rgba(232, 168, 56, 0.35);
-        }
-
-        .cta-secondary:hover {
-            background: rgba(245, 230, 200, 0.14);
-            border-color: rgba(245, 230, 200, 0.32);
-            box-shadow: 0 4px 18px rgba(7, 14, 24, 0.18);
-        }
-
-        /* ══════════════════════════════════════════
-           HERO — Saryan landscape
-        ══════════════════════════════════════════ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 8rem 0 0;
-            position: relative;
-            background: linear-gradient(
-                180deg,
-                var(--sky-deep) 0%,
-                #14294A 20%,
-                var(--sky) 45%,
-                var(--sky-mid) 65%,
-                #3A7AAE 80%,
-                #D4884A 92%,
-                #C4541A 100%
-            );
-            overflow: hidden;
-        }
-
-        /* Saryan sun */
-        .hero-sun {
-            position: absolute;
-            top: 8%;
-            right: 12%;
-            width: clamp(180px, 22vw, 380px);
-            height: clamp(180px, 22vw, 380px);
-            border-radius: 50%;
-            background: radial-gradient(
-                circle,
-                #F5D76E 0%,
-                #F2C94C 20%,
-                #E8A838 40%,
-                rgba(232, 168, 56, 0.5) 60%,
-                rgba(232, 168, 56, 0.15) 75%,
-                transparent 90%
-            );
-            animation: sun-breathe 8s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        @keyframes sun-breathe {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.06); opacity: 1; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding-bottom: clamp(12rem, 28vw, 22rem);
-        }
-
-        .hero-overline {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--ochre-light);
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-        }
-
-        .hero h1 {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(3.2rem, 8vw, 7.5rem);
-            line-height: 0.95;
-            letter-spacing: -0.03em;
-            color: var(--cream);
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--ochre-light);
-        }
-
-        .hero-bottom {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 3rem;
-            opacity: 0;
-            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-        }
-
-        .hero-sub {
-            font-size: clamp(1.05rem, 2vw, 1.3rem);
-            color: var(--text-on-sky-dim);
-            max-width: 44ch;
-            line-height: 1.65;
-            font-weight: 300;
-        }
-
-        .hero-cta {
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 1rem 2rem;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .hero-preview {
-            font-size: 0.92rem;
-            font-weight: 500;
-            padding: 0.82rem 1.5rem;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .hero-cta:hover,
-        .hero-preview:hover {
-            transform: translateY(-2px);
-        }
-
-        .hero-cta:hover { box-shadow: 0 8px 30px rgba(232, 168, 56, 0.4); }
-
-        .hero-cta svg { transition: transform 0.2s; }
-        .hero-cta:hover svg { transform: translateX(3px); }
-
-        /* ── Mountain silhouettes ── */
-        .mountains {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .mountains svg {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        .mountain-layer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-        }
-
-        .mountain-layer:nth-child(1) { z-index: 1; }
-        .mountain-layer:nth-child(2) { z-index: 2; }
-        .mountain-layer:nth-child(3) { z-index: 3; }
-        .mountain-layer:nth-child(4) { z-index: 4; }
-
-        .scroll-cue {
-            position: absolute;
-            bottom: clamp(6rem, 14vw, 10rem);
-            right: clamp(1.5rem, 5vw, 4rem);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0;
-            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
-            z-index: 5;
-        }
-
-        .scroll-cue span {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-on-sky-muted);
-            writing-mode: vertical-rl;
-        }
-
-        .scroll-cue .line {
-            width: 1px;
-            height: 40px;
-            background: var(--text-on-sky-muted);
-            animation: scroll-line 2s ease-in-out infinite;
-        }
-
-        @keyframes scroll-line {
-            0% { transform: scaleY(0); transform-origin: top; }
-            50% { transform: scaleY(1); transform-origin: top; }
-            51% { transform-origin: bottom; }
-            100% { transform: scaleY(0); transform-origin: bottom; }
-        }
-
-        /* ══════════════════════════════════════════
-           PREMISE — terracotta field
-        ══════════════════════════════════════════ */
-        .premise {
-            background: var(--terra);
-            padding: clamp(5rem, 12vw, 10rem) 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Decorative arch */
-        .premise::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: min(600px, 80vw);
-            height: min(600px, 80vw);
-            border-radius: 50% 50% 0 0 / 60% 60% 0 0;
-            border: 1px solid rgba(254, 248, 237, 0.1);
-            pointer-events: none;
-        }
-
-        .premise-text {
-            font-family: var(--serif);
-            font-size: clamp(1.6rem, 4vw, 3rem);
-            line-height: 1.35;
-            letter-spacing: -0.02em;
-            max-width: 28ch;
-            margin: 0 auto;
-            color: var(--text-on-terra);
-            position: relative;
-            z-index: 1;
-        }
-
-        .premise-text span {
-            color: var(--text-on-terra-dim);
-        }
-
-        /* ── Wavy transition: terra → cream ── */
-        .wave-terra-cream {
-            display: block;
-            width: 100%;
-            height: auto;
-            margin-top: -1px;
-            background: var(--terra);
-        }
-
-        .wave-terra-cream svg {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        /* ══════════════════════════════════════════
-           HOW — cream/sand field
-        ══════════════════════════════════════════ */
-        .how-section {
-            background: var(--cream);
-            padding: clamp(5rem, 10vw, 8rem) 0;
-            position: relative;
-        }
-
-        .how-header {
-            text-align: center;
-            margin-bottom: clamp(3rem, 6vw, 5rem);
-        }
-
-        .how-header .label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--terra);
-            margin-bottom: 1.25rem;
-        }
-
-        .how-header h2 {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 4.5vw, 3.5rem);
-            font-weight: 400;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            max-width: 20ch;
-            margin: 0 auto 1.25rem;
-            color: var(--text-on-cream);
-        }
-
-        .how-header p {
-            color: var(--text-on-cream-dim);
-            font-weight: 300;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            max-width: 52ch;
-            margin: 0 auto;
-        }
-
-        .how-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: clamp(1rem, 2vw, 1.5rem);
-            counter-reset: step;
-        }
-
-        .how-card {
-            counter-increment: step;
-            background: var(--cream-light);
-            padding: clamp(1.5rem, 3vw, 2.5rem);
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 2px 12px rgba(26, 20, 8, 0.06);
-        }
-
-        .how-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-        }
-
-        .how-card:nth-child(1)::before { background: var(--terra); }
-        .how-card:nth-child(2)::before { background: var(--sky); }
-        .how-card:nth-child(3)::before { background: var(--olive); }
-        .how-card:nth-child(4)::before { background: var(--ochre); }
-
-        .how-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(26, 20, 8, 0.1);
-        }
-
-        /* Decorative geometric shape per card */
-        .how-card::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            opacity: 0.07;
-        }
-
-        .how-card:nth-child(1)::after { background: var(--terra); }
-        .how-card:nth-child(2)::after { background: var(--sky); width: 100px; height: 100px; border-radius: 0; transform: rotate(45deg); }
-        .how-card:nth-child(3)::after { background: var(--olive); border-radius: 50% 50% 0 0; width: 90px; height: 60px; }
-        .how-card:nth-child(4)::after { background: var(--ochre); }
-
-        .how-card-num {
-            font-family: var(--serif);
-            font-size: 2.5rem;
-            line-height: 1;
-            letter-spacing: -0.03em;
-        }
-
-        .how-card-num::before {
-            content: counter(step, decimal-leading-zero);
-        }
-
-        .how-card:nth-child(1) .how-card-num { color: var(--terra); }
-        .how-card:nth-child(2) .how-card-num { color: var(--sky); }
-        .how-card:nth-child(3) .how-card-num { color: var(--olive); }
-        .how-card:nth-child(4) .how-card-num { color: var(--ochre); }
-
-        .how-card h4 {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-            font-weight: 400;
-            line-height: 1.2;
-            color: var(--text-on-cream);
-        }
-
-        .how-card p {
-            font-size: 0.88rem;
-            color: var(--text-on-cream-dim);
-            line-height: 1.65;
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ── Wavy transition: cream → deep blue ── */
-        .wave-cream-blue {
-            display: block;
-            width: 100%;
-            height: auto;
-            margin-top: -1px;
-            background: var(--cream);
-        }
-
-        .wave-cream-blue svg {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        /* ══════════════════════════════════════════
-           CLOSING — deep blue with mountain tops
-        ══════════════════════════════════════════ */
-        .closing {
-            background: linear-gradient(180deg, var(--sky-deep) 0%, #0A1420 100%);
-            text-align: center;
-            padding: clamp(6rem, 14vw, 12rem) 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Decorative floating shapes */
-        .closing-decor {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.08;
-            pointer-events: none;
-        }
-
-        .closing-decor:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: var(--ochre);
-            top: -80px;
-            left: -80px;
-        }
-
-        .closing-decor:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: var(--terra);
-            bottom: -40px;
-            right: 10%;
-        }
-
-        .closing-decor:nth-child(3) {
-            width: 120px;
-            height: 120px;
-            background: var(--olive-light);
-            top: 30%;
-            right: -30px;
-        }
-
-        .closing h2 {
-            font-family: var(--serif);
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 400;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            color: var(--cream);
-            position: relative;
-            z-index: 1;
-        }
-
-        .closing h2 em {
-            font-style: italic;
-            color: var(--ochre);
-        }
-
-        .closing p {
-            font-size: 1.1rem;
-            color: var(--text-on-sky-dim);
-            font-weight: 300;
-            max-width: 50ch;
-            margin: 0 auto 2.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .closing-cta,
-        .closing-preview {
-            font-size: 1.05rem;
-            font-weight: 500;
-            padding: 1.1rem 2.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .closing-cta:hover,
-        .closing-preview:hover {
-            transform: translateY(-2px);
-        }
-
-        .closing-cta:hover { box-shadow: 0 8px 30px rgba(232, 168, 56, 0.4); }
-
-        .closing-cta svg { transition: transform 0.2s; }
-        .closing-cta:hover svg { transform: translateX(3px); }
-
-        .closing .cta-note {
-            font-size: 0.78rem;
-            margin: 1.2rem auto 0;
-        }
-
-        /* ══════════════════════════════════════════
-           CONTACT
-        ══════════════════════════════════════════ */
-        .contact {
-            background: linear-gradient(180deg, #0A1420 0%, #070E18 100%);
-            padding: clamp(4rem, 9vw, 7rem) 0;
-            border-top: 1px solid rgba(245, 230, 200, 0.06);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: clamp(2rem, 6vw, 5rem);
-            align-items: start;
-        }
-
-        .contact-intro .label {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--ochre);
-            margin-bottom: 1.25rem;
-        }
-
-        .contact-intro h2 {
-            font-family: var(--serif);
-            font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: var(--cream);
-            margin-bottom: 1.25rem;
-        }
-
-        .contact-intro p {
-            color: var(--text-on-sky-dim);
-            font-weight: 300;
-            line-height: 1.7;
-            max-width: 44ch;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.75rem;
-        }
-
-        .contact-item .contact-label {
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-on-sky-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-item .contact-value {
-            font-family: var(--serif);
-            font-size: 1.4rem;
-            line-height: 1.35;
-            color: var(--cream);
-        }
-
-        .contact-item a.contact-value {
-            color: var(--ochre-light);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .contact-item a.contact-value:hover {
-            color: var(--ochre);
-        }
-
-        @media (max-width: 720px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ══════════════════════════════════════════
-           FOOTER
-        ══════════════════════════════════════════ */
-        footer {
-            padding: 3rem 0;
-            background: #070E18;
-            border-top: 1px solid rgba(245, 230, 200, 0.08);
-        }
-
-        footer .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        footer .logo {
-            font-size: 1.25rem;
-        }
-
-        footer p {
-            font-size: 0.75rem;
-            color: var(--text-on-sky-muted);
-            letter-spacing: 0.05em;
-        }
-
-        footer a {
-            color: var(--text-on-sky-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        footer a:hover {
-            color: var(--ochre);
-        }
-
-        /* ══════════════════════════════════════════
-           PRODUCT · PRICING · TEAM  (cream field)
-        ══════════════════════════════════════════ */
-        .product, .pricing, .team {
-            background: var(--cream);
-            padding: clamp(4rem, 9vw, 7rem) 0;
-            position: relative;
-        }
-        #product, #pricing, #team { scroll-margin-top: 90px; }
-
-        .section-head { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
-        .section-head .label {
-            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em;
-            text-transform: uppercase; color: var(--terra); margin-bottom: 1.25rem;
-        }
-        .section-head h2 {
-            font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.5rem);
-            font-weight: 400; letter-spacing: -0.02em; line-height: 1.1;
-            max-width: 24ch; margin: 0 auto 1.25rem; color: var(--text-on-cream);
-        }
-        .section-head p {
-            color: var(--text-on-cream-dim); font-weight: 300; font-size: 1.05rem;
-            line-height: 1.7; max-width: 58ch; margin: 0 auto;
-        }
-
-        /* placeholder frame (shared) */
-        .frame-ph {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 0.4rem; text-align: center; padding: 1.5rem; width: 100%; height: 100%;
-            color: var(--text-on-cream-muted); font-size: 0.82rem; line-height: 1.5;
-        }
-        .frame-ph strong { font-family: var(--serif); font-weight: 400; font-size: 1.05rem; color: var(--text-on-cream-dim); }
-
-        /* demo */
-        .demo-frame {
-            border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 9;
-            background: linear-gradient(160deg, var(--sky) 0%, var(--sky-deep) 100%);
-            border: 1px solid rgba(26, 20, 8, 0.1); box-shadow: 0 14px 44px rgba(26, 20, 8, 0.12);
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-        }
-        .demo-frame video, .demo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .demo-frame .frame-ph { color: var(--text-on-sky-dim); }
-        .demo-frame .frame-ph strong { color: var(--cream); }
-        .demo-frame .play {
-            width: 56px; height: 56px; border-radius: 50%; margin-bottom: 0.5rem;
-            background: var(--ochre); color: var(--sky-deep);
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        /* screenshots */
-        .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.25rem, 2.5vw, 2rem); }
-        .shot { display: flex; flex-direction: column; gap: 1rem; }
-        .shot-frame {
-            border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 10;
-            background: var(--cream-light); border: 1px solid rgba(26, 20, 8, 0.1);
-            box-shadow: 0 8px 30px rgba(26, 20, 8, 0.08);
-            display: flex; align-items: center; justify-content: center;
-        }
-        .shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .shot-cap h4 { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; color: var(--text-on-cream); margin-bottom: 0.35rem; }
-        .shot-cap p { font-size: 0.88rem; color: var(--text-on-cream-dim); font-weight: 300; line-height: 1.6; }
-
-        /* real product media */
-        .demo-frame { aspect-ratio: 1.9; margin-bottom: 1.25rem; }
-        .demo-frame img { object-position: top center; }
-        .demo-cap { text-align: center; max-width: 62ch; margin: 0 auto clamp(2.25rem, 4vw, 3.25rem); color: var(--text-on-cream-dim); font-weight: 300; font-size: 0.95rem; line-height: 1.65; }
-        .shot-frame img { object-position: top center; }
-        .shots--two { grid-template-columns: repeat(2, 1fr); max-width: 860px; margin-left: auto; margin-right: auto; }
+            --bg: #FFFFFF;
+            --alt: #F3F4F9;
+            --ink: #1B1C2E;
+            --ink-2: #54566B;
+            --ink-3: #686A82;
+            --ghost: #85879E;
+            --line: #E3E5EE;
+            --line-2: #CDD0DF;
+            --accent: #5266EB;
+            --accent-2: #4153D4;
+            --accent-soft: #ECEEFD;
+            --night: #171721;
+            --on-night: #EDEDF3;
+            --on-night-2: #B0B1C4;
+
+            --sans: 'Figtree', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+            /* product windows: the new dashboard's layout, drawn in the landing's type and tones */
+            --mk-font: var(--sans);
+            --mk-serif: 'DM Serif Display', Georgia, serif;
+            --mk-mono: var(--mono);
+            --mk-radius: 14px;
+        }
+
+        html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; }
+        ::selection { background: var(--accent); color: #fff; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+        .wrap { max-width: 1176px; margin: 0 auto; padding: 0 28px; }
+        section[id] { scroll-margin-top: 84px; }
+        .panel { margin: 0 12px; border-radius: 28px; }
+
+        h1, h2, h3 { font-weight: 500; text-wrap: balance; }
+        h1 { font-size: clamp(2.625rem, 5vw, 4rem); line-height: 1.06; letter-spacing: -0.028em; }
+        h2 { font-size: clamp(2rem, 3.4vw, 2.875rem); line-height: 1.1; letter-spacing: -0.024em; }
+        .pair h3, .billing h3, .extra h3 { font-size: 1.1875rem; line-height: 1.3; letter-spacing: -0.01em; }
+        .dim { color: var(--ghost); }
+        .nb { white-space: nowrap; }
+        .blk { display: block; text-wrap: balance; } /* each sentence of a statement balances on its own */
+        .label { display: block; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 20px; }
+        .label b { font-weight: 500; color: var(--accent); }
+
+        /* ── buttons ── */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 24px; border-radius: 99px; border: 1px solid transparent; font-size: 1rem; font-weight: 500; text-decoration: none; white-space: nowrap; cursor: pointer; font-family: inherit; transition: background-color 0.15s, border-color 0.15s; }
+        .btn-accent { background: var(--accent); color: #fff; }
+        .btn-accent:hover { background: var(--accent-2); }
+        .btn-line { border-color: var(--line-2); background: var(--bg); color: var(--ink); }
+        .btn-line:hover { border-color: var(--ghost); }
+        .btn-sm { height: 38px; padding: 0 18px; font-size: 0.9375rem; }
+        .btn-lg { height: 52px; padding: 0 32px; }
+        .link { color: var(--ink); text-underline-offset: 4px; text-decoration-color: var(--line-2); transition: text-decoration-color 0.15s; }
+        .link:hover { text-decoration-color: var(--ink); }
+
+        /* ── nav ── */
+        .nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+        .nav.is-stuck { border-bottom-color: var(--line); }
+        .nav .wrap { height: 68px; display: flex; align-items: center; gap: 36px; }
+        .wordmark { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.035em; line-height: 1; color: var(--ink); text-decoration: none; }
+        .wordmark span { color: var(--accent); }
+        .nav-links { display: flex; gap: 30px; margin: 0 auto; }
+        .nav-links a { font-size: 0.9688rem; color: var(--ink-2); text-decoration: none; transition: color 0.15s; }
+        .nav-links a:hover { color: var(--ink); }
+
+        /* ── hero ── */
+        .hero { background: var(--alt); padding: clamp(64px, 8vw, 112px) 0 clamp(40px, 5vw, 72px); text-align: center; overflow: hidden; }
+        .kicker { font-size: 0.9375rem; font-weight: 500; color: var(--ink-3); margin-bottom: 18px; }
+        .hero h1 { margin-bottom: 22px; }
+        .lede { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--ink-2); max-width: 34em; margin: 0 auto 36px; text-wrap: pretty; }
+        .idea { display: flex; align-items: center; gap: 8px; max-width: 560px; margin: 0 auto; padding: 6px; border-radius: 99px; background: var(--bg); box-shadow: 0 0 0 1px var(--line-2), 0 12px 32px -16px rgba(27, 28, 46, 0.25); transition: box-shadow 0.15s; }
+        .idea:focus-within { box-shadow: 0 0 0 2px var(--accent), 0 12px 32px -16px rgba(82, 102, 235, 0.45); }
+        .idea input[type="text"] { flex: 1; min-width: 0; height: 46px; padding: 0 8px 0 20px; border: 0; outline: 0; background: none; font: inherit; font-size: 1.0625rem; color: var(--ink); }
+        .idea input::placeholder { color: var(--ink-3); }
+        .hero-sub { display: flex; gap: 8px 20px; justify-content: center; flex-wrap: wrap; font-size: 0.9375rem; color: var(--ink-3); margin-top: 18px; }
+        .window { margin-top: clamp(56px, 7vw, 88px); --mk-shadow: 0 0 0 1px rgba(27, 28, 46, 0.03), 0 40px 80px -40px rgba(27, 28, 46, 0.35); animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s both; }
+        @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+        /* ── running on egbe ── */
+        .running { padding: clamp(64px, 7vw, 96px) 0 0; }
+        .running-lead { text-align: center; font-size: clamp(1.375rem, 2.3vw, 1.75rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: clamp(32px, 4vw, 48px); }
+        .products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+        .product { display: flex; flex-direction: column; text-decoration: none; }
+        .product-shot { aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; background: var(--alt); box-shadow: 0 0 0 1px var(--line); transition: box-shadow 0.2s, transform 0.2s; }
+        .product-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+        .product:hover .product-shot, .product:focus-visible .product-shot { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line-2), 0 18px 36px -20px rgba(27, 28, 46, 0.4); }
+        .product h3 { display: flex; align-items: center; gap: 6px; margin: 16px 0 4px; font-size: 1.0625rem; letter-spacing: -0.01em; }
+        .product h3 span { color: var(--ink-3); font-weight: 400; transition: transform 0.15s, color 0.15s; }
+        .product:hover h3 span { transform: translate(2px, -2px); color: var(--accent); }
+        .product p { font-size: 0.9375rem; line-height: 1.45; color: var(--ink-2); text-wrap: pretty; }
+        .product small { display: block; margin-top: auto; padding-top: 8px; font-family: var(--mono); font-size: 0.6875rem; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* ── sections ── */
+        .section { padding: clamp(88px, 10vw, 144px) 0 0; }
+        .statement { font-size: clamp(1.875rem, 3.8vw, 3.125rem); font-weight: 500; line-height: 1.14; letter-spacing: -0.028em; text-align: center; text-wrap: balance; max-width: 18em; margin: 0 auto; }
+        .head { text-align: center; max-width: 44rem; margin: 0 auto clamp(40px, 5vw, 72px); }
+        .head p { color: var(--ink-2); margin-top: 20px; font-size: 1.125rem; text-wrap: pretty; }
+
+        /* how it works — chapters: text on one side, what it looks like on the other */
+        .chapter { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 6vw, 96px); align-items: center; padding: clamp(24px, 3.2vw, 44px) 0; }
+        .chapter:nth-child(even) .chapter-copy { order: 2; }
+        .chapter-copy .label { margin-bottom: 18px; }
+        .chapter-copy h3 { font-size: clamp(1.625rem, 2.6vw, 2.125rem); line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 14px; }
+        .chapter-copy p { color: var(--ink-2); max-width: 28em; text-wrap: pretty; }
+        .chapter-view { background: var(--alt); border-radius: 24px; padding: clamp(24px, 4.4vw, 56px) clamp(16px, 3.6vw, 48px); }
+        .chapter-view .mock { --mk-bg: #FFFFFF; --mk-frame: transparent; --mk-shadow: 0 1px 2px rgba(27, 28, 46, 0.05), 0 26px 52px -26px rgba(27, 28, 46, 0.4); }
+
+        /* product — the one dark panel */
+        .night { background: var(--night); color: var(--on-night); padding: clamp(72px, 8vw, 120px) 0 clamp(64px, 7vw, 104px); margin-top: clamp(88px, 10vw, 144px); }
+        .night .label { color: var(--on-night-2); }
+        .night-head { max-width: 44rem; margin: 0 auto clamp(40px, 5vw, 64px); text-align: center; }
+        .night-head p { color: var(--on-night-2); margin-top: 18px; font-size: 1.125rem; text-wrap: pretty; }
+        .night .mock { --mk-frame: transparent; --mk-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 40px 90px -30px rgba(0, 0, 0, 0.8); }
+        .night-cap { max-width: 46em; margin: 24px 0 clamp(48px, 6vw, 72px); text-wrap: pretty; }
+        .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+        .pair .mock { --ar: 72 / 66; --mk-min: 4px; /* these two always scale whole: a cropped chart says nothing */ }
+        .pair .mock::after { display: none; }
+        .pair h3 { margin: 22px 0 6px; font-size: 1.25rem; }
+        .pair p { color: var(--on-night-2); font-size: 1rem; max-width: 30em; }
 
         /* pricing */
-        .price-card {
-            max-width: 940px; margin: 0 auto; position: relative; overflow: hidden;
-            background: var(--cream-light); border: 1px solid rgba(26, 20, 8, 0.1); border-radius: 22px;
-            box-shadow: 0 14px 44px rgba(26, 20, 8, 0.1);
-            display: grid; grid-template-columns: 0.85fr 1.15fr;
+        .price-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: start; }
+        .plan { border: 1px solid var(--line-2); border-radius: 24px; padding: clamp(28px, 3.4vw, 40px); position: sticky; top: 96px; }
+        .plan-price { font-size: clamp(4.25rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -0.055em; line-height: 0.95; display: flex; align-items: baseline; gap: 8px; }
+        .plan-price span { font-size: 1.0625rem; letter-spacing: 0; color: var(--ink-3); }
+        .plan-usage { color: var(--ink-3); margin-top: 10px; }
+        .plan-credit { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 13px; margin-top: 16px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-2); font-size: 0.9063rem; font-weight: 500; }
+        .plan-credit::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+        .plan-sub { color: var(--ink-2); margin: 26px 0 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+        .plan .btn { width: 100%; }
+        .plan-foot { font-size: 0.8438rem; color: var(--ink-3); margin-top: 14px; text-align: center; }
+        .incl { padding: 8px 0 0 clamp(0px, 3vw, 40px); }
+        .incl > .label { margin-bottom: 0; padding-bottom: 16px; border-bottom: 1px solid var(--line-2); }
+        .incl ul { list-style: none; }
+        .incl li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); font-size: 1rem; line-height: 1.5; }
+        .incl li .ck { margin-top: 4px; color: var(--accent); stroke-width: 2.2; }
+        .incl li strong { font-weight: 500; color: var(--ink); }
+        .billing { margin-top: 24px; background: var(--alt); border-radius: 24px; padding: clamp(26px, 3.4vw, 40px); display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 8px 40px; }
+        .billing p { color: var(--ink-2); text-wrap: pretty; }
+        .billing p strong { font-weight: 500; color: var(--ink); }
+        .extras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 48px; border-top: 1px solid var(--line-2); }
+        .extra { padding: 24px 24px 0 0; }
+        .extra + .extra { padding-left: 24px; border-left: 1px solid var(--line); }
+        .extra h3 { margin-bottom: 6px; }
+        .extra p { color: var(--ink-2); font-size: 1rem; }
+        .anchor { margin-top: clamp(80px, 9vw, 128px); text-align: center; }
+        .anchor .statement { margin-bottom: 36px; max-width: 20em; }
+
+        /* team — who, where to find them, company facts */
+        .team { background: var(--alt); padding: clamp(64px, 8vw, 112px) 0; margin-top: clamp(88px, 10vw, 144px); text-align: center; }
+        .team h2 { margin-bottom: 20px; }
+        .team-lead { color: var(--ink-2); font-size: 1.125rem; max-width: 36em; margin: 0 auto 28px; text-wrap: pretty; }
+        .facts { display: flex; justify-content: center; margin-top: clamp(40px, 5vw, 56px); }
+        .facts div { padding: 2px clamp(20px, 4vw, 48px); }
+        .facts div + div { border-left: 1px solid var(--line-2); }
+        .facts dt { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+        .facts dd { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; }
+
+        /* faq */
+        .faq-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+        .faq { border-top: 1px solid var(--line-2); }
+        .faq details { border-bottom: 1px solid var(--line); }
+        .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 0; font-size: 1.1875rem; font-weight: 500; letter-spacing: -0.01em; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after { content: ''; width: 11px; height: 11px; flex-shrink: 0; background: linear-gradient(var(--ink), var(--ink)) center / 100% 1.5px no-repeat, linear-gradient(var(--ink), var(--ink)) center / 1.5px 100% no-repeat; transition: transform 0.2s; }
+        .faq details[open] summary::after { transform: rotate(45deg); }
+        .faq details p { color: var(--ink-2); padding: 0 40px 24px 0; max-width: 40em; text-wrap: pretty; }
+
+        /* closing */
+        .closing { background: var(--alt); padding: clamp(80px, 10vw, 136px) 0; margin-top: clamp(88px, 10vw, 144px); margin-bottom: 12px; text-align: center; }
+        .closing h2 { font-size: clamp(2.5rem, 5.4vw, 4.25rem); line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 22px; }
+        .closing-sub { color: var(--ink-2); font-size: 1.125rem; margin-bottom: 36px; }
+
+        footer { padding: 36px 0 56px; font-size: 0.9375rem; color: var(--ink-3); }
+        .foot { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; flex-wrap: wrap; }
+        .foot address { font-style: normal; margin-top: 10px; line-height: 1.5; }
+        .foot nav { display: flex; gap: 8px 26px; flex-wrap: wrap; padding-top: 6px; }
+        .foot nav a { color: var(--ink-2); text-decoration: none; }
+        .foot nav a:hover { color: var(--ink); }
+
+        @media (max-width: 960px) {
+            .nav-links { display: none; }
+            .nav .btn { margin-left: auto; }
+            .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+            .chapter, .price-grid, .faq-grid, .billing { grid-template-columns: 1fr; }
+            .chapter:nth-child(even) .chapter-copy { order: 0; }
+            .plan { position: static; }
+            .incl { padding-left: 0; }
         }
-        .price-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--ochre); z-index: 1; }
-        .price-main { padding: clamp(2rem, 4vw, 3rem); display: flex; flex-direction: column; align-items: flex-start; }
-        .price-incl { padding: clamp(2rem, 4vw, 3rem); border-left: 1px solid rgba(26, 20, 8, 0.1); background: rgba(245, 230, 200, 0.35); }
-        .price-plan { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terra); margin-bottom: 1rem; }
-        .price-amount { font-family: var(--serif); font-size: clamp(3rem, 7vw, 4.5rem); line-height: 1; color: var(--text-on-cream); }
-        .price-amount span { font-family: var(--sans); font-size: 1.05rem; font-weight: 400; color: var(--text-on-cream-dim); }
-        .price-usage { font-size: 0.85rem; color: var(--text-on-cream-muted); margin-top: 0.4rem; }
-        .price-credit { display: inline-block; margin-top: 0.7rem; padding: 0.32rem 0.75rem; border-radius: 100px; background: rgba(92, 122, 61, 0.12); color: var(--olive-dark); font-size: 0.78rem; font-weight: 500; }
-        .price-sub { color: var(--text-on-cream-dim); font-weight: 300; line-height: 1.6; margin: 1.25rem 0 1.75rem; }
-        .price-main .cta-primary { width: 100%; padding: 1rem 1.5rem; font-size: 0.95rem; font-weight: 500; }
-        .price-foot { font-size: 0.78rem; color: var(--text-on-cream-muted); margin-top: 0.9rem; }
-        .price-incl-title { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-on-cream-muted); margin-bottom: 1.25rem; }
-        .price-features { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-        .price-features li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.9rem; font-weight: 300; line-height: 1.55; color: var(--text-on-cream-dim); }
-        .price-features li strong { font-weight: 500; color: var(--text-on-cream); }
-        .price-features svg { flex-shrink: 0; margin-top: 3px; color: var(--olive); }
-
-        .price-billing { max-width: 760px; margin: 2rem auto 0; text-align: center; font-size: 0.9rem; font-weight: 300; line-height: 1.65; color: var(--text-on-cream-dim); }
-        .price-billing strong { font-weight: 500; color: var(--text-on-cream); }
-
-        .price-extras { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.5rem); max-width: 880px; margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; }
-        .price-extra { background: var(--cream-light); border: 1px solid rgba(26, 20, 8, 0.08); border-radius: 14px; padding: 1.5rem; text-align: center; }
-        .price-extra h4 { font-family: var(--serif); font-weight: 400; font-size: 1.15rem; color: var(--text-on-cream); margin-bottom: 0.4rem; }
-        .price-extra p { font-size: 0.85rem; font-weight: 300; color: var(--text-on-cream-dim); line-height: 1.55; }
-
-        .price-anchor { max-width: 640px; margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; text-align: center; }
-        .price-anchor p { font-family: var(--serif); font-size: clamp(1.3rem, 3vw, 1.85rem); line-height: 1.4; color: var(--text-on-cream); }
-        .price-anchor strong { color: var(--terra); font-weight: 400; }
-
-        .price-final { text-align: center; margin-top: clamp(2rem, 4vw, 2.75rem); }
-        .price-final .cta-primary { padding: 1.1rem 2.5rem; font-size: 1.05rem; font-weight: 500; }
-        .price-final .cta-primary:hover { box-shadow: 0 8px 30px rgba(232, 168, 56, 0.4); }
-
-        @media (max-width: 760px) {
-            .price-card { grid-template-columns: 1fr; }
-            .price-incl { border-left: none; border-top: 1px solid rgba(26, 20, 8, 0.1); }
-            .price-extras { grid-template-columns: 1fr; max-width: 460px; }
-        }
-
-        /* team / company */
-        .team-linkedin {
-            display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.75rem;
-            padding: 0.8rem 1.6rem; border-radius: 100px; background: var(--sky); color: var(--cream);
-            font-size: 0.9rem; font-weight: 500; text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-        }
-        .team-linkedin:hover { transform: translateY(-1px); background: var(--sky-mid); box-shadow: 0 6px 22px rgba(27, 58, 92, 0.3); }
-        .team-linkedin svg { flex-shrink: 0; }
-        .company-facts { display: grid; grid-template-columns: repeat(3, auto); justify-content: center; gap: clamp(2rem, 6vw, 5rem); margin-top: clamp(2.5rem, 5vw, 3.5rem); }
-        .fact { text-align: center; display: flex; flex-direction: column; gap: 0.3rem; }
-        .fact-k { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-on-cream-muted); }
-        .fact-v { font-family: var(--serif); font-size: 1.2rem; color: var(--text-on-cream); }
-        @media (max-width: 540px) { .company-facts { grid-template-columns: 1fr; gap: 1.5rem; } }
-
-        @media (max-width: 760px) {
-            .shots { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
-        }
-
-        /* ══════════════════════════════════════════
-           ANIMATIONS
-        ══════════════════════════════════════════ */
-        @keyframes fade-up {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-stagger > * {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
-        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.12s; }
-        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.24s; }
-        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.36s; }
-
-        .reveal-stagger.visible > * {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ── Selection ── */
-        ::selection {
-            background: var(--ochre);
-            color: var(--sky-deep);
-        }
-
-        /* ══════════════════════════════════════════
-           RESPONSIVE
-        ══════════════════════════════════════════ */
-        @media (max-width: 900px) {
-            .how-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 640px) {
-            .scroll-cue { display: none; }
-            .hero-bottom {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .hero-bottom .hero-cta-wrap {
-                width: 100%;
-            }
-            .hero-bottom .hero-cta-wrap .cta-note {
-                position: static;
-                transform: none;
-                text-align: center;
-                margin-top: 0.55rem;
-            }
-            .hero-bottom .cta-group,
-            .closing .cta-group {
-                width: 100%;
-            }
-            .hero-bottom .cta-group a,
-            .closing .cta-group a {
-                width: 100%;
-            }
-            .nav-right .cta-group { display: none; }
-            .nav-link { display: none; }
-            .hero-sun {
-                top: 4%;
-                right: -5%;
-            }
-            footer .container {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
+            .wrap { padding: 0 20px; }
+            .panel { margin: 0 6px; border-radius: 22px; }
+            .idea { flex-direction: column; border-radius: 22px; padding: 8px; }
+            .idea input[type="text"] { width: 100%; text-align: center; padding: 0 12px; }
+            .idea .btn { width: 100%; }
+            .pair, .extras { grid-template-columns: 1fr; }
+            .extra, .extra + .extra { padding: 20px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+            .facts { flex-direction: column; gap: 20px; }
+            .facts div + div { border-left: 0; }
+            .faq details p { padding-right: 0; }
+        }
+        @media (max-width: 440px) { .products { grid-template-columns: 1fr; } }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .window { animation: none; }
+            .product:hover .product-shot { transform: none; }
         }
 
-        @media (max-width: 540px) {
-            .how-grid {
-                grid-template-columns: 1fr;
-            }
+        /* ══════════════════════════════════════════
+           PRODUCT WINDOWS — HTML renditions of the Egbe dashboard, not screenshots.
+           They scale like an image: inside .mock-scale 1em = 10px at the design width
+           (--w, in tens of px, set inline on each .mock), so every size below is in em.
+           Don't reuse --w for anything page-level.
+           Every name, message and number in them is fictional (Kilnbook / Wren Halloway).
+           Palette: the landing's own cool tones. Two accents only — periwinkle for what
+           you can press, green for what is done or live.
+        ══════════════════════════════════════════ */
+        .mock {
+            --mk-bg: #FAFAFC; --mk-panel: #FFFFFF; --mk-col: #F3F4F8;
+            --mk-line: #E6E8F0; --mk-line-2: #D3D6E3;
+            --mk-ink: #1B1C2E; --mk-dim: #5F6178; --mk-mute: #82849A; --mk-chip: #ECEEF5;
+            --mk-primary: #5266EB; --mk-primary-ink: #FFFFFF; --mk-accent: #5266EB;
+            --mk-bubble: #EEF0F6; --mk-track: #D3D6E3; --mk-avatar: #DCE0F9;
+            --mk-stage-done: #2E9E5B; --mk-stage-play: #5266EB;
+            --mk-ok: #2E9E5B; --mk-ok-bg: #E8F5EC; --mk-ok-ink: #1E6B3C;
+            --mk-bad: #B4412B; --mk-bad-bg: #FBEAE5;
+
+            container-type: inline-size;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background: var(--mk-bg);
+            border: 1px solid var(--mk-frame, var(--mk-line));
+            border-radius: var(--mk-radius, 12px);
+            box-shadow: var(--mk-shadow, none);
+        }
+        .mock-scale {
+            font-size: max(calc(100cqw / var(--w, 112)), var(--mk-min, 6.4px));
+            width: calc(var(--w, 112) * 1em);
+            font-family: var(--mk-font);
+            color: var(--mk-ink);
+            line-height: 1.4;
+            text-align: left;
+            letter-spacing: 0;
+            -webkit-text-size-adjust: none;
+            text-size-adjust: none;
+            cursor: default;
+            user-select: none;
+            position: relative;
+        }
+        :where(.mock-scale) :where(*, *::before, *::after) { box-sizing: border-box; margin: 0; padding: 0; }
+        .mock-scale svg { display: block; flex-shrink: 0; }
+
+        /* fixed-ratio crop with a soft bottom fade */
+        .mock[data-crop] { aspect-ratio: var(--ar, 16 / 10); }
+        .mock[data-crop]::after {
+            content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 16%;
+            background: linear-gradient(to bottom, transparent, var(--mk-bg)); pointer-events: none;
+        }
+
+        .mk-panel { display: none; }
+        .mock[data-tab="tasks"] .mk-panel[data-p="tasks"] { display: block; }
+
+        /* tasks board */
+        .mk-board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.3em; padding: 2em 2.4em 2.6em; }
+        .mk-col { background: var(--mk-col); border: 1px solid var(--mk-line); border-radius: 1.1em; padding: 1.1em; display: flex; flex-direction: column; gap: 0.9em; min-height: 35em; }
+        .mk-col-h { display: flex; justify-content: space-between; align-items: center; padding: 0.2em 0.3em 0.1em; }
+        .mk-col-h span { font-size: 1.02em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mk-dim); }
+        .mk-col-h b { font-size: 1.02em; font-weight: 500; min-width: 2em; height: 2em; padding: 0 0.5em; border-radius: 99em; background: var(--mk-panel); border: 1px solid var(--mk-line); color: var(--mk-dim); display: grid; place-items: center; }
+        .mk-new { font-size: 1.2em; color: var(--mk-mute); border: 1px dashed var(--mk-line-2); border-radius: 0.65em; padding: 0.62em 0.85em; }
+        .mk-card { background: var(--mk-panel); border: 1px solid var(--mk-line); border-radius: 0.85em; padding: 0.95em 1.05em 1.05em; box-shadow: 0 1px 2px var(--mk-card-shadow, rgba(20, 18, 12, 0.04)); }
+        .mk-meta { display: flex; align-items: center; gap: 0.55em; margin-bottom: 0.45em; font-size: 1.05em; color: var(--mk-mute); }
+        .mk-meta em { font-style: normal; font-size: 0.95em; line-height: 1; padding: 0.3em 0.6em; border-radius: 99em; background: var(--mk-chip); color: var(--mk-dim); }
+        .mk-meta svg { width: 1.1em; height: 1.1em; color: var(--mk-ok); }
+        .mk-card p { font-size: 1.22em; line-height: 1.38; }
+        .mk-card.is-done p { color: var(--mk-dim); }
+        .mk-card .mk-note { font-size: 1.05em; line-height: 1.4; color: var(--mk-mute); margin-top: 0.55em; }
+        .mk-card.is-failed .mk-meta em { background: var(--mk-bad-bg); color: var(--mk-bad); }
+        .mk-prog { height: 0.4em; border-radius: 99em; background: var(--mk-chip); overflow: hidden; margin-top: 0.85em; }
+        .mk-prog i { display: block; height: 100%; width: 62%; border-radius: 99em; background: var(--mk-ink); }
+        .mk-more { font-size: 1.1em; color: var(--mk-mute); padding: 0.1em 0.4em; }
+
+        /* chat fragment */
+        .mk-chat { padding: 2em 2.2em 2.2em; display: flex; flex-direction: column; gap: 1.2em; }
+        .mk-msg { font-size: 1.28em; line-height: 1.45; max-width: 84%; padding: 0.8em 1em; border-radius: 1em; }
+        .mk-msg.me { align-self: flex-end; background: var(--mk-ink); color: var(--mk-panel); border-bottom-right-radius: 0.3em; }
+        .mk-msg.ai { align-self: flex-start; background: var(--mk-panel); border: 1px solid var(--mk-line); border-bottom-left-radius: 0.3em; }
+        .mk-msg ol { margin: 0.45em 0 0 1.2em; padding: 0; }
+        .mk-msg li { margin-top: 0.2em; }
+        .mk-chip-row { display: flex; gap: 0.7em; flex-wrap: wrap; }
+        .mk-chip { display: inline-flex; align-items: center; gap: 0.5em; font-size: 1.1em; color: var(--mk-dim); border: 1px solid var(--mk-line); background: var(--mk-panel); border-radius: 99em; padding: 0.35em 0.8em; }
+        .mk-chip i { width: 0.5em; height: 0.5em; border-radius: 50%; background: var(--mk-ok); }
+
+        /* small UI fragments (chat, brief, deploy log, support) */
+        .fr { padding: 1.8em 2em; display: flex; flex-direction: column; gap: 1em; }
+        .fr-h { display: flex; align-items: center; justify-content: space-between; font-size: 1.05em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mk-dim); }
+        .fr-h span:last-child { font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 1.1em; color: var(--mk-mute); }
+        .fr-row { display: grid; grid-template-columns: 11em minmax(0, 1fr); gap: 1.2em; padding-top: 0.9em; border-top: 1px solid var(--mk-line); font-size: 1.25em; line-height: 1.4; }
+        .fr-row b { font-weight: 500; }
+        .fr-row span { color: var(--mk-dim); }
+        .fr-pick { display: flex; gap: 0.8em; align-items: baseline; font-size: 1.25em; line-height: 1.4; padding: 0.8em 1em; border-radius: 0.7em; background: var(--mk-ok-bg); color: var(--mk-ok-ink); }
+        .fr-pick b { font-weight: 600; white-space: nowrap; }
+        .fr-term { font-family: var(--mk-mono); background: #1A1917; color: #E9E6DF; border-radius: 0.9em; padding: 1.4em 1.6em; display: flex; flex-direction: column; gap: 0.55em; }
+        .fr-term div { font-size: 1.15em; display: flex; gap: 0.9em; white-space: nowrap; }
+        .fr-term i { font-style: normal; color: #7BD69D; }
+        .fr-term em { font-style: normal; color: #8F8C85; margin-left: auto; }
+        .fr-ticket { border: 1px solid var(--mk-line); border-radius: 0.9em; padding: 1.1em 1.3em; background: var(--mk-bg); }
+        .fr-ticket small { display: block; font-size: 1.1em; color: var(--mk-mute); margin-bottom: 0.3em; }
+        .fr-ticket p { font-size: 1.3em; line-height: 1.4; }
+        .fr-ticket.is-reply { margin-left: 3em; background: var(--mk-panel); }
+
+        /* colour modifier — priority chips, column dots and bars pick up hues */
+        .mock--color .mk-meta em.p-hi { background: #FDE7E2; color: #B3261E; }
+        .mock--color .mk-meta em.p-mid { background: #FDF1D3; color: #8A5A00; }
+        .mock--color .mk-meta em.p-lo { background: #E3EDFC; color: #1D4F9F; }
+        .mock--color .mk-col-h span::before { content: ''; display: inline-block; width: 0.72em; height: 0.72em; border-radius: 50%; margin-right: 0.6em; background: var(--mk-mute); }
+        .mock--color .mk-col:nth-child(2) .mk-col-h span::before { background: #8B5CF6; }
+        .mock--color .mk-col:nth-child(3) .mk-col-h span::before { background: var(--mk-accent, #2F7DE1); }
+        .mock--color .mk-col:nth-child(4) .mk-col-h span::before { background: var(--mk-ok); }
+        .mock--color .mk-col:nth-child(5) .mk-col-h span::before { background: var(--mk-bad); }
+        .mock--color .mk-prog i { background: var(--mk-accent, #2F7DE1); }
+        .mock--color .mk-msg.me { background: var(--mk-accent, #2F7DE1); color: #fff; }
+
+        /* focus modifier — the card the agent is working on right now draws the eye */
+        .mock--focus .mk-card.is-now { border-color: var(--mk-accent, #2F7DE1); box-shadow: 0 0 0 0.35em color-mix(in srgb, var(--mk-accent, #2F7DE1) 16%, transparent), 0 1em 2.2em -0.8em rgba(20, 18, 12, 0.28); }
+        .mock--focus .mk-card.is-now .mk-note::before { content: ''; display: inline-block; width: 0.6em; height: 0.6em; border-radius: 50%; margin-right: 0.5em; background: var(--mk-accent, #2F7DE1); animation: mk-pulse 1.6s ease-in-out infinite; }
+        @keyframes mk-pulse { 50% { opacity: 0.25; } }
+
+        @media (prefers-reduced-motion: reduce) {
+            .mock--focus .mk-card.is-now .mk-note::before { animation: none; }
+        }
+        /* dashboard shell — sidebar, page, shared boxes and buttons */
+        .mk2 { display: grid; grid-template-columns: 20em minmax(0, 1fr); background: var(--mk-bg); }
+        .mk2-side { display: flex; flex-direction: column; border-right: 1px solid var(--mk-line); padding: 2em 1.2em 1.4em; min-height: 60em; }
+        .mk2-logo { font-family: var(--mk-serif); font-size: 2.2em; line-height: 1; padding: 0 0.25em; margin-bottom: 1em; }
+        .mk2-cap { font-size: 0.95em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mk-mute); padding: 0 0.5em; margin-bottom: 0.7em; }
+        .mk2-biz { display: flex; align-items: center; gap: 0.9em; padding: 0.8em 0.9em; border: 1.5px solid var(--mk-primary); border-radius: 1em; background: var(--mk-panel); margin-bottom: 1.6em; }
+        .mk2-biz i { font-style: normal; font-size: 1.15em; font-weight: 600; width: 2.5em; height: 2.5em; border-radius: 0.65em; background: var(--mk-primary); color: var(--mk-primary-ink); display: grid; place-items: center; flex-shrink: 0; }
+        .mk2-biz div { min-width: 0; flex: 1; }
+        .mk2-biz b { display: block; font-size: 1.25em; font-weight: 600; line-height: 1.25; }
+        .mk2-biz small { display: block; font-size: 1.02em; color: var(--mk-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mk2-biz svg { width: 1.1em; height: 1.1em; color: var(--mk-dim); }
+        .mk2-nav span { display: flex; align-items: center; gap: 0.95em; font-size: 1.28em; line-height: 1; padding: 0.68em 0.7em; margin-bottom: 0.15em; border-radius: 0.65em; color: var(--mk-dim); }
+        .mk2-nav svg { width: 1.15em; height: 1.15em; }
+        .mock[data-nav="chat"] .mk2-nav [data-n="chat"],
+        .mock[data-nav="tasks"] .mk2-nav [data-n="tasks"] { background: var(--mk-chip); color: var(--mk-ink); font-weight: 600; }
+        .mk2-cli { margin-top: auto; display: flex; align-items: center; gap: 0.9em; border: 1px dashed var(--mk-line-2); border-radius: 0.9em; padding: 0.8em 0.9em; }
+        .mk2-cli i { font-style: normal; font-family: var(--mk-mono, ui-monospace, monospace); font-size: 1.05em; width: 2.2em; height: 2.2em; border-radius: 0.5em; background: var(--mk-chip); display: grid; place-items: center; color: var(--mk-dim); }
+        .mk2-cli b { display: block; font-size: 1.1em; font-weight: 500; line-height: 1.3; }
+        .mk2-cli small { font-size: 0.98em; color: var(--mk-mute); }
+        .mk2-user { display: flex; align-items: center; gap: 0.9em; padding: 1.3em 0.4em 0; }
+        .mk2-user i { font-style: normal; font-size: 1.05em; font-weight: 600; width: 2.7em; height: 2.7em; border-radius: 50%; background: var(--mk-avatar, #D9CDB8); color: var(--mk-ink); display: grid; place-items: center; }
+        .mk2-user b { display: block; font-size: 1.2em; font-weight: 600; line-height: 1.25; }
+        .mk2-user small { font-size: 1.02em; color: var(--mk-mute); }
+
+        .mk2-main { min-width: 0; }
+        .mk2-page { padding: 2.6em 3.2em 3em; max-width: 96em; margin: 0 auto; }
+        .mk2-h { font-family: var(--mk-serif); font-size: 2.4em; line-height: 1.1; margin-bottom: 0.9em; }
+        .mk2-box { background: var(--mk-panel); border: 1px solid var(--mk-line); border-radius: 1.2em; padding: 1.8em 2em; }
+        .mk2-box + .mk2-box { margin-top: 1.6em; }
+        .mk2-boxcap { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.02em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mk-dim); margin-bottom: 1.1em; }
+        .mk2-boxcap small { font-size: 1.05em; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--mk-mute); }
+        .mk2-chip { display: inline-flex; align-items: center; gap: 0.4em; font-size: 1.02em; font-weight: 500; line-height: 1; padding: 0.35em 0.7em; border-radius: 99em; background: var(--mk-ok-bg); color: var(--mk-ok-ink); }
+        .mk2-chip.has-dot::before { content: ''; width: 0.5em; height: 0.5em; border-radius: 50%; background: var(--mk-ok); }
+        .mk2-pbtn { display: inline-flex; align-items: center; gap: 0.5em; font-size: 1.22em; font-weight: 600; line-height: 1; padding: 0.75em 1em; border-radius: 0.55em; background: var(--mk-primary); color: var(--mk-primary-ink); white-space: nowrap; }
+        .mk2-gbtn { display: inline-flex; align-items: center; gap: 0.5em; font-size: 1.22em; font-weight: 500; line-height: 1; padding: 0.7em 1em; border-radius: 0.55em; border: 1px solid var(--mk-line-2); background: var(--mk-panel); white-space: nowrap; }
+        .mk2-pbtn svg, .mk2-gbtn svg { width: 1.05em; height: 1.05em; }
+
+        /* chat + stages */
+        .mk2-chatgrid { display: grid; grid-template-columns: minmax(0, 1fr) 29em; gap: 1.4em; padding: 1.8em 2em 2em; height: 60em; }
+        .mk2-chat { display: flex; flex-direction: column; background: var(--mk-panel); border: 1px solid var(--mk-line); border-radius: 1.2em; overflow: hidden; min-height: 0; }
+        .mk2-msgs { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 1.15em; padding: 1.6em 1.6em 1.4em; overflow: hidden; }
+        .mk2-msg small { display: block; font-size: 1.02em; color: var(--mk-mute); margin: 0 0 0.4em 0.2em; }
+        .mk2-msg > div { display: inline-block; max-width: 94%; background: var(--mk-bubble, #EDEAE4); border-radius: 0.7em; padding: 0.8em 0.95em; }
+        .mk2-msg p { font-size: 1.25em; line-height: 1.5; }
+        .mk2-msg p + p { margin-top: 0.4em; }
+        .mk2-msg b { font-weight: 600; }
+        .mk2-msg u { color: var(--mk-accent); text-underline-offset: 0.15em; }
+        .mk2-compose { position: relative; margin: 0 1.4em 1.4em; height: 8.6em; border: 1px solid var(--mk-line-2); border-radius: 1em; padding: 1.2em 1.4em; border-top-color: var(--mk-line-2); }
+        .mk2-compose span { font-size: 1.25em; color: var(--mk-mute); }
+        .mk2-compose i { position: absolute; right: 1em; bottom: 1em; width: 3em; height: 3em; border-radius: 50%; background: var(--mk-track, #D8D4CC); color: var(--mk-panel); display: grid; place-items: center; }
+        .mk2-compose svg { width: 1.3em; height: 1.3em; }
+        .mk2-stages { display: flex; flex-direction: column; gap: 1em; min-height: 0; overflow: hidden; }
+        .mk2-auto { display: flex; align-items: center; justify-content: space-between; gap: 1em; background: var(--mk-chip); border: 1px solid var(--mk-line); border-radius: 0.9em; padding: 0.85em 1.1em; }
+        .mk2-auto b { display: block; font-size: 1.15em; font-weight: 600; }
+        .mk2-auto small { font-size: 0.98em; color: var(--mk-mute); }
+        .mk2-toggle { width: 3.5em; height: 1.9em; border-radius: 99em; background: var(--mk-track, #D5D1C8); position: relative; flex-shrink: 0; }
+        .mk2-toggle::after { content: ''; position: absolute; left: 0.2em; top: 0.2em; width: 1.5em; height: 1.5em; border-radius: 50%; background: #fff; }
+        .mk2-stage { display: grid; grid-template-columns: 2.3em minmax(0, 1fr); gap: 0 1em; background: var(--mk-panel); border: 1px solid var(--mk-line); border-radius: 1em; padding: 0.95em 1.1em 0.9em; }
+        .mk2-stage > i { width: 2.3em; height: 2.3em; border-radius: 0.6em; background: var(--mk-stage-done, #218358); color: #fff; display: grid; place-items: center; }
+        .mk2-stage.is-play > i { background: var(--mk-stage-play, #2F5FDB); }
+        .mk2-stage > i svg { width: 1.3em; height: 1.3em; }
+        .mk2-stage b { display: flex; justify-content: space-between; align-items: center; font-size: 1.3em; font-weight: 600; line-height: 1.3; }
+        .mk2-stage b svg { width: 0.85em; height: 0.85em; color: var(--mk-dim); }
+        .mk2-stage p { font-size: 1.08em; line-height: 1.4; color: var(--mk-dim); margin: 0.2em 0 0.65em; }
+        .mk2-bar { display: flex; align-items: center; gap: 0.8em; }
+        .mk2-bar > span { flex: 1; height: 0.4em; border-radius: 99em; background: var(--mk-chip); overflow: hidden; }
+        .mk2-bar > span > span { display: block; height: 100%; border-radius: 99em; background: var(--mk-stage-done, #218358); }
+        .mk2-bar small { font-size: 0.95em; color: var(--mk-mute); font-variant-numeric: tabular-nums; }
+
+        /* overview */
+        .mk2-hero { display: grid; grid-template-columns: minmax(0, 1fr) 1px minmax(0, 0.85fr); gap: 0 3em; align-items: center; }
+        .mk2-hero > hr { border: 0; width: 1px; height: 100%; background: var(--mk-line); }
+        .mk2-name { font-size: 2.6em; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+        .mk2-meta { display: flex; align-items: center; gap: 0.7em; font-size: 1.28em; margin-top: 0.35em; color: var(--mk-dim); }
+        .mk2-meta b { font-weight: 500; color: var(--mk-ink); }
+        .mk2-meta .mk2-chip { font-size: 0.82em; }
+        .mk2-sub { font-size: 1.25em; color: var(--mk-dim); margin-top: 0.7em; }
+        .mk2-fine { font-size: 1.08em; color: var(--mk-mute); margin-top: 0.6em; }
+        .mk2-ballabel { font-size: 1.2em; color: var(--mk-dim); }
+        .mk2-bal { display: flex; align-items: baseline; gap: 0.5em; font-size: 4.4em; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+        .mk2-bal small { font-size: 0.27em; font-weight: 400; letter-spacing: 0; color: var(--mk-dim); }
+        .mk2-hero .mk2-pbtn { margin-top: 0.7em; }
+        .mk2-prod { display: flex; align-items: center; gap: 1em; }
+        .mk2-prod > div { flex: 1; min-width: 0; }
+        .mk2-prod b { font-size: 1.5em; font-weight: 600; margin-right: 0.5em; }
+        .mk2-prod p { font-size: 1.12em; color: var(--mk-dim); margin-top: 0.4em; }
+        .mk2-seg { display: inline-flex; padding: 0.25em; border-radius: 0.6em; background: var(--mk-chip); }
+        .mk2-seg span { font-size: 1.02em; line-height: 1; padding: 0.45em 0.8em; border-radius: 0.4em; color: var(--mk-dim); }
+        .mk2-seg span.on { background: var(--mk-primary); color: var(--mk-primary-ink); font-weight: 600; }
+        .mk2-chart { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); gap: 0 0.8em; margin-top: 1.4em; }
+        .mk2-chart .y { display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 1.02em; color: var(--mk-mute); height: 15em; }
+        .mk2-chart svg { width: 100%; height: 15em; overflow: visible; }
+        .mk2-chart .x { grid-column: 2; display: flex; justify-content: space-between; font-size: 1.02em; color: var(--mk-mute); margin-top: 0.6em; }
+
+        /* charts take their colours from the theme */
+        .mk2-chart svg .grid, .mk2-bars svg .grid { stroke: var(--mk-line); }
+        .mk2-chart svg .zero { stroke: var(--mk-mute); }
+        .mk2-chart svg .area { fill: var(--mk-primary); fill-opacity: 0.12; }
+        .mk2-chart svg .line { stroke: var(--mk-primary); }
+
+        /* analytics */
+        .mk2-hrow { display: flex; align-items: center; gap: 1.2em; margin-bottom: 1.6em; }
+        .mk2-hrow .mk2-h { margin: 0; flex: 1; }
+        .mk2-hrow small { font-size: 1.2em; color: var(--mk-dim); }
+        .mk2-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2em; margin-bottom: 1.6em; }
+        .mk2-kpi { background: var(--mk-panel); border: 1px solid var(--mk-line); border-radius: 1em; padding: 1.2em 1.4em 1.1em; }
+        .mk2-kpi span { display: block; font-size: 0.95em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mk-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mk2-kpi b { display: block; font-size: 2.3em; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-top: 0.2em; font-variant-numeric: tabular-nums; }
+        .mk2-kpi em { font-style: normal; font-size: 1.02em; font-weight: 500; color: var(--mk-ok-ink); }
+        .mk2-bars { display: grid; grid-template-columns: 2.6em minmax(0, 1fr); gap: 0 0.8em; }
+        .mk2-bars .y { display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 1.02em; color: var(--mk-mute); height: 16em; }
+        .mk2-bars svg { width: 100%; height: 16em; }
+        .mk2-bars svg .views { fill: color-mix(in srgb, var(--mk-primary) 28%, var(--mk-panel)); }
+        .mk2-bars svg .visitors { fill: var(--mk-primary); }
+        .mk2-bars .x { grid-column: 2; display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 1.02em; color: var(--mk-mute); margin-top: 0.6em; }
+        .mk2-legend { display: flex; justify-content: center; gap: 1.6em; font-size: 1.08em; color: var(--mk-dim); margin-top: 1em; }
+        .mk2-legend i { display: inline-block; width: 0.7em; height: 0.7em; border-radius: 50%; margin-right: 0.45em; background: var(--mk-primary); }
+        .mk2-legend span:first-child i { background: color-mix(in srgb, var(--mk-primary) 28%, var(--mk-panel)); }
+        .mk2-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6em; margin-top: 1.6em; }
+        .mk2-two .mk2-box { margin-top: 0; }
+        .mk2-list div { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1em; align-items: center; font-size: 1.2em; padding: 0.42em 0; }
+        .mk2-list div > i { display: block; height: 0.5em; border-radius: 99em; background: var(--mk-primary); }
+        .mk2-list.is-plain div { grid-template-columns: minmax(0, 1fr) auto; }
+        .mk2-list span:last-child { color: var(--mk-dim); font-variant-numeric: tabular-nums; }
+
+        /* tasks inside the new shell */
+        .mk2-main .mk-board { padding: 0 2.4em 2.6em; }
+        .mk2-main .mk2-h.is-tasks { padding: 1.1em 1.35em 0; margin-bottom: 0.8em; }
+
+        /* compact: no sidebar (small shots, and phones) */
+        .mock--bare .mk2 { grid-template-columns: minmax(0, 1fr); }
+        @container (max-width: 560px) {
+            .mock--shell .mock-scale { --w: 40; }
+            .mock--shell .mk2 { grid-template-columns: minmax(0, 1fr); }
+            .mock--shell .mk2-side, .mock--shell .mk2-stages { display: none; }
+            .mock--shell .mk2-chatgrid { grid-template-columns: minmax(0, 1fr); height: auto; padding: 1em; }
+            .mock--shell .mk2-msg:first-child { display: none; }
+            .mock--shell .mk2-compose { height: 6em; }
+            .mock--shellcrop .mk2 { grid-template-columns: minmax(0, 1fr); }
+            .mock--shellcrop .mk2-side { display: none; }
         }
     </style>
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
-
-<div class="page-wrapper">
-
-    <!-- Nav -->
-    <nav>
-        <div class="container">
-            <a href="/" class="logo">Egbe<span>.</span></a>
-            <div class="nav-right">
-                <a href="#product" class="nav-link">Product</a>
-                <a href="#pricing" class="nav-link">Pricing</a>
-                <a href="#team" class="nav-link">Team</a>
-                <a href="/career/" class="nav-link">Careers</a>
-                <div class="cta-group">
-                    <a href="https://dashboard.egbe.ai" class="nav-cta cta-primary" data-umami-event="nav_start_building">Start free trial</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero — Saryan landscape -->
-    <section class="hero">
-        <div class="hero-sun"></div>
-
-        <div class="container hero-content">
-            <p class="hero-overline">The zero-employee company</p>
-            <h1>You found it.<br><em>AI runs it.</em></h1>
-            <div class="hero-bottom">
-                <p class="hero-sub">Bring the idea. Egbe takes it from research to a shipped product, finds your first users, and handles support and ops. Fully autonomous — you steer the big calls.</p>
-                <div class="cta-group">
-                    <div class="hero-cta-wrap">
-                        <a href="https://dashboard.egbe.ai" class="hero-cta cta-primary" data-umami-event="hero_start_building">
-                            Start free trial
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
-                        <p class="cta-note">No credit card required</p>
-                    </div>
-                    <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="hero-preview cta-secondary" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Layered mountain silhouettes -->
-        <div class="mountains">
-            <!-- Layer 1: far — deep purple -->
-            <div class="mountain-layer" style="bottom:0">
-                <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="height:clamp(160px,22vw,320px)">
-                    <path d="M0,320 L0,180 L90,200 L180,100 L270,160 L360,60 L450,130 L540,40 L660,120 L780,70 L900,140 L1020,80 L1140,150 L1260,90 L1360,160 L1440,130 L1440,320 Z" fill="#2A1845"/>
-                </svg>
-            </div>
-            <!-- Layer 2: mid — dark terracotta -->
-            <div class="mountain-layer" style="bottom:0">
-                <svg viewBox="0 0 1440 260" preserveAspectRatio="none" style="height:clamp(120px,17vw,260px)">
-                    <path d="M0,260 L0,170 L120,140 L240,190 L380,100 L500,160 L640,80 L780,150 L920,110 L1060,170 L1200,120 L1340,180 L1440,150 L1440,260 Z" fill="#6B3420"/>
-                </svg>
-            </div>
-            <!-- Layer 3: near — dark olive -->
-            <div class="mountain-layer" style="bottom:0">
-                <svg viewBox="0 0 1440 180" preserveAspectRatio="none" style="height:clamp(80px,12vw,180px)">
-                    <path d="M0,180 L0,110 L180,90 L360,120 L540,80 L720,110 L900,85 L1080,115 L1260,90 L1440,105 L1440,180 Z" fill="#3A5228"/>
-                </svg>
-            </div>
-            <!-- Layer 4: closest — warm brown (bleeds into terracotta premise) -->
-            <div class="mountain-layer" style="bottom:0">
-                <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="height:clamp(40px,6vw,100px)">
-                    <path d="M0,100 L0,60 L240,50 L480,65 L720,45 L960,60 L1200,48 L1440,58 L1440,100 Z" fill="#C4541A"/>
-                </svg>
-            </div>
-        </div>
-
-        <div class="scroll-cue">
-            <span>Scroll</span>
-            <div class="line"></div>
-        </div>
-    </section>
-
-    <!-- Premise — terracotta field -->
-    <section class="premise">
-        <div class="container">
-            <p class="premise-text reveal">
-                <span>Most tools help you work faster.</span><br>Egbe does the work for you.
-            </p>
-        </div>
-    </section>
-
-    <!-- Wave: terracotta → cream -->
-    <div class="wave-terra-cream">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:clamp(40px,5vw,80px)">
-            <path d="M0,0 C240,80 480,80 720,40 C960,0 1200,60 1440,30 L1440,80 L0,80 Z" fill="#F5E6C8"/>
-        </svg>
+<header class="nav" id="nav">
+    <div class="wrap">
+        <a href="/" class="wordmark" aria-label="Egbe — home">Egbe<span>.</span></a>
+        <nav class="nav-links" aria-label="Primary">
+            <a href="#product">Product</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#team">Team</a>
+            <a href="/career/">Careers</a>
+        </nav>
+        <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-sm" data-umami-event="nav_start_building">Start free trial</a>
     </div>
+</header>
 
-    <!-- How It Works — cream/sand field -->
-    <section class="how-section">
-        <div class="container">
-            <div class="how-header reveal">
-                <p class="label">How It Works</p>
-                <h2>You have the idea.<br>Egbe makes it real.</h2>
+<main>
+    <!-- Hero: one field, one button. What is typed here goes with the visitor to the dashboard. -->
+    <section class="hero panel">
+        <div class="wrap">
+            <p class="kicker">The zero-employee company</p>
+            <h1><span class="dim">You found it.</span><br>AI runs it.</h1>
+            <p class="lede">Bring the idea. Egbe takes it from research to a shipped product, finds your first users, and handles support and ops. Fully autonomous — you steer the big calls.</p>
+            <form class="idea" action="https://dashboard.egbe.ai/" method="get" data-idea-form>
+                <input type="text" name="idea" id="idea" maxlength="500" aria-label="Describe your idea" placeholder="Describe your idea…" autocomplete="off" enterkeyhint="go">
+                <button type="submit" class="btn btn-accent" data-umami-event="hero_start_building" data-umami-event-idea="empty">Start free trial</button>
+            </form>
+            <p class="hero-sub"><span>No credit card required</span><a class="link" href="https://calendly.com/azamat-khalilov-egbe/30min" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a></p>
+
+            <div class="mock mock--shell window" data-nav="chat" style="--w:120" role="img" aria-label="Egbe dashboard — a chat with the AI co-founder on the left: the homepage was approved, the site went live, the MVP is ready. On the right, the Stages panel: market research, product requirements, homepage, product and billing are complete; advertising is ready to start.">
+                <div class="mock-scale" aria-hidden="true"><div class="mk2">
+<aside class="mk2-side">
+    <div class="mk2-logo">Egbe</div>
+    <div class="mk2-cap">Your businesses</div>
+    <div class="mk2-biz"><i>K</i><div><b>Kilnbook</b><small>AI co-founder · Wren Halloway</small></div><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5 6 7.5 9 4.5"/></svg></div>
+    <nav class="mk2-nav">
+        <span data-n="chat"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.5 3h11v8h-6l-3 2.500V11h-2z"/></svg>Chat</span>
+        <span data-n="inbox"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2 9.500 4 3.500h8l2 6v3H2zM2 9.500h3.500l1 1.500h3l1-1.500H14"/></svg>Inbox</span>
+        <span data-n="overview"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.500 2.500h4.500v4.500H2.500zM9 2.500h4.500v4.500H9zM2.500 9h4.500v4.500H2.500zM9 9h4.500v4.500H9z"/></svg>Overview</span>
+        <span data-n="tasks"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h6.500M7 8h6.500M7 12h6.500M2.500 4l1 1 1.500-2M2.500 8l1 1L5 7M2.500 12l1 1 1.500-2"/></svg>Tasks</span>
+        <span data-n="docs"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M4 2h5.500L12 4.500V14H4zM6 7.500h4M6 10h4"/></svg>Docs</span>
+        <span data-n="ads"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.500"/><circle cx="8" cy="8" r="2.300"/></svg>Ads</span>
+        <span data-n="analytics"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.500 2.500v11h11M5 10l2.500-3 2 1.500L13 5"/></svg>Analytics</span>
+        <span data-n="wallet"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.500 4.500h10v8.500h-10zM2.500 4.500 10 2.500v2M10.500 8.500h2"/></svg>Wallet</span>
+        <span data-n="settings"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="2"/><path d="M8 2v1.500M8 12.500V14M2 8h1.500M12.500 8H14M3.800 3.800l1 1M11.200 11.200l1 1M12.200 3.800l-1 1M4.800 11.200l-1 1" stroke-linecap="round"/></svg>Business settings</span>
+    </nav>
+    <div class="mk2-cli"><i>&gt;_</i><div><b>Use the egbe CLI &amp; MCP</b><small>Run it from your terminal</small></div></div>
+    <div class="mk2-user"><i>SR</i><div><b>Sam Rivera</b><small>sam@kilnbook.com</small></div></div>
+</aside>
+<div class="mk2-main">
+    <div class="mk2-chatgrid">
+        <div class="mk2-chat">
+            <div class="mk2-msgs">
+                <div class="mk2-msg"><small>Wren Halloway · Sep 1, 2026, 11:52 AM</small><div><p>👀 <b>The homepage draft is ready.</b> <u>Review the proposed homepage</u>.</p><p>Approve it or tell me what to change.</p><p>🚀 Once approved, I'll start building the full MVP.</p></div></div>
+                <div class="mk2-msg"><small>Wren Halloway · Sep 1, 2026, 12:14 PM</small><div><p>✅ <b>Homepage approved.</b> I'm building the booking flow, studio accounts, and product analytics.</p><p>⏳ <b>This will take a couple of hours.</b> You can leave — I'll keep you posted.</p></div></div>
+                <div class="mk2-msg"><small>Wren Halloway · Sep 2, 2026, 3:46 PM</small><div><p>🚀 <b>kilnbook.com is live.</b> <u>Open the homepage</u>.</p><p>Analytics are wired to real interactions.</p></div></div>
+                <div class="mk2-msg"><small>Wren Halloway · Sep 15, 2026, 4:20 PM</small><div><p>🎉 <b>Your MVP is ready!</b> <u>Open the product</u>.</p><p>Review it and send me any changes here. When you're happy, press play on an advertising stage — I'll prepare the campaign for your approval before anything goes live.</p></div></div>
+            </div>
+            <div class="mk2-compose"><span>Message your AI co-founder…</span><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.500 7.500 8 3l4.500 4.500"/></svg></i></div>
+        </div>
+        <div class="mk2-stages">
+            <div class="mk2-cap" style="margin:0.2em 0 -0.2em">Stages</div>
+            <div class="mk2-auto"><div><b>Autopilot</b><small>Approve each step yourself before the next one starts.</small></div><span class="mk2-toggle"></span></div>
+            <div class="mk2-stage"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.500 8.500 6.500 11.500 12.500 5"/></svg></i><div><b>Market research<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.500 6 7.500 9 4.500"/></svg></b><p>Size the market and agree the scope.</p><div class="mk2-bar"><span><span style="width:100%"></span></span><small>16/16</small></div></div></div>
+            <div class="mk2-stage"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.500 8.500 6.500 11.500 12.500 5"/></svg></i><div><b>Product requirements<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.500 6 7.500 9 4.500"/></svg></b><p>Requirements and a pricing spec.</p><div class="mk2-bar"><span><span style="width:100%"></span></span><small>2/2</small></div></div></div>
+            <div class="mk2-stage"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.500 8.500 6.500 11.500 12.500 5"/></svg></i><div><b>Homepage<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.500 6 7.500 9 4.500"/></svg></b><p>Visual system, public homepage, analytics.</p><div class="mk2-bar"><span><span style="width:100%"></span></span><small>6/6</small></div></div></div>
+            <div class="mk2-stage"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.500 8.500 6.500 11.500 12.500 5"/></svg></i><div><b>Product<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.500 6 7.500 9 4.500"/></svg></b><p>Build the approved product end to end.</p><div class="mk2-bar"><span><span style="width:100%"></span></span><small>8/8</small></div></div></div>
+            <div class="mk2-stage"><i><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.500 8.500 6.500 11.500 12.500 5"/></svg></i><div><b>Billing<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.500 6 7.500 9 4.500"/></svg></b><p>Subscriptions, checkout, payment analytics.</p><div class="mk2-bar"><span><span style="width:100%"></span></span><small>6/6</small></div></div></div>
+            <div class="mk2-stage is-play"><i><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5.500 3.500v9l7-4.500z"/></svg></i><div><b>Reddit Ads<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.500 6 7.500 9 4.500"/></svg></b><p>Prepare, launch and monitor an ad test.</p><div class="mk2-bar"><span><span style="width:0"></span></span><small>0/11</small></div></div></div>
+        </div>
+    </div>
+</div>
+                </div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Running on Egbe: real products, real links -->
+    <section class="running" id="running">
+        <div class="wrap">
+            <h2 class="running-lead">The first companies are already running on Egbe.</h2>
+            <div class="products">
+                <a class="product" href="https://agent-canvas.egbe.app/" target="_blank" rel="noopener">
+                    <div class="product-shot"><img src="assets/running-agent-canvas.jpg" width="960" height="600" loading="lazy" alt="Agent Canvas homepage"></div>
+                    <h3>Agent Canvas <span aria-hidden="true">↗</span></h3>
+                    <p>A shared whiteboard that humans and AI agents draw on together, in real time.</p>
+                    <small>agent-canvas.egbe.app</small>
+                </a>
+                <a class="product" href="https://stagelift.egbe.app/" target="_blank" rel="noopener">
+                    <div class="product-shot"><img src="assets/running-stagelift.jpg" width="960" height="600" loading="lazy" alt="StageLift homepage"></div>
+                    <h3>StageLift <span aria-hidden="true">↗</span></h3>
+                    <p>AI virtual staging for real estate listings.</p>
+                    <small>stagelift.egbe.app</small>
+                </a>
+                <a class="product" href="https://agent-arcade.egbe.app/" target="_blank" rel="noopener">
+                    <div class="product-shot"><img src="assets/running-agent-arcade.jpg" width="960" height="600" loading="lazy" alt="Agent Arcade homepage"></div>
+                    <h3>Agent Arcade <span aria-hidden="true">↗</span></h3>
+                    <p>Play turn-based games with your AI agent.</p>
+                    <small>agent-arcade.egbe.app</small>
+                </a>
+                <a class="product" href="https://margo-os-12287124c49f.n.egbe.app/" target="_blank" rel="noopener">
+                    <div class="product-shot"><img src="assets/running-margo.jpg" width="960" height="600" loading="lazy" alt="Margo homepage"></div>
+                    <h3>Margo <span aria-hidden="true">↗</span></h3>
+                    <p>Etsy SEO help that tells you what to fix next.</p>
+                    <small>margo-os-12287124c49f.n.egbe.app</small>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premise -->
+    <section class="section">
+        <div class="wrap">
+            <p class="statement"><span class="dim">Most tools help you work faster.</span><br>Egbe does the work for you.</p>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="how">
+        <div class="wrap">
+            <div class="head">
+                <span class="label">How it works</span>
+                <h2><span class="dim">You have the idea.</span><br>Egbe makes it real.</h2>
                 <p>Built for solo founders with an idea and no team. Describe what you want to build — Egbe figures out what needs to happen, does most of it autonomously, and checks in with you on the calls only you can make.</p>
             </div>
-            <div class="how-grid reveal-stagger">
-                <div class="how-card">
-                    <div class="how-card-num"></div>
-                    <h4>Describe the idea</h4>
-                    <p>Share your idea in plain English. Egbe asks clarifying questions to pin down the audience, problem, and shape of the product.</p>
-                </div>
-                <div class="how-card">
-                    <div class="how-card-num"></div>
-                    <h4>Research &amp; shape the product</h4>
-                    <p>AI runs market and competitor research, identifies who to serve first, and turns the idea into a concrete product it can actually ship.</p>
-                </div>
-                <div class="how-card">
-                    <div class="how-card-num"></div>
-                    <h4>Build, ship, find users</h4>
-                    <p>AI writes the code, launches the product, and tests marketing channels to bring in real users — while you weigh in on key direction calls.</p>
-                </div>
-                <div class="how-card">
-                    <div class="how-card-num"></div>
-                    <h4>Run support &amp; operations</h4>
-                    <p>Customer support, day-to-day operations, iteration on what works — Egbe handles it. You stay focused on the few decisions that move the business.</p>
-                </div>
+            <div>
+                <article class="chapter">
+                    <div class="chapter-copy"><span class="label"><b>1.0</b> — Describe</span><h3>Describe the idea</h3><p>Share your idea in plain English. Egbe asks clarifying questions to pin down the audience, problem, and shape of the product.</p></div>
+                    <div class="chapter-view" aria-hidden="true"><div class="mock mock--color" style="--w:48"><div class="mock-scale">
+<div class="mk-chat" style="padding-bottom:2em">
+    <div class="mk-msg me">I want to build a booking tool for pottery studios. Most still take signups over Instagram DMs.</div>
+    <div class="mk-msg ai">Good niche. Three questions before I start research:
+        <ol><li>Who pays — the studio or the student?</li><li>One city first, or anywhere?</li><li>Payments on day one, or bookings only?</li></ol>
+    </div>
+</div>
+                    </div></div></div>
+                </article>
+                <article class="chapter">
+                    <div class="chapter-copy"><span class="label"><b>2.0</b> — Research</span><h3>Research &amp; shape the product</h3><p>AI runs market and competitor research, identifies who to serve first, and turns the idea into a concrete product it can actually ship.</p></div>
+                    <div class="chapter-view" aria-hidden="true"><div class="mock mock--color" style="--w:48"><div class="mock-scale">
+<div class="fr">
+    <div class="fr-h"><span>Positioning brief</span><span>9 tools compared</span></div>
+    <div class="fr-row"><b>Marketplaces</b><span>High commission; the studio loses the customer relationship</span></div>
+    <div class="fr-row"><b>Generic schedulers</b><span>No wheel or kiln capacity; no class packs</span></div>
+    <div class="fr-row"><b>DMs &amp; spreadsheets</b><span>Where most small studios still are</span></div>
+    <div class="fr-pick"><b>Serve first</b><span>Independent studios running 2–6 classes a week</span></div>
+</div>
+                    </div></div></div>
+                </article>
+                <article class="chapter">
+                    <div class="chapter-copy"><span class="label"><b>3.0</b> — Build</span><h3>Build, ship, find users</h3><p>AI writes the code, launches the product, and tests marketing channels to bring in real users — while you weigh in on key direction calls.</p></div>
+                    <div class="chapter-view" aria-hidden="true"><div class="mock mock--color" style="--w:48"><div class="mock-scale">
+<div class="fr">
+    <div class="fr-h"><span>Task #22 · Launch landing page</span><span>12:00</span></div>
+    <div class="fr-term">
+        <div><i>✓</i>build passed<em>41s</em></div>
+        <div><i>✓</i>deployed → kilnbook.com<em>live</em></div>
+        <div><i>✓</i>stripe payment link created<em>$29/mo</em></div>
+        <div><i>→</i>test campaign started · 3 variants<em>$10/day cap</em></div>
+    </div>
+</div>
+                    </div></div></div>
+                </article>
+                <article class="chapter">
+                    <div class="chapter-copy"><span class="label"><b>4.0</b> — Run</span><h3>Run support &amp; operations</h3><p>Customer support, day-to-day operations, iteration on what works — Egbe handles it. You stay focused on the few decisions that move the business.</p></div>
+                    <div class="chapter-view" aria-hidden="true"><div class="mock mock--color" style="--w:48"><div class="mock-scale">
+<div class="fr">
+    <div class="fr-h"><span>Support inbox</span><span>replied in 4 min</span></div>
+    <div class="fr-ticket"><small>Studio owner · 16:12</small><p>Can students reschedule a class on their own?</p></div>
+    <div class="fr-ticket is-reply"><small>Wren Halloway · 16:16</small><p>Yes — up to 24h before class, from the link in their confirmation email. I've added this to the help center.</p></div>
+    <div class="mk-chip-row"><span class="mk-chip"><i></i>Resolved</span><span class="mk-chip">Logged as request #27</span></div>
+</div>
+                    </div></div></div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Product — what Egbe is, screenshots & demo -->
-    <section class="product" id="product">
-        <div class="container">
-            <div class="section-head reveal">
-                <p class="label">The Product</p>
+    <!-- Product: the dark panel -->
+    <section class="night panel" id="product">
+        <div class="wrap">
+            <div class="night-head">
+                <span class="label">The product</span>
                 <h2>See it in action.</h2>
                 <p>A real look inside Egbe — the dashboard where your AI co-founder does the work, and you stay in control.</p>
             </div>
-
-            <!-- Featured: the agent's task board -->
-            <div class="demo-frame reveal">
-                <img src="shots/tasks.png" alt="Egbe dashboard — the AI agent's task board with To do, Recurring, In progress, Done and Failed columns" loading="lazy">
+            <div class="mock mock--shellcrop mock--color mock--focus" data-nav="tasks" data-tab="tasks" style="--w:120" role="img" aria-label="Egbe dashboard — the AI agent's task board with To do, Recurring, In progress, Done and Failed columns">
+                <div class="mock-scale" aria-hidden="true"><div class="mk2">
+<aside class="mk2-side">
+    <div class="mk2-logo">Egbe</div>
+    <div class="mk2-cap">Your businesses</div>
+    <div class="mk2-biz"><i>K</i><div><b>Kilnbook</b><small>AI co-founder · Wren Halloway</small></div><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5 6 7.5 9 4.5"/></svg></div>
+    <nav class="mk2-nav">
+        <span data-n="chat"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.5 3h11v8h-6l-3 2.500V11h-2z"/></svg>Chat</span>
+        <span data-n="inbox"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2 9.500 4 3.500h8l2 6v3H2zM2 9.500h3.500l1 1.500h3l1-1.500H14"/></svg>Inbox</span>
+        <span data-n="overview"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.500 2.500h4.500v4.500H2.500zM9 2.500h4.500v4.500H9zM2.500 9h4.500v4.500H2.500zM9 9h4.500v4.500H9z"/></svg>Overview</span>
+        <span data-n="tasks"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h6.500M7 8h6.500M7 12h6.500M2.500 4l1 1 1.500-2M2.500 8l1 1L5 7M2.500 12l1 1 1.500-2"/></svg>Tasks</span>
+        <span data-n="docs"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M4 2h5.500L12 4.500V14H4zM6 7.500h4M6 10h4"/></svg>Docs</span>
+        <span data-n="ads"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.500"/><circle cx="8" cy="8" r="2.300"/></svg>Ads</span>
+        <span data-n="analytics"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.500 2.500v11h11M5 10l2.500-3 2 1.500L13 5"/></svg>Analytics</span>
+        <span data-n="wallet"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M2.500 4.500h10v8.500h-10zM2.500 4.500 10 2.500v2M10.500 8.500h2"/></svg>Wallet</span>
+        <span data-n="settings"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="2"/><path d="M8 2v1.500M8 12.500V14M2 8h1.500M12.500 8H14M3.800 3.800l1 1M11.200 11.200l1 1M12.200 3.800l-1 1M4.800 11.200l-1 1" stroke-linecap="round"/></svg>Business settings</span>
+    </nav>
+    <div class="mk2-cli"><i>&gt;_</i><div><b>Use the egbe CLI &amp; MCP</b><small>Run it from your terminal</small></div></div>
+    <div class="mk2-user"><i>SR</i><div><b>Sam Rivera</b><small>sam@kilnbook.com</small></div></div>
+</aside>
+<div class="mk2-main">
+    <div class="mk2-page" style="padding-bottom:0;max-width:none"><div class="mk2-h is-tasks" style="padding:0">Tasks</div></div>
+<div class="mk-panel" data-p="tasks">
+    <div class="mk-board">
+        <div class="mk-col">
+            <div class="mk-col-h"><span>To do</span><b>3</b></div>
+            <div class="mk-new">+ New task</div>
+            <div class="mk-card"><div class="mk-meta"><span>#24</span><em class="p-mid">P40</em></div><p>Add Stripe checkout for the Studio plan ($29/mo)</p></div>
+            <div class="mk-card"><div class="mk-meta"><span>#25</span><em class="p-lo">P35</em></div><p>Write the 3-email onboarding sequence for new studios</p></div>
+            <div class="mk-card"><div class="mk-meta"><span>#26</span><em class="p-lo">P30</em></div><p>Interview five studio owners from the waitlist</p></div>
+        </div>
+        <div class="mk-col">
+            <div class="mk-col-h"><span>Recurring tasks</span><b>3</b></div>
+            <div class="mk-new">+ New recurring task</div>
+            <div class="mk-card"><div class="mk-meta"><span>#2</span><span>every 3h</span></div><p>Run the business goal review loop for this company</p></div>
+            <div class="mk-card"><div class="mk-meta"><span>#1</span><span>every 1d</span></div><p>Write a concise status report for the founder</p></div>
+            <div class="mk-card"><div class="mk-meta"><span>#9</span><span>every 1w</span></div><p>Review ad spend against signups; pause what isn't working</p></div>
+        </div>
+        <div class="mk-col">
+            <div class="mk-col-h"><span>In progress</span><b>1</b></div>
+            <div class="mk-card is-now"><div class="mk-meta"><span>#23</span><em class="p-hi">P50</em></div><p>Ship the embeddable class calendar for studio websites</p><div class="mk-prog"><i></i></div><div class="mk-note">Step 3 of 5 · started 14:02</div></div>
+        </div>
+        <div class="mk-col">
+            <div class="mk-col-h"><span>Done</span><b>12</b></div>
+            <div class="mk-card is-done"><div class="mk-meta"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.500 11.500 12.500 5"/></svg><span>#22</span></div><p>Launch the landing page on kilnbook.com</p></div>
+            <div class="mk-card is-done"><div class="mk-meta"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.500 11.500 12.500 5"/></svg><span>#21</span></div><p>Set up Postgres, auth, and transactional email</p></div>
+            <div class="mk-card is-done"><div class="mk-meta"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.500 11.500 12.500 5"/></svg><span>#19</span></div><p>Compare 9 booking tools; write the positioning brief</p></div>
+            <div class="mk-card is-done"><div class="mk-meta"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5 6.500 11.500 12.500 5"/></svg><span>#17</span></div><p>PRD v1 — approved by founder</p></div>
+            <div class="mk-more">+ 8 more</div>
+        </div>
+        <div class="mk-col">
+            <div class="mk-col-h"><span>Failed</span><b>1</b></div>
+            <div class="mk-card is-failed"><div class="mk-meta"><span>#20</span><em>retry Thu</em></div><p>Send cold email batch B</p><div class="mk-note">Sending domain is still warming up. Rescheduled automatically.</div></div>
+        </div>
+    </div>
+</div>
+</div>
+                </div></div>
             </div>
-            <p class="demo-cap reveal">Your AI co-founder plans and prioritizes its own tasks, then ships them hour by hour. Step in anytime from the same board to steer, reprioritize, or add work of your own.</p>
-
-            <div class="shots shots--two reveal-stagger">
-                <div class="shot">
-                    <div class="shot-frame"><img src="shots/overview.png" alt="Egbe dashboard overview — agent status, budget wallet balance, and recent activity" loading="lazy"></div>
-                    <div class="shot-cap">
-                        <h4>Your command center</h4>
-                        <p>Agent status, wallet balance, and live activity — every business you run on Egbe, at a glance.</p>
+            <p class="night-cap">Your AI co-founder plans and prioritizes its own tasks, then ships them hour by hour. Step in anytime from the same board to steer, reprioritize, or add work of your own.</p>
+            <div class="pair">
+                <div>
+                    <div class="mock mock--bare" data-crop style="--w:72" role="img" aria-label="Egbe dashboard overview — the business, its AI co-founder and status, wallet balance, live product stats and a balance chart">
+                        <div class="mock-scale" aria-hidden="true"><div class="mk2">
+<div class="mk2-main"><div class="mk2-page">
+    <div class="mk2-h">Overview</div>
+    <div class="mk2-box">
+        <div class="mk2-hero">
+            <div>
+                <div class="mk2-name">Kilnbook</div>
+                <div class="mk2-meta">AI co-founder · <b>Wren Halloway</b><span class="mk2-chip has-dot">Live</span></div>
+                <div class="mk2-sub">wren.halloway@egbe.app</div>
+                <div class="mk2-fine">Created Aug 2026 · #a41f7c2</div>
+            </div>
+            <hr>
+            <div>
+                <div class="mk2-ballabel">Balance</div>
+                <div class="mk2-bal">$38.20 <small>lasts ~3 wk</small></div>
+                <span class="mk2-pbtn">Top up wallet</span>
+            </div>
+        </div>
+    </div>
+    <div class="mk2-box">
+        <div class="mk2-boxcap"><span>Products</span><small>Wren Halloway's live apps</small></div>
+        <div class="mk2-prod"><div><b>kilnbook</b><span class="mk2-chip">active</span><p>212 visits · 31 signups · 4 payments · Deployed 2d ago</p></div><span class="mk2-pbtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.500 2.500v11h11M5 10l2.500-3 2 1.500L13 5"/></svg>Analytics</span><span class="mk2-gbtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2.500h4.500V7M13.500 2.500 7.500 8.500M11.500 9.500v4h-9v-9h4"/></svg>Visit</span></div>
+    </div>
+    <div class="mk2-box">
+        <div class="mk2-boxcap"><span>Total balance</span><span class="mk2-seg"><span>7D</span><span>30D</span><span class="on">All</span></span></div>
+        <div class="mk2-chart">
+            <div class="y"><span>$60</span><span>$40</span><span>$20</span><span>$0</span></div>
+            <svg viewBox="0 0 600 150" preserveAspectRatio="none" aria-hidden="true" fill="none">
+                <path class="grid" d="M0,0H600M0,50H600M0,100H600" stroke-width="1" vector-effect="non-scaling-stroke"/>
+                <path class="zero" d="M0,150H600" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+                <path class="area" d="M0,25 H36 V31 H78 V38 H120 V44 H166 V52 H210 V58 H252 V66 H298 V73 H340 V81 H384 V88 H426 V96 H462 V46 H506 V49 H552 V52 H580 V54.500 H600 V150 H0 Z" stroke="none"/>
+                <path class="line" d="M0,25 H36 V31 H78 V38 H120 V44 H166 V52 H210 V58 H252 V66 H298 V73 H340 V81 H384 V88 H426 V96 H462 V46 H506 V49 H552 V52 H580 V54.500 H600" stroke-width="2" vector-effect="non-scaling-stroke"/>
+            </svg>
+            <div class="x"><span>Aug 31</span><span>Sep 5</span><span>Sep 10</span><span>Sep 15</span><span>Sep 21</span></div>
+        </div>
+    </div>
+</div></div>
+                        </div></div>
                     </div>
+                    <h3>Your command center</h3>
+                    <p>Agent status, wallet balance, and live activity — every business you run on Egbe, at a glance.</p>
                 </div>
-                <div class="shot">
-                    <div class="shot-frame"><img src="shots/usage.png" alt="Egbe usage dashboard — metered limits for apps, databases, payments, and storage" loading="lazy"></div>
-                    <div class="shot-cap">
-                        <h4>Costs under your control</h4>
-                        <p>Apps, databases, payments, storage — every resource the agent uses is metered against the budget you set.</p>
+                <div>
+                    <div class="mock mock--bare" data-crop style="--w:72" role="img" aria-label="Egbe analytics — unique visitors, pageviews, visits and visit duration for the last 7 days, a daily chart of views and visitors, countries and product events">
+                        <div class="mock-scale" aria-hidden="true"><div class="mk2">
+<div class="mk2-main"><div class="mk2-page">
+    <div class="mk2-hrow"><div class="mk2-h">Analytics</div><small>kilnbook</small><span class="mk2-seg"><span>24h</span><span class="on">7d</span><span>30d</span><span>All</span></span></div>
+    <div class="mk2-kpis">
+        <div class="mk2-kpi"><span>Unique visitors</span><b>212</b><em>+38% vs last week</em></div>
+        <div class="mk2-kpi"><span>Pageviews</span><b>684</b><em>+44%</em></div>
+        <div class="mk2-kpi"><span>Visits</span><b>263</b><em>+31%</em></div>
+        <div class="mk2-kpi"><span>Avg. visit duration</span><b>2m 41s</b><em>+12s</em></div>
+    </div>
+    <div class="mk2-box">
+        <div class="mk2-boxcap"><span>Visitors &amp; views</span></div>
+        <div class="mk2-bars">
+            <div class="y"><span>200</span><span>150</span><span>100</span><span>50</span><span>0</span></div>
+            <svg viewBox="0 0 700 160" preserveAspectRatio="none" aria-hidden="true">
+                <path class="grid" d="M0,0.500H700M0,40H700M0,80H700M0,120H700M0,159.500H700" fill="none" stroke-width="1" vector-effect="non-scaling-stroke"/>
+                <g class="views"><rect x="20" y="121.600" width="26" height="38.400" rx="3"/><rect x="120" y="110.400" width="26" height="49.600" rx="3"/><rect x="220" y="103.200" width="26" height="56.800" rx="3"/><rect x="320" y="89.600" width="26" height="70.400" rx="3"/><rect x="420" y="76.800" width="26" height="83.200" rx="3"/><rect x="520" y="48.800" width="26" height="111.200" rx="3"/><rect x="620" y="22.400" width="26" height="137.600" rx="3"/></g>
+                <g class="visitors"><rect x="52" y="146.400" width="26" height="13.600" rx="3"/><rect x="152" y="142.400" width="26" height="17.600" rx="3"/><rect x="252" y="139.200" width="26" height="20.800" rx="3"/><rect x="352" y="135.200" width="26" height="24.800" rx="3"/><rect x="452" y="132" width="26" height="28" rx="3"/><rect x="552" y="129.600" width="26" height="30.400" rx="3"/><rect x="652" y="125.600" width="26" height="34.400" rx="3"/></g>
+            </svg>
+            <div class="x"><span>Sep 15</span><span>Sep 16</span><span>Sep 17</span><span>Sep 18</span><span>Sep 19</span><span>Sep 20</span><span>Sep 21</span></div>
+        </div>
+        <div class="mk2-legend"><span><i></i>Views</span><span><i></i>Visitors</span></div>
+    </div>
+    <div class="mk2-two">
+        <div class="mk2-box"><div class="mk2-boxcap"><span>Countries</span></div><div class="mk2-list">
+            <div><span>🇺🇸 US</span><i style="width:100%"></i><span>148</span></div>
+            <div><span>🇨🇦 CA</span><i style="width:21%"></i><span>31</span></div>
+            <div><span>🇬🇧 GB</span><i style="width:13%"></i><span>19</span></div>
+            <div><span>🇦🇺 AU</span><i style="width:9%"></i><span>14</span></div>
+        </div></div>
+        <div class="mk2-box"><div class="mk2-boxcap"><span>Events</span></div><div class="mk2-list is-plain">
+            <div><span>signup_submitted</span><span>31</span></div>
+            <div><span>signup_completed</span><span>27</span></div>
+            <div><span>checkout_started</span><span>9</span></div>
+            <div><span>payment_completed</span><span>4</span></div>
+        </div></div>
+    </div>
+</div></div>
+                        </div></div>
                     </div>
+                    <h3>See what's working</h3>
+                    <p>Visitors, signups, and payments — every product your agent ships, measured from day one.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-head reveal">
-                <p class="label">Pricing</p>
-                <h2>One plan. Your entire startup team.</h2>
+    <section class="section" id="pricing">
+        <div class="wrap">
+            <div class="head">
+                <span class="label">Pricing</span>
+                <h2><span class="dim">One plan.</span> Your entire startup team.</h2>
             </div>
-
-            <div class="price-card reveal">
-                <div class="price-main">
-                    <div class="price-amount">$99<span>/month</span></div>
-                    <p class="price-usage">+ pay-as-you-go usage</p>
-                    <p class="price-credit">$50 in free usage credit to start</p>
-                    <p class="price-sub">Everything you need to go from idea to paying customers.</p>
-                    <a href="https://dashboard.egbe.ai" class="cta-primary">Start free trial
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
-                    <p class="price-foot">No credit card required · Cancel anytime · Up and running in minutes</p>
+            <div class="price-grid">
+                <div class="plan">
+                    <div class="plan-price">$99<span>/month</span></div>
+                    <p class="plan-usage">+ pay-as-you-go usage</p>
+                    <p class="plan-credit">$50 in free usage credit to start</p>
+                    <p class="plan-sub">Everything you need to go from idea to paying customers.</p>
+                    <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="pricing_start_building">Start free trial</a>
+                    <p class="plan-foot">No credit card required · Cancel anytime · Up and running in minutes</p>
                 </div>
-                <div class="price-incl">
-                    <p class="price-incl-title">What's included</p>
-                    <ul class="price-features">
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Your own AI co-founder, 24/7</strong> — ships a real step every hour</span></li>
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Builds &amp; ships real products</strong> — apps, landing pages, and signup flows on your own domain</span></li>
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>A whole team in one agent</strong> — product, engineering, marketing, and ops built in</span></li>
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Payments built in</strong> — Stripe checkout and payment links, set up for you</span></li>
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Growth on autopilot</strong> — ads, cold email, lead gen, and content</span></li>
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>All infrastructure included</strong> — hosting, databases, email, analytics, domains</span></li>
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Weekly founder reports</strong> — what shipped and what's next, in plain English</span></li>
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Founder dashboard &amp; task tracker</strong> — assign and review work; the agent plans its own tasks too</span></li>
+                <div class="incl">
+                    <span class="label">What's included</span>
+                    <ul>
+<li><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg><span><strong>Your own AI co-founder, 24/7</strong> — ships a real step every hour</span></li>
+<li><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg><span><strong>Builds &amp; ships real products</strong> — apps, landing pages, and signup flows on your own domain</span></li>
+<li><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg><span><strong>A whole team in one agent</strong> — product, engineering, marketing, and ops built in</span></li>
+<li><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg><span><strong>Payments built in</strong> — Stripe checkout and payment links, set up for you</span></li>
+<li><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg><span><strong>Growth on autopilot</strong> — ads, cold email, lead gen, and content</span></li>
+<li><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg><span><strong>All infrastructure included</strong> — hosting, databases, email, analytics, domains</span></li>
+<li><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg><span><strong>Weekly founder reports</strong> — what shipped and what's next, in plain English</span></li>
+<li><svg class="ck" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg><span><strong>Founder dashboard &amp; task tracker</strong> — assign and review work; the agent plans its own tasks too</span></li>
                     </ul>
                 </div>
             </div>
-
-            <p class="price-billing reveal"><strong>How billing works:</strong> Your $99/month covers your co-founder and the entire platform. AI compute and ad spend run on a simple top-up wallet — and we start you with <strong>$50 in free usage credit</strong>, so you can launch before paying for any usage. You set the budget and only pay for what you use. No surprises, no overages.</p>
-
-            <div class="price-extras reveal-stagger">
-                <div class="price-extra">
-                    <h4>No setup, no DevOps</h4>
-                    <p>We provision your servers, databases, email, and domains.</p>
-                </div>
-                <div class="price-extra">
-                    <h4>No code required</h4>
-                    <p>Describe your idea in a chat — your agent does the rest.</p>
-                </div>
-                <div class="price-extra">
-                    <h4>Cancel anytime</h4>
-                    <p>No contracts, no lock-in.</p>
-                </div>
+            <div class="billing">
+                <h3>How billing works</h3>
+                <p>Your $99/month covers your co-founder and the entire platform. AI compute and ad spend run on a simple top-up wallet — and we start you with <strong>$50 in free usage credit</strong>, so you can launch before paying for any usage. You set the budget and only pay for what you use. No surprises, no overages.</p>
             </div>
-
-            <div class="price-anchor reveal">
-                <p>A junior engineer plus a marketer costs <strong>$10,000+/month</strong>. Your Egbe co-founder is <strong>$99</strong> — and it never sleeps.</p>
+            <div class="extras">
+                <div class="extra"><h3>No setup, no DevOps</h3><p>We provision your servers, databases, email, and domains.</p></div>
+                <div class="extra"><h3>No code required</h3><p>Describe your idea in a chat — your agent does the rest.</p></div>
+                <div class="extra"><h3>Cancel anytime</h3><p>No contracts, no lock-in.</p></div>
             </div>
-
-            <div class="price-final reveal">
-                <a href="https://dashboard.egbe.ai" class="cta-primary">Get your co-founder — $99/mo
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
+            <div class="anchor">
+                <p class="statement"><span class="dim blk">A junior engineer plus a marketer costs $10,000+/month.</span> <span class="blk">Your Egbe <span class="nb">co-founder</span> is $99 — and it never sleeps.</span></p>
+                <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="pricing_get_cofounder">Get your co-founder — $99/mo</a>
             </div>
         </div>
     </section>
 
-    <!-- Team / Company -->
-    <section class="team" id="team">
-        <div class="container">
-            <div class="section-head reveal">
-                <p class="label">Team</p>
-                <h2>The people behind Egbe.</h2>
-                <p>We're a small team building autonomous AI for solo founders who want to launch and run real tech businesses. Meet the people and follow our progress on LinkedIn.</p>
-                <a href="https://www.linkedin.com/company/egbe-ai/" target="_blank" rel="noopener" class="team-linkedin">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-                    See the team on LinkedIn
-                </a>
-            </div>
-            <div class="company-facts reveal-stagger">
-                <div class="fact"><span class="fact-k">Founded</span><span class="fact-v">2026</span></div>
-                <div class="fact"><span class="fact-k">Company</span><span class="fact-v">Egbe, Inc.</span></div>
-                <div class="fact"><span class="fact-k">Headquarters</span><span class="fact-v">USA</span></div>
+    <!-- Team -->
+    <section class="team panel" id="team">
+        <div class="wrap">
+            <span class="label">Team</span>
+            <h2>The people behind Egbe.</h2>
+            <p class="team-lead">We're a small team building autonomous AI for solo founders who want to launch and run real tech businesses. Meet the people and follow our progress on LinkedIn.</p>
+            <a href="https://www.linkedin.com/company/egbe-ai/" target="_blank" rel="noopener" class="btn btn-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg> See the team on LinkedIn</a>
+            <dl class="facts">
+                <div><dt>Founded</dt><dd>2026</dd></div>
+                <div><dt>Company</dt><dd>Egbe, Inc.</dd></div>
+                <div><dt>Headquarters</dt><dd>USA</dd></div>
+            </dl>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="wrap faq-grid">
+            <div><span class="label">FAQ</span><h2>Questions, answered.</h2></div>
+            <div class="faq">
+<details open>
+    <summary>Do I need to know how to code?</summary>
+    <p>No code required. Describe your idea in a chat — your agent does the rest. We provision your servers, databases, email, and domains.</p>
+</details>
+<details>
+    <summary>How much control do I have over what the agent does?</summary>
+    <p>Egbe does most of the work autonomously and checks in with you on the calls only you can make. You can step in anytime from the task board to steer, reprioritize, or add work of your own.</p>
+</details>
+<details>
+    <summary>What does the $99/month cover — and what's extra?</summary>
+    <p>Your $99/month covers your co-founder and the entire platform. AI compute and ad spend run on a top-up wallet that starts with $50 in free usage credit. You set the budget and only pay for what you use.</p>
+</details>
+<details>
+    <summary>Who owns the product and the code?</summary>
+    <p>You do. Products built on Egbe are created and owned by you, and the output generated by Egbe's AI on your behalf is yours to use.</p>
+</details>
+<details>
+    <summary>Can I cancel?</summary>
+    <p>Anytime. No contracts, no lock-in — cancellation takes effect at the end of the current billing period.</p>
+</details>
             </div>
         </div>
     </section>
 
-    <!-- Wave: cream → deep blue -->
-    <div class="wave-cream-blue">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:clamp(40px,5vw,80px)">
-            <path d="M0,0 C360,70 720,70 1080,35 C1260,17 1380,50 1440,25 L1440,80 L0,80 Z" fill="#0E1A2B"/>
-        </svg>
+    <!-- Closing -->
+    <section class="closing panel">
+        <div class="wrap">
+            <h2><span class="dim">One person.<br>A whole business.</span><br>No overhead.</h2>
+            <p class="closing-sub">The first companies are already running on Egbe.</p>
+            <form class="idea" action="https://dashboard.egbe.ai/" method="get" data-idea-form>
+                <input type="text" name="idea" maxlength="500" aria-label="Describe your idea" placeholder="Describe your idea…" autocomplete="off" enterkeyhint="go">
+                <button type="submit" class="btn btn-accent" data-umami-event="closing_start_building" data-umami-event-idea="empty">Start free trial</button>
+            </form>
+            <p class="hero-sub"><span>No credit card required</span><a class="link" href="https://calendly.com/azamat-khalilov-egbe/30min" target="_blank" rel="noopener" data-umami-event="closing_book_demo">Book a demo</a></p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap foot">
+        <div><a href="/" class="wordmark" aria-label="Egbe — home">Egbe<span>.</span></a><address>&copy; 2026 Egbe, Inc.<br>8 The Green, Suite 14245, Dover, DE 19901, USA</address></div>
+        <nav aria-label="Footer">
+            <a href="https://www.linkedin.com/company/egbe-ai/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://x.com/Egbe_ai" target="_blank" rel="noopener">X</a>
+            <a href="/career/">Careers</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
+            <a href="mailto:hello@egbe.ai">hello@egbe.ai</a>
+        </nav>
     </div>
-
-    <!-- Closing — deep blue night -->
-    <section class="closing">
-        <div class="closing-decor"></div>
-        <div class="closing-decor"></div>
-        <div class="closing-decor"></div>
-        <div class="container">
-            <h2 class="reveal">One person.<br>A whole business.<br><em>No overhead.</em></h2>
-            <p class="reveal">The first companies are already running on Egbe.</p>
-            <div class="cta-group reveal" style="justify-content:center;">
-                <a href="https://dashboard.egbe.ai" class="closing-cta cta-primary" data-umami-event="closing_start_building">
-                    Start free trial
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
-                <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="closing-preview cta-secondary" target="_blank" rel="noopener" data-umami-event="closing_book_demo">Book a demo</a>
-            </div>
-            <p class="cta-note reveal">No credit card required</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <a href="/" class="logo">Egbe<span>.</span></a>
-            <p>&copy; 2026 Egbe, Inc. &middot; <a href="https://www.linkedin.com/company/egbe-ai/" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="https://x.com/Egbe_ai" target="_blank" rel="noopener">X</a> &middot; <a href="/career/">Careers</a> &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/terms/">Terms</a> &middot; <a href="mailto:hello@egbe.ai">hello@egbe.ai</a></p>
-        </div>
-    </footer>
-
-</div>
+</footer>
 
 <script>
-// ── Scroll reveal ──
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+// nav hairline once the page has scrolled
+(function () {
+    var nav = document.getElementById('nav');
+    var onScroll = function () { nav.classList.toggle('is-stuck', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+
+// ── Carrying the idea to the dashboard ──
+// The text goes in the URL *fragment* (#idea=…): fragments are never sent to a server, so the
+// idea stays out of access logs and out of analytics page URLs. The visitor id rides along the
+// same way it does for links (?vid=…, see the Umami block in <head>). Without JS the form still
+// works as a plain GET (?idea=…).
+// Analytics only learns whether something was typed (data-umami-event-idea), never the text.
+// Dashboard side (not in this repo): next to the existing `vid` handler in the root layout —
+//   read `idea` from location.hash (or the query), store it in localStorage, strip it from the
+//   URL, and after sign-in prefill the first message to the agent with it.
+(function () {
+    function dashboardUrl(action, rawIdea) {
+        var idea = (rawIdea || '').trim().slice(0, 500);
+        var url = new URL(action);
+        var vid = window.__egbeVid;
+        try { vid = vid || window.localStorage.getItem('egbe_vid'); } catch (err) {}
+        if (vid) url.searchParams.set('vid', vid);
+        if (idea) url.hash = 'idea=' + encodeURIComponent(idea);
+        return url.toString();
+    }
+    document.querySelectorAll('[data-idea-form]').forEach(function (form) {
+        var input = form.querySelector('input[name="idea"]');
+        var button = form.querySelector('button[type="submit"]');
+        input.addEventListener('input', function () {
+            button.setAttribute('data-umami-event-idea', input.value.trim() ? 'typed' : 'empty');
+        });
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            window.location.href = dashboardUrl(form.action, input.value);
+        });
     });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+})();
 
-document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
-
-// ── Nav scroll effect ──
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
-
-// ── Subtle parallax on mountain layers ──
-const mountainLayers = document.querySelectorAll('.mountain-layer');
-const hero = document.querySelector('.hero');
-window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const heroH = hero.offsetHeight;
-    if (scrollY < heroH) {
-        const progress = scrollY / heroH;
-        mountainLayers.forEach((layer, i) => {
-            const speed = (mountainLayers.length - i) * 15;
-            layer.style.transform = `translateY(${progress * speed}px)`;
-        });
+// The hero field types out example ideas until someone starts typing their own.
+(function () {
+    var input = document.getElementById('idea');
+    if (!input || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ideas = ['A booking tool for pottery studios', 'Invoicing for freelance translators', 'A waitlist app for small bakeries'];
+    var base = 'Describe your idea…', i = 0, n = 0, dir = 1, timer;
+    function tick() {
+        if (document.activeElement === input || input.value) { input.placeholder = base; return; }
+        var text = ideas[i];
+        n += dir;
+        input.placeholder = text.slice(0, n) + (dir > 0 && n < text.length ? '▍' : '');
+        var delay = dir > 0 ? 55 : 22;
+        if (n === text.length) { dir = -1; delay = 1900; }
+        if (n === 0) { dir = 1; i = (i + 1) % ideas.length; delay = 450; }
+        timer = setTimeout(tick, delay);
     }
-}, { passive: true });
-
-// ── Ambient canvas — warm Saryan-inspired floating shapes ──
-(function() {
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height, dpr;
-    let time = 0;
-
-    function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        canvas.style.width = width + 'px';
-        canvas.style.height = height + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function draw() {
-        time += 0.0015;
-        ctx.clearRect(0, 0, width, height);
-
-        // Warm glowing orbs in Saryan's palette
-        const orbs = [
-            { x: width * 0.15 + Math.sin(time * 0.5) * 80, y: height * 0.25 + Math.cos(time * 0.4) * 60, r: Math.min(width, height) * 0.3, color: 'rgba(232, 168, 56, 0.012)' },
-            { x: width * 0.85 + Math.cos(time * 0.4) * 100, y: height * 0.55 + Math.sin(time * 0.3) * 80, r: Math.min(width, height) * 0.35, color: 'rgba(196, 84, 26, 0.01)' },
-            { x: width * 0.5 + Math.sin(time * 0.6) * 60, y: height * 0.8 + Math.cos(time * 0.5) * 50, r: Math.min(width, height) * 0.28, color: 'rgba(92, 122, 61, 0.008)' },
-        ];
-
-        orbs.forEach(orb => {
-            const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
-            gradient.addColorStop(0, orb.color);
-            gradient.addColorStop(1, 'transparent');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, width, height);
-        });
-
-        requestAnimationFrame(draw);
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-    draw();
+    timer = setTimeout(tick, 1600);
+    input.addEventListener('focus', function () { clearTimeout(timer); input.placeholder = base; });
+    input.addEventListener('blur', function () { if (!input.value) { n = 0; dir = 1; timer = setTimeout(tick, 900); } });
 })();
 </script>
 
