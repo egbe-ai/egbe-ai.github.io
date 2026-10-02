@@ -195,10 +195,6 @@
         .kicker { font-size: 0.9375rem; font-weight: 500; color: var(--ink-3); margin-bottom: 18px; }
         .hero h1 { margin-bottom: 22px; }
         .lede { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--ink-2); max-width: 34em; margin: 0 auto 36px; text-wrap: pretty; }
-        .idea { display: flex; align-items: center; gap: 8px; max-width: 560px; margin: 0 auto; padding: 6px; border-radius: 99px; background: var(--bg); box-shadow: 0 0 0 1px var(--line-2), 0 12px 32px -16px rgba(27, 28, 46, 0.25); transition: box-shadow 0.15s; }
-        .idea:focus-within { box-shadow: 0 0 0 2px var(--accent), 0 12px 32px -16px rgba(82, 102, 235, 0.45); }
-        .idea input[type="text"] { flex: 1; min-width: 0; height: 46px; padding: 0 8px 0 20px; border: 0; outline: 0; background: none; font: inherit; font-size: 1.0625rem; color: var(--ink); }
-        .idea input::placeholder { color: var(--ink-3); }
         .hero-sub { display: flex; gap: 8px 20px; justify-content: center; flex-wrap: wrap; font-size: 0.9375rem; color: var(--ink-3); margin-top: 18px; }
         .window { margin-top: clamp(56px, 7vw, 88px); --mk-shadow: 0 0 0 1px rgba(27, 28, 46, 0.03), 0 40px 80px -40px rgba(27, 28, 46, 0.35); animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s both; }
         @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -316,9 +312,6 @@
         @media (max-width: 640px) {
             .wrap { padding: 0 20px; }
             .panel { margin: 0 6px; border-radius: 22px; }
-            .idea { flex-direction: column; border-radius: 22px; padding: 8px; }
-            .idea input[type="text"] { width: 100%; text-align: center; padding: 0 12px; }
-            .idea .btn { width: 100%; }
             .pair, .extras { grid-template-columns: 1fr; }
             .extra, .extra + .extra { padding: 20px 0; border-left: 0; border-bottom: 1px solid var(--line); }
             .facts { flex-direction: column; gap: 20px; }
@@ -630,10 +623,7 @@
             <p class="kicker">The zero-employee company</p>
             <h1><span class="dim">You found it.</span><br>AI runs it.</h1>
             <p class="lede">Bring the idea. Egbe takes it from research to a shipped product, finds your first users, and handles support and ops. Fully autonomous — you steer the big calls.</p>
-            <form class="idea" action="https://dashboard.egbe.ai/" method="get" data-idea-form>
-                <input type="text" name="idea" id="idea" maxlength="500" aria-label="Describe your idea" placeholder="Describe your idea…" autocomplete="off" enterkeyhint="go">
-                <button type="submit" class="btn btn-accent" data-umami-event="hero_start_building" data-umami-event-idea="empty">Start free trial</button>
-            </form>
+            <a href="https://dashboard.egbe.ai/" class="btn btn-accent btn-lg" data-umami-event="hero_start_building">Start free trial</a>
             <p class="hero-sub"><span>No credit card required</span><a class="link" href="https://calendly.com/azamat-khalilov-egbe/30min" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a></p>
 
             <div class="mock mock--shell window" data-nav="chat" style="--w:120" role="img" aria-label="Egbe dashboard — a chat with the AI co-founder on the left: the homepage was approved, the site went live, the MVP is ready. On the right, the Stages panel: market research, product requirements, homepage, product and billing are complete; advertising is ready to start.">
@@ -1037,10 +1027,7 @@
         <div class="wrap">
             <h2><span class="dim">One person.<br>A whole business.</span><br>No overhead.</h2>
             <p class="closing-sub">The first companies are already running on Egbe.</p>
-            <form class="idea" action="https://dashboard.egbe.ai/" method="get" data-idea-form>
-                <input type="text" name="idea" maxlength="500" aria-label="Describe your idea" placeholder="Describe your idea…" autocomplete="off" enterkeyhint="go">
-                <button type="submit" class="btn btn-accent" data-umami-event="closing_start_building" data-umami-event-idea="empty">Start free trial</button>
-            </form>
+            <a href="https://dashboard.egbe.ai/" class="btn btn-accent btn-lg" data-umami-event="closing_start_building">Start free trial</a>
             <p class="hero-sub"><span>No credit card required</span><a class="link" href="https://calendly.com/azamat-khalilov-egbe/30min" target="_blank" rel="noopener" data-umami-event="closing_book_demo">Book a demo</a></p>
         </div>
     </section>
@@ -1069,58 +1056,6 @@
     onScroll();
 })();
 
-// ── Carrying the idea to the dashboard ──
-// The text goes in the URL *fragment* (#idea=…): fragments are never sent to a server, so the
-// idea stays out of access logs and out of analytics page URLs. The visitor id rides along the
-// same way it does for links (?vid=…, see the Umami block in <head>). Without JS the form still
-// works as a plain GET (?idea=…).
-// Analytics only learns whether something was typed (data-umami-event-idea), never the text.
-// Dashboard side (not in this repo): next to the existing `vid` handler in the root layout —
-//   read `idea` from location.hash (or the query), store it in localStorage, strip it from the
-//   URL, and after sign-in prefill the first message to the agent with it.
-(function () {
-    function dashboardUrl(action, rawIdea) {
-        var idea = (rawIdea || '').trim().slice(0, 500);
-        var url = new URL(action);
-        var vid = window.__egbeVid;
-        try { vid = vid || window.localStorage.getItem('egbe_vid'); } catch (err) {}
-        if (vid) url.searchParams.set('vid', vid);
-        if (idea) url.hash = 'idea=' + encodeURIComponent(idea);
-        return url.toString();
-    }
-    document.querySelectorAll('[data-idea-form]').forEach(function (form) {
-        var input = form.querySelector('input[name="idea"]');
-        var button = form.querySelector('button[type="submit"]');
-        input.addEventListener('input', function () {
-            button.setAttribute('data-umami-event-idea', input.value.trim() ? 'typed' : 'empty');
-        });
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            window.location.href = dashboardUrl(form.action, input.value);
-        });
-    });
-})();
-
-// The hero field types out example ideas until someone starts typing their own.
-(function () {
-    var input = document.getElementById('idea');
-    if (!input || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var ideas = ['A booking tool for pottery studios', 'Invoicing for freelance translators', 'A waitlist app for small bakeries'];
-    var base = 'Describe your idea…', i = 0, n = 0, dir = 1, timer;
-    function tick() {
-        if (document.activeElement === input || input.value) { input.placeholder = base; return; }
-        var text = ideas[i];
-        n += dir;
-        input.placeholder = text.slice(0, n) + (dir > 0 && n < text.length ? '▍' : '');
-        var delay = dir > 0 ? 55 : 22;
-        if (n === text.length) { dir = -1; delay = 1900; }
-        if (n === 0) { dir = 1; i = (i + 1) % ideas.length; delay = 450; }
-        timer = setTimeout(tick, delay);
-    }
-    timer = setTimeout(tick, 1600);
-    input.addEventListener('focus', function () { clearTimeout(timer); input.placeholder = base; });
-    input.addEventListener('blur', function () { if (!input.value) { n = 0; dir = 1; timer = setTimeout(tick, 900); } });
-})();
 </script>
 
 </body>
