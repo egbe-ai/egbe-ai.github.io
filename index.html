@@ -196,14 +196,13 @@
 
         /* ── hero ── */
         .hero { background: var(--alt); padding: clamp(64px, 8vw, 112px) 0 clamp(40px, 5vw, 72px); text-align: center; overflow: hidden; }
-        .kicker { font-size: 0.9375rem; font-weight: 500; color: var(--ink-3); margin-bottom: 18px; text-wrap: balance; }
         .hero h1 { margin-bottom: 22px; }
         .lede { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--ink-2); max-width: 34em; margin: 0 auto 36px; text-wrap: pretty; }
+        .lede strong { font-weight: 500; color: var(--ink); } /* the one action the page asks for */
         .works { font-size: 0.9375rem; color: var(--ink-3); margin-top: 20px; text-wrap: balance; }
         .works b { font-weight: 500; color: var(--ink-2); }
         .hero-free { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 0.9375rem; font-weight: 500; color: var(--ink-2); }
         .hero-free svg { color: var(--ok); flex-shrink: 0; }
-        .hero-free + .works { margin-top: 6px; }
 
         /* the agent window: the owner's own agent, right after Egbe is connected.
            What it says follows the welcome the Egbe quickstart skill asks agents to give. */
@@ -230,6 +229,16 @@
         .agent-compose { display: flex; align-items: center; justify-content: space-between; height: 52px; margin: 0 clamp(18px, 3.6vw, 40px) clamp(18px, 3vw, 28px); padding: 0 8px 0 18px; border: 1px solid var(--line-2); border-radius: 14px; color: var(--ink-3); font-size: 1rem; }
         .agent-compose i { width: 36px; height: 36px; border-radius: 50%; background: var(--line-2); color: #fff; display: grid; place-items: center; }
         @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+        /* dawn: a warm sun rises between two peaks right behind the agent window; the ridges are
+           the landing's own cool greys and fade out downwards (mask), so the window stays the focus */
+        .stage { position: relative; margin-top: clamp(140px, 16vw, 210px); }
+        .stage .agent { position: relative; z-index: 2; margin: 0 auto; }
+        .scene { position: absolute; z-index: 0; left: 50%; width: 100vw; transform: translateX(-50%); top: calc(-1 * clamp(200px, 21vw, 270px)); height: clamp(380px, 44vw, 560px); pointer-events: none; }
+        .sun { position: absolute; left: 50%; top: clamp(60px, 8.2vw, 110px); width: clamp(150px, 19vw, 250px); aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, #FCE7A8 0%, #F6D06A 56%, #F1C252 70%); box-shadow: 0 0 0 14px rgba(246, 208, 106, 0.16), 0 0 80px 24px rgba(246, 208, 106, 0.26); }
+        .ridges { position: absolute; left: 0; right: 0; top: clamp(84px, 11.5vw, 150px); bottom: 0; -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 92%); mask-image: linear-gradient(to bottom, #000 45%, transparent 92%); }
+        .ridges svg { display: block; width: 100%; height: 100%; }
+        .ridges .r1 { fill: #DCE0F1; } .ridges .r2 { fill: #CACFE8; } .ridges .r3 { fill: #B9BFDF; }
         /* the welcome arrives the way an agent writes it: line by line */
         .agent-log span, .msg-ai > p, .offers li { animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
         .agent-log span:nth-child(1) { animation-delay: 0.55s; }
@@ -421,6 +430,12 @@
             .panel { margin: 0 6px; border-radius: 22px; }
             .actions .btn { width: 100%; }
 
+            /* the dawn scene, scaled for a phone */
+            .stage { margin-top: 140px; }
+            .scene { top: -170px; height: 340px; }
+            .sun { top: 62px; width: 120px; box-shadow: 0 0 0 9px rgba(246, 208, 106, 0.16), 0 0 50px 14px rgba(246, 208, 106, 0.24); }
+            .ridges { top: 84px; }
+
             /* the agent window: three suggestions instead of four, skills under the text */
             .agent { border-radius: 16px; }
             .agent-path { display: none; }
@@ -499,20 +514,21 @@
 </header>
 
 <main>
-    <!-- Hero: the outcome for the person, the mechanism in one sentence, and the product itself —
-         the owner's agent right after Egbe is connected. No idea field until the idea reaches the agent. -->
+    <!-- Hero: the outcome, the one action (connect your agent) and the product itself — the owner's
+         agent right after Egbe is connected, with the sun rising behind it. No idea field until the
+         idea reaches the agent. -->
     <section class="hero panel">
         <div class="wrap">
-            <p class="kicker">Tested skills, tools and infrastructure for AI agents</p>
             <h1><span class="dim blk">Turn your idea</span><span class="blk">into a business.</span></h1>
-            <p class="lede">Connect your AI agent to Egbe. It gets the playbook for every step and the services to carry it out — to build your product, launch it, and find your first customers.</p>
+            <p class="lede"><strong>Connect your AI agent, like Claude Code or Codex, to Egbe.</strong> It gets tested business skills, tools and infrastructure to build your product, launch it and find your first customers.</p>
             <div class="actions">
                 <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="hero_start_building">Connect your agent</a>
                 <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="btn btn-line btn-lg" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a>
             </div>
             <p class="hero-free"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg>Free to start, no card needed</p>
-            <p class="works">Works with <b>Claude Code</b>, <b>Codex</b>, <b>Hermes</b> and <b>OpenClaw</b></p>
 
+            <div class="stage">
+                <div class="scene" aria-hidden="true"><div class="sun"></div><div class="ridges"><svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMin slice"><path class="r1" d="M0,400 L0,150 L120,112 L250,166 L380,72 L500,136 L636,36 L724,118 L812,30 L940,104 L1070,62 L1200,140 L1320,88 L1440,120 L1440,400 Z"/><path class="r2" d="M0,400 L0,214 L150,180 L300,226 L440,150 L580,210 L700,170 L860,232 L1000,160 L1140,218 L1300,176 L1440,206 L1440,400 Z"/><path class="r3" d="M0,400 L0,268 L220,244 L440,272 L660,236 L880,266 L1100,240 L1320,268 L1440,252 L1440,400 Z"/></svg></div></div>
             <figure class="agent" role="img" aria-label="An AI agent connected to Egbe. The owner asks it to connect the Kilnbook project; the agent confirms the project, installs Egbe's skills and offers four things it can do now: research demand, build and publish the booking site, prepare a Google Ads test for review, and report visits, signups and bookings.">
                 <div class="agent-bar" aria-hidden="true">
                     <span class="agent-dots"><i></i><i></i><i></i></span>
@@ -535,6 +551,7 @@
                 </div>
                 <div class="agent-compose" aria-hidden="true"><span>Reply to your agent…</span><i><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></i></div>
             </figure>
+            </div>
         </div>
     </section>
 
