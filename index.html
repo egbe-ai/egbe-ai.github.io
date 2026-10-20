@@ -361,23 +361,25 @@
         .roles div:last-child span { color: #9AA6FF; }
         .roles p { font-size: 1.0625rem; color: var(--on-night); text-wrap: pretty; }
 
-        /* pricing — free to start, pay as you go, a share of sales: three cards, one number each */
+        /* pricing — free to start, pay as you go, a share of sales: three cards, one figure each, a short
+           list, and the number to remember at the bottom. A worded figure ("Pay as you go") is set smaller
+           so it fits one line, on the same baseline as the numbers: every figure box has the numbers' height. */
         .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
         .plan-card { display: flex; flex-direction: column; padding: clamp(26px, 3vw, 34px); border: 1px solid var(--line-2); border-radius: 24px; background: var(--bg); }
         .plan-card.is-main { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 30px 60px -36px rgba(82, 102, 235, 0.5); }
         .plan-card .label { margin-bottom: 18px; }
         .plan-card.is-main .label { color: var(--accent-2); }
-        .plan-fig { font-size: clamp(3.25rem, 5.2vw, 4.25rem); font-weight: 400; line-height: 1; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+        .plan-fig { display: flex; align-items: flex-end; height: clamp(3.25rem, 5.2vw, 4.25rem); font-size: clamp(3.25rem, 5.2vw, 4.25rem); font-weight: 400; line-height: 1; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+        .plan-fig.is-words { font-size: clamp(2.125rem, 3.2vw, 2.75rem); letter-spacing: -0.035em; white-space: nowrap; }
         .plan-cap { margin-top: 12px; font-size: 1rem; color: var(--ink-2); text-wrap: pretty; }
-        .plan-list { list-style: none; margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); }
-        .plan-list li { position: relative; padding: 7px 0 7px 22px; font-size: 1rem; line-height: 1.45; text-wrap: pretty; }
+        .plan-list { list-style: none; margin: 18px 0 26px; }
+        .plan-list li { position: relative; padding: 5px 0 5px 20px; font-size: 1rem; line-height: 1.45; text-wrap: pretty; }
         .plan-list li::before { content: ''; position: absolute; left: 2px; top: 0.92em; width: 7px; height: 7px; border-radius: 50%; background: var(--line-2); }
         .plan-card.is-main .plan-list li::before { background: var(--accent); }
-        .plan-eg { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 18px; padding: 12px 14px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-2); font-size: 0.9375rem; }
-        .plan-eg b { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
-        .plan-note { margin-top: auto; padding-top: 18px; font-size: 0.9375rem; color: var(--ink-3); text-wrap: pretty; }
-        .plans-foot { margin: 28px auto 0; max-width: 40em; text-align: center; font-size: 0.9375rem; color: var(--ink-3); text-wrap: balance; }
-        #pricing .actions { margin-top: 32px; }
+        .plan-more { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.9375rem; color: var(--ink-2); text-wrap: pretty; }
+        .plan-more b { font-weight: 600; color: var(--ink); }
+        .plan-card.is-main .plan-more b { color: var(--accent-2); }
+        #pricing .actions { margin-top: 40px; }
 
         /* mission — one statement, given room */
         .mission .head { margin-bottom: 0; max-width: 48rem; }
@@ -423,6 +425,7 @@
             .chapter, .faq-grid { grid-template-columns: 1fr; }
             .chapter:nth-child(even) .chapter-copy { order: 0; }
             .ideas, .catalog, .plans { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
+            .plan-fig.is-words { font-size: 2.5rem; }
             .idea { display: grid; grid-template-columns: minmax(0, 1fr); }
         }
         @media (max-width: 640px) {
@@ -785,54 +788,52 @@
         </div>
     </section>
 
-    <!-- Pricing: what is free, what goes through the Wallet (cost + 15%), and the share of sales.
-         Decided with the team on 2026-10-09: free start without a card, pay as you go, 15% shown openly. -->
+    <!-- Pricing: free to start with $10 in the Wallet, paid services from the Wallet at cost, and Egbe's two
+         fees shown openly: 15% of sales and a 5% processing fee on Wallet top-ups. Decided with the team on
+         2026-10-13 (replaces the cost + 15% Wallet of 2026-10-09). The agent's own subscription is covered in the FAQ. -->
     <section class="section" id="pricing">
         <div class="wrap">
             <div class="head">
                 <span class="label">Pricing</span>
                 <h2><span class="dim blk">Free to start.</span><span class="blk">Pay as you go.</span></h2>
-                <p>No subscription and no card to sign up. Egbe adds 15% to the paid services your agent uses, and keeps 15% of the sales you make through it.</p>
+                <p>No subscription and no card to sign up.</p>
             </div>
             <div class="plans">
-                <article class="plan-card">
+                <article class="plan-card is-main">
                     <span class="label">Free</span>
                     <div class="plan-fig">$0</div>
                     <p class="plan-cap">to connect your agent and start building.</p>
                     <ul class="plan-list">
-                        <li>Connecting your agent</li>
-                        <li>Every Egbe skill and its updates</li>
+                        <li>Every Egbe skill and update</li>
                         <li>Your own address on egbe.app</li>
-                        <li>Analytics, code repository and error monitoring</li>
+                        <li>Analytics and error monitoring</li>
                     </ul>
-                    <p class="plan-note">New accounts start with free credit to try paid services.</p>
+                    <p class="plan-more"><b>$10</b> in your Wallet to start</p>
                 </article>
-                <article class="plan-card is-main">
-                    <span class="label">Pay as you go · Wallet</span>
-                    <div class="plan-fig">+15%</div>
-                    <p class="plan-cap">on top of what each paid service costs.</p>
+                <article class="plan-card">
+                    <span class="label">Paid services</span>
+                    <div class="plan-fig is-words">Pay as you go</div>
+                    <p class="plan-cap">from your Wallet, at cost, with no markup.</p>
                     <ul class="plan-list">
-                        <li>Ad spend on Google, Meta, Reddit, LinkedIn and OpenAI</li>
-                        <li>AI requests: research, search, text and images</li>
+                        <li>Ad spend on Google, Meta and more</li>
+                        <li>AI research, text and images</li>
                         <li>Email outreach and lead search</li>
                         <li>Hosting time for your apps</li>
                     </ul>
-                    <div class="plan-eg"><span>$10 of ads</span><b>$11.50 from your Wallet</b></div>
-                    <p class="plan-note">Top up by card. Your agent stays within the budgets you approve.</p>
+                    <p class="plan-more"><b>5%</b> processing fee on Wallet top-ups</p>
                 </article>
                 <article class="plan-card">
                     <span class="label">When you sell</span>
                     <div class="plan-fig">15%</div>
                     <p class="plan-cap">of each sale made through Egbe’s checkout.</p>
                     <ul class="plan-list">
-                        <li>Stripe checkout, subscriptions and promo codes, ready to use</li>
-                        <li>Your customers manage their own billing</li>
-                        <li>Egbe keeps 15% and pays the rest out to you</li>
+                        <li>Stripe checkout and subscriptions</li>
+                        <li>Promo codes and customer billing</li>
+                        <li>The rest is paid out to you</li>
                     </ul>
-                    <p class="plan-note"><a class="link" href="/terms/#fees">How payouts work</a></p>
+                    <p class="plan-more"><a class="link" href="/terms/#fees">How payouts work</a></p>
                 </article>
             </div>
-            <p class="plans-foot">Your AI agent’s own subscription, such as Claude or ChatGPT, is paid to its provider, not to Egbe.</p>
             <div class="actions">
                 <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="pricing_start_building">Connect your agent</a>
                 <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="btn btn-line btn-lg" target="_blank" rel="noopener" data-umami-event="pricing_book_demo">Book a demo</a>
