@@ -64,9 +64,12 @@
     }
     </script>
 
+    <!-- Analytics tags stay inert until /consent.js below runs them: at once for most
+         visitors, after the cookie banner for visitors in the EEA and UK. -->
+
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K4NHZYTGG6"></script>
-    <script>
+    <script type="text/plain" data-consent async src="https://www.googletagmanager.com/gtag/js?id=G-K4NHZYTGG6"></script>
+    <script type="text/plain" data-consent>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -77,7 +80,7 @@
     <!-- Umami: landing has its own website ID so acquisition is not mixed with
          authenticated dashboard usage. The stable visitor ID is forwarded to
          dashboard sign-up attribution through the existing vid parameter. -->
-    <script>
+    <script type="text/plain" data-consent>
         (function () {
             try {
                 var VID_KEY = 'egbe_vid';
@@ -87,7 +90,7 @@
                     localStorage.setItem(VID_KEY, vid);
                 }
                 window.__egbeVid = vid;
-                document.addEventListener('DOMContentLoaded', function () {
+                var addVid = function () {
                     document.querySelectorAll('a[href^="https://dashboard.egbe.ai"]').forEach(function (a) {
                         try {
                             var url = new URL(a.href);
@@ -95,17 +98,33 @@
                             a.href = url.toString();
                         } catch (e) {}
                     });
-                });
+                };
+                // consent can arrive long after the page has loaded
+                if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addVid);
+                else addVid();
             } catch (e) {}
         })();
     </script>
     <script
+        type="text/plain"
+        data-consent
         async
         defer
         data-website-id="c716a650-f912-43f1-8b60-1b9b2ca53e78"
         src="https://analytics.hz.egbe.dev/script.js"
         onload="window.umami && window.umami.identify(window.__egbeVid)"
     ></script>
+    <script
+        type="text/plain"
+        data-consent
+        defer
+        data-website-id="c716a650-f912-43f1-8b60-1b9b2ca53e78"
+        data-sample-rate="1"
+        data-mask-level="moderate"
+        data-max-duration="1800000"
+        src="https://analytics.hz.egbe.dev/recorder.js"
+    ></script>
+    <script src="/consent.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -927,6 +946,7 @@
             <a href="/career/">Careers</a>
             <a href="/privacy/">Privacy</a>
             <a href="/terms/">Terms</a>
+            <a href="#" data-consent-settings hidden>Cookie settings</a>
             <a href="mailto:hello@egbe.ai">hello@egbe.ai</a>
         </nav>
     </div>
