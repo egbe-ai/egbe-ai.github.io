@@ -380,7 +380,7 @@
         .roles div:last-child span { color: #9AA6FF; }
         .roles p { font-size: 1.0625rem; color: var(--on-night); text-wrap: pretty; }
 
-        /* pricing — free to start, pay as you go, a share of sales: three cards, one figure each, a short
+        /* pricing — free to start, paid usage, no revenue share: three cards, one figure each, a short
            list, and the number to remember at the bottom. A worded figure ("Pay as you go") is set smaller
            so it fits one line, on the same baseline as the numbers: every figure box has the numbers' height. */
         .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
@@ -807,9 +807,7 @@
         </div>
     </section>
 
-    <!-- Pricing: free to start with $10 in the Wallet, paid services from the Wallet at cost, and Egbe's two
-         fees shown openly: 15% of sales and a 5% processing fee on Wallet top-ups. Decided with the team on
-         2026-10-13 (replaces the cost + 15% Wallet of 2026-10-09). The agent's own subscription is covered in the FAQ. -->
+    <!-- Wallet pricing: 15% on paid usage, no top-up fee, no Egbe revenue share. -->
     <section class="section" id="pricing">
         <div class="wrap">
             <div class="head">
@@ -827,32 +825,33 @@
                         <li>Your own address on egbe.app</li>
                         <li>Analytics and error monitoring</li>
                     </ul>
-                    <p class="plan-more"><b>$10</b> in your Wallet to start</p>
+                    <p class="plan-more"><b>$10</b> welcome credit per owner, valid for 30 days</p>
                 </article>
                 <article class="plan-card">
                     <span class="label">Paid services</span>
-                    <div class="plan-fig is-words">Pay as you go</div>
-                    <p class="plan-cap">from your Wallet, at cost, with no markup.</p>
+                    <div class="plan-fig">15%</div>
+                    <p class="plan-cap">service fee on paid usage, added to the underlying service price.</p>
                     <ul class="plan-list">
                         <li>Ad spend on Google, Meta and more</li>
                         <li>AI research, text and images</li>
                         <li>Email outreach and lead search</li>
-                        <li>Hosting time for your apps</li>
+                        <li>$10 of usage + $1.50 Egbe fee = $11.50</li>
                     </ul>
-                    <p class="plan-more"><b>5%</b> processing fee on Wallet top-ups</p>
+                    <p class="plan-more">No top-up fees. Add $100, get $100 in your Wallet.</p>
                 </article>
                 <article class="plan-card">
                     <span class="label">When you sell</span>
-                    <div class="plan-fig">15%</div>
-                    <p class="plan-cap">of each sale made through Egbe’s checkout.</p>
+                    <div class="plan-fig">0%</div>
+                    <p class="plan-cap">Egbe revenue share. Your revenue is yours.</p>
                     <ul class="plan-list">
                         <li>Stripe checkout and subscriptions</li>
                         <li>Promo codes and customer billing</li>
-                        <li>The rest is paid out to you</li>
+                        <li>Payment processor fees, taxes, refunds and chargebacks may apply</li>
                     </ul>
                     <p class="plan-more"><a class="link" href="/terms/#fees">How payouts work</a></p>
                 </article>
             </div>
+            <p class="plan-cap" style="margin-top: 24px">Each active business also pays $1 per 30 days from its Wallet, charged as 10¢ every 3 days. Managed hosting and databases have no separate usage charge. <a class="link" href="/terms/#wallet">Pricing details</a></p>
             <div class="actions">
                 <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="pricing_start_building">Connect your agent</a>
                 <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="btn btn-line btn-lg" target="_blank" rel="noopener" data-umami-event="pricing_book_demo">Book a demo</a>
