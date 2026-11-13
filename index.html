@@ -229,14 +229,14 @@
         /* ── hero ── */
         .hero { background: var(--alt); padding: clamp(64px, 8vw, 112px) 0 clamp(40px, 5vw, 72px); text-align: center; overflow: hidden; }
         .hero h1 { font-size: clamp(1.875rem, 3.6vw, 2.875rem); line-height: 1.1; margin-bottom: 22px; } /* a whole sentence, so it is set smaller than the page's short big lines */
-        .lede { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--ink-2); max-width: 34em; margin: 0 auto 36px; text-wrap: pretty; }
-        .lede strong { font-weight: 500; color: var(--ink); } /* the one action the page asks for */
+        .lede { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--ink-2); max-width: 34em; margin: 0 auto 36px; text-wrap: balance; }
+        .lede strong { display: block; font-weight: 500; color: var(--ink); } /* the one action the page asks for, on its own line */
         .works { font-size: 0.9375rem; color: var(--ink-3); margin-top: 20px; text-wrap: balance; }
         .works b { font-weight: 500; color: var(--ink-2); }
-        .hero-free { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 0.9375rem; font-weight: 500; color: var(--ink-2); }
+        .hero-free { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 8px; margin-top: 22px; font-size: 0.9375rem; font-weight: 500; color: var(--ink-2); }
         .hero-free svg { color: var(--ok); flex-shrink: 0; }
-        .hero-needs { margin: 8px auto 0; max-width: 34em; font-size: 0.9375rem; color: var(--ink-2); text-wrap: balance; }
-        .hero-needs a { color: var(--accent-2); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+        .hero-free span { color: var(--ghost); }
+        .hero-free a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 
         /* the agent window: the owner's own agent with Egbe connected, and the four steps it can
            now run — the same four that "How it works" explains one by one */
@@ -430,6 +430,7 @@
             .cycle { font-size: 0.9375rem; }
             .cycle li { grid-template-columns: 1.2em minmax(0, 1fr); padding: 7px 0; }
             .cycle li span:last-child { grid-column: 2; font-size: 0.875rem; }
+            @media (max-width: 374px) { .hero-free span { display: none; } } /* the line wraps here: no stray dot */
 
             .frag { padding: 18px 16px 18px; font-size: 0.9375rem; }
             .frag-row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
@@ -493,15 +494,14 @@
          sun rising behind it. -->
     <section class="hero panel">
         <div class="wrap">
-            <h1><span class="dim blk">Egbe is the infrastructure AI agents use</span><span class="blk">to run and grow real businesses.</span></h1>
-            <p class="lede"><strong>Connect your AI agent, like Claude Code or Codex, to Egbe.</strong> It gets tested skills and tools for the whole cycle, from first idea to paying customer.</p>
+            <h1><span class="dim blk">The infrastructure AI agents use</span><span class="blk">to run and grow real businesses.</span></h1>
+            <p class="lede"><strong>Connect the AI agent you already use, like Claude or Codex.</strong> It gets tested skills and tools for every part of your business.</p>
             <div class="actions">
                 <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="hero_start_building">Connect your agent</a>
                 <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="btn btn-line btn-lg" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a>
             </div>
-            <p class="hero-free"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg>Free to start, pay as you go</p>
-            <!-- What a visitor needs before they click: the agent comes from them, on their own plan. -->
-            <p class="hero-needs">Works with the AI agent you already use: Claude, Codex and others. <a href="#no-agent" data-umami-event="hero_no_agent">No agent yet?</a></p>
+            <!-- Under the buttons, one line: what it costs to start, and a way in for visitors who have no agent yet. -->
+            <p class="hero-free"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg>Free to start, pay as you go<span aria-hidden="true">·</span><a href="#no-agent" data-umami-event="hero_no_agent">No agent yet?</a></p>
 
             <div class="stage">
                 <div class="scene" aria-hidden="true"><div class="sun"></div><div class="ridges"><svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMin slice"><path class="r1" d="M0,400 L0,150 L120,112 L250,166 L380,72 L500,136 L636,36 L724,118 L812,30 L940,104 L1070,62 L1200,140 L1320,88 L1440,120 L1440,400 Z"/><path class="r2" d="M0,400 L0,214 L150,180 L300,226 L440,150 L580,210 L700,170 L860,232 L1000,160 L1140,218 L1300,176 L1440,206 L1440,400 Z"/><path class="r3" d="M0,400 L0,268 L220,244 L440,272 L660,236 L880,266 L1100,240 L1320,268 L1440,252 L1440,400 Z"/></svg></div></div>
