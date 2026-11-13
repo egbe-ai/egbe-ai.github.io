@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <title>Egbe — Turn your idea into a business with your AI agent</title>
-    <meta name="description" content="Egbe gives your AI agent tested business skills, tools and infrastructure to build your product, launch it and find your first customers. Free to start.">
-    <meta name="keywords" content="AI agent skills, business skills for AI agents, Claude Code skills, Codex skills, AI agent infrastructure, start a business with AI, launch a product with AI, AI entrepreneur">
+    <title>Egbe — The infrastructure AI agents use to run and grow real businesses</title>
+    <meta name="description" content="Connect your AI agent to Egbe. It gets tested skills and tools for the whole cycle, from first idea to paying customer. Free to start, pay as you go.">
+    <meta name="keywords" content="infrastructure for AI agents, AI agent skills, business skills for AI agents, Claude Code skills, Codex skills, AI agent tools, run a business with AI, grow a business with AI agents">
     <link rel="canonical" href="https://egbe.ai/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Egbe — Turn your idea into a business">
-    <meta property="og:description" content="Connect your AI agent to Egbe: tested skills, tools and infrastructure to build your product, launch it and find your first customers. Free to start, pay as you go.">
+    <meta property="og:title" content="Egbe — The infrastructure AI agents use to run and grow real businesses">
+    <meta property="og:description" content="Connect your AI agent to Egbe. It gets tested skills and tools for the whole cycle, from first idea to paying customer. Free to start, pay as you go.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://egbe.ai/">
     <meta property="og:site_name" content="Egbe">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://egbe.ai/og-image.png?v=20261009">
+    <meta property="og:image" content="https://egbe.ai/og-image.png?v=20261113">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Egbe — Turn your idea into a business. An AI agent connected to Egbe offers to research demand, build and publish the product, and prepare an ad test for review.">
+    <meta property="og:image:alt" content="Egbe is the infrastructure AI agents use to run and grow real businesses. An AI agent connected to Egbe lists four steps: research, build, launch and grow.">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Egbe — Turn your idea into a business">
-    <meta name="twitter:description" content="Tested skills, tools and infrastructure for your AI agent. Free to start, pay as you go.">
-    <meta name="twitter:image" content="https://egbe.ai/og-image.png?v=20261009">
+    <meta name="twitter:title" content="Egbe — The infrastructure AI agents use to run and grow real businesses">
+    <meta name="twitter:description" content="Tested skills and tools for your AI agent, from first idea to paying customer. Free to start, pay as you go.">
+    <meta name="twitter:image" content="https://egbe.ai/og-image.png?v=20261113">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -35,7 +35,7 @@
         "name": "Egbe",
         "legalName": "Egbe, Inc.",
         "url": "https://egbe.ai",
-        "description": "Egbe gives AI agents tested business skills, tools and infrastructure, so anyone can turn an idea into a business: build a product, launch it and find the first customers.",
+        "description": "Egbe is the infrastructure AI agents use to run and grow real businesses. A connected agent gets tested skills and tools for the whole cycle, from first idea to paying customer.",
         "email": "hello@egbe.ai",
         "foundingDate": "2026",
         "sameAs": ["https://www.linkedin.com/company/egbe-ai/", "https://x.com/Egbe_ai"],
@@ -150,6 +150,8 @@
            · panels 28px, cards 24px, media 14px, anything clickable is a pill;
            · product pictures are UI, drawn in the landing's tones: periwinkle for what you
              can press or what Egbe adds, green for what is done.
+           The page tells one story: what Egbe is (hero) → the four steps (how it works) → what
+           the agent gets (the product) → one plan (pricing).
            Every skill name on this page is a real title from the Egbe OS catalog (GET /skills).
            Kilnbook, the studios and every number in the pictures are fictional test data. */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -226,7 +228,7 @@
 
         /* ── hero ── */
         .hero { background: var(--alt); padding: clamp(64px, 8vw, 112px) 0 clamp(40px, 5vw, 72px); text-align: center; overflow: hidden; }
-        .hero h1 { margin-bottom: 22px; }
+        .hero h1 { font-size: clamp(1.875rem, 3.6vw, 2.875rem); line-height: 1.1; margin-bottom: 22px; } /* a whole sentence, so it is set smaller than the page's short big lines */
         .lede { font-size: clamp(1.0625rem, 1.5vw, 1.1875rem); color: var(--ink-2); max-width: 34em; margin: 0 auto 36px; text-wrap: pretty; }
         .lede strong { font-weight: 500; color: var(--ink); } /* the one action the page asks for */
         .works { font-size: 0.9375rem; color: var(--ink-3); margin-top: 20px; text-wrap: balance; }
@@ -236,30 +238,20 @@
         .hero-needs { margin: 8px auto 0; max-width: 34em; font-size: 0.9375rem; color: var(--ink-2); text-wrap: balance; }
         .hero-needs a { color: var(--accent-2); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 
-        /* the agent window: the owner's own agent, right after Egbe is connected.
-           What it says follows the welcome the Egbe quickstart skill asks agents to give. */
-        .agent { max-width: 880px; margin: clamp(56px, 7vw, 88px) auto 0; text-align: left; background: var(--bg); border-radius: 20px; box-shadow: 0 0 0 1px rgba(27, 28, 46, 0.05), 0 40px 80px -40px rgba(27, 28, 46, 0.38); overflow: hidden; animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s both; }
+        /* the agent window: the owner's own agent with Egbe connected, and the four steps it can
+           now run — the same four that "How it works" explains one by one */
+        .agent { max-width: 620px; margin: clamp(56px, 7vw, 88px) auto 0; text-align: left; background: var(--bg); border-radius: 20px; box-shadow: 0 0 0 1px rgba(27, 28, 46, 0.05), 0 40px 80px -40px rgba(27, 28, 46, 0.38); overflow: hidden; animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s both; }
         .agent-bar { display: flex; align-items: center; gap: 14px; height: 48px; padding: 0 18px; border-bottom: 1px solid var(--line); background: #FAFAFC; }
         .agent-dots { display: flex; gap: 6px; }
         .agent-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); }
         .agent-path { font-family: var(--mono); font-size: 0.8125rem; color: var(--ink-3); }
         .agent-status { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 11px; border-radius: 99px; background: var(--ok-bg); color: var(--ok-ink); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; }
         .agent-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
-        .agent-body { display: flex; flex-direction: column; gap: 18px; padding: clamp(20px, 3vw, 30px) clamp(18px, 3.6vw, 40px) 22px; }
-        .msg-me { align-self: flex-end; max-width: min(78%, 30em); background: var(--accent); color: #fff; border-radius: 16px 16px 4px 16px; padding: 12px 16px; font-size: 1rem; line-height: 1.5; }
-        .agent-log { display: flex; flex-direction: column; gap: 3px; font-family: var(--mono); font-size: 0.8125rem; color: var(--ink-3); }
-        .agent-log span::before { content: '✓'; color: var(--ok); margin-right: 10px; }
-        .msg-ai > p { font-size: 1.0625rem; }
-        .msg-ai > p b { font-weight: 600; }
-        .offers { list-style: none; margin: 14px 0 16px; border: 1px solid var(--line); border-radius: 14px; }
-        .offers li { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 4px 16px; align-items: center; padding: 14px 18px; }
-        .offers li + li { border-top: 1px solid var(--line); }
-        .offers .n { font-family: var(--mono); font-size: 0.8125rem; color: var(--accent); }
-        .offers b { display: block; font-weight: 500; line-height: 1.4; }
-        .offers small { display: block; font-size: 0.9063rem; line-height: 1.45; color: var(--ink-3); margin-top: 2px; }
-        .offers .tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: 250px; }
-        .agent-compose { display: flex; align-items: center; justify-content: space-between; height: 52px; margin: 0 clamp(18px, 3.6vw, 40px) clamp(18px, 3vw, 28px); padding: 0 8px 0 18px; border: 1px solid var(--line-2); border-radius: 14px; color: var(--ink-3); font-size: 1rem; }
-        .agent-compose i { width: 36px; height: 36px; border-radius: 50%; background: var(--line-2); color: #fff; display: grid; place-items: center; }
+        .cycle { list-style: none; padding: clamp(18px, 2.6vw, 26px) clamp(18px, 3.2vw, 32px) clamp(20px, 2.8vw, 28px); font-family: var(--mono); font-size: 1rem; line-height: 1.5; }
+        .cycle li { display: grid; grid-template-columns: 1.2em 6.2em minmax(0, 1fr); column-gap: 10px; padding: 6px 0; animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+        .cycle .n { color: var(--accent); }
+        .cycle b { font-weight: 500; }
+        .cycle li span:last-child { color: var(--ink-3); }
         @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
         /* dawn: a warm sun rises between two peaks right behind the agent window; the ridges are
@@ -271,16 +263,11 @@
         .ridges { position: absolute; left: 0; right: 0; top: clamp(84px, 11.5vw, 150px); bottom: 0; -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 92%); mask-image: linear-gradient(to bottom, #000 45%, transparent 92%); }
         .ridges svg { display: block; width: 100%; height: 100%; }
         .ridges .r1 { fill: #DCE0F1; } .ridges .r2 { fill: #CACFE8; } .ridges .r3 { fill: #B9BFDF; }
-        /* the welcome arrives the way an agent writes it: line by line */
-        .agent-log span, .msg-ai > p, .offers li { animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-        .agent-log span:nth-child(1) { animation-delay: 0.55s; }
-        .agent-log span:nth-child(2) { animation-delay: 0.7s; }
-        .msg-ai > p:first-child { animation-delay: 0.9s; }
-        .offers li:nth-child(1) { animation-delay: 1.05s; }
-        .offers li:nth-child(2) { animation-delay: 1.17s; }
-        .offers li:nth-child(3) { animation-delay: 1.29s; }
-        .offers li:nth-child(4) { animation-delay: 1.41s; }
-        .msg-ai > p:last-child { animation-delay: 1.6s; }
+        /* the steps arrive the way an agent writes them: line by line */
+        .cycle li:nth-child(1) { animation-delay: 0.55s; }
+        .cycle li:nth-child(2) { animation-delay: 0.67s; }
+        .cycle li:nth-child(3) { animation-delay: 0.79s; }
+        .cycle li:nth-child(4) { animation-delay: 0.91s; }
 
         /* ── running on egbe (unchanged from the live page) ── */
         .running { padding: clamp(64px, 7vw, 96px) 0 0; }
@@ -297,46 +284,9 @@
 
         /* ── sections ── */
         .section { padding: clamp(88px, 10vw, 144px) 0 0; }
-        .statement { font-size: clamp(1.875rem, 3.8vw, 3.125rem); font-weight: 500; line-height: 1.14; letter-spacing: -0.028em; text-align: center; text-wrap: balance; max-width: 21em; margin: 0 auto; }
         .head { text-align: center; max-width: 44rem; margin: 0 auto clamp(40px, 5vw, 72px); }
+        .head.is-wide { max-width: 58rem; } /* for a head whose two lines are whole sentences */
         .head p { color: var(--ink-2); margin-top: 20px; font-size: 1.125rem; text-wrap: pretty; }
-
-        /* what you could build — small businesses for specific people */
-        .ideas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-        .idea { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; background: var(--bg); }
-        .idea-scene { height: 248px; padding: 28px 28px 0; background: var(--alt); overflow: hidden; }
-        .idea-copy { display: flex; flex-direction: column; flex: 1; padding: 26px 28px 28px; }
-        .idea-copy .label { margin-bottom: 12px; }
-        .idea-copy h3 { font-size: 1.3125rem; line-height: 1.25; letter-spacing: -0.015em; margin-bottom: 8px; }
-        .idea-copy p { font-size: 1rem; color: var(--ink-2); text-wrap: pretty; }
-        .idea-copy .with { margin-top: auto; padding-top: 22px; gap: 6px; }
-        .idea-copy .chip { height: 26px; padding: 0 10px; font-size: 0.8125rem; }
-
-        /* small product UIs inside the idea cards */
-        .mini { min-height: 230px; padding: 16px 18px; border-radius: 14px 14px 0 0; background: var(--bg); box-shadow: 0 0 0 1px rgba(27, 28, 46, 0.04), 0 18px 40px -22px rgba(27, 28, 46, 0.35); font-size: 0.875rem; line-height: 1.4; }
-        .mini-h { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--line); }
-        .mini-h i { flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-2); font-style: normal; font-size: 0.8125rem; font-weight: 600; }
-        .mini-h b { font-size: 0.9375rem; font-weight: 600; white-space: nowrap; }
-        .mini-h span { margin-left: auto; font-size: 0.8125rem; color: var(--ink-3); white-space: nowrap; }
-        .mini-cap { margin-bottom: 6px; font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }
-        .mini-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 9px 0; }
-        .mini-row + .mini-row { border-top: 1px solid var(--line); }
-        .mini-row b { display: block; font-weight: 500; }
-        .mini-row small { display: block; font-size: 0.8125rem; color: var(--ink-3); }
-        .mini-date { padding: 3px 0; border: 1px solid var(--line); border-radius: 8px; text-align: center; font-size: 0.625rem; line-height: 1.25; text-transform: uppercase; color: var(--ink-3); }
-        .mini-date b { font-size: 1rem; font-weight: 600; color: var(--ink); }
-        .mini-btn { display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 14px; border-radius: 99px; background: var(--accent); color: #fff; font-size: 0.8125rem; font-weight: 500; white-space: nowrap; }
-        .mini-btn.is-soft { background: var(--accent-soft); color: var(--accent-2); }
-        .mini-title { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; font-weight: 500; }
-        .mini-title em { font-style: normal; font-family: var(--mono); font-size: 0.75rem; padding: 2px 8px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-2); white-space: nowrap; }
-        .mini-line { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 7px 0; border-top: 1px solid var(--line); }
-        .mini-line span { color: var(--ink-2); }
-        .mini-line b { font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
-        .mini-line.is-total b { font-size: 1rem; font-weight: 600; }
-        .mini-qty { display: inline-flex; align-items: center; gap: 10px; height: 26px; padding: 0 10px; border: 1px solid var(--line-2); border-radius: 99px; font-size: 0.8125rem; color: var(--ink-2); }
-        .mini-qty b { color: var(--ink); }
-        .mini-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; }
-        .mini-foot small { font-size: 0.8125rem; color: var(--ink-3); }
 
         /* how it works — chapters: what happens on one side, what it looks like on the other */
         .chapter { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 6vw, 96px); align-items: center; padding: clamp(24px, 3.2vw, 44px) 0; }
@@ -364,6 +314,8 @@
         .frag-wait { display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 11px; border-radius: 99px; background: var(--accent-soft); color: var(--accent-2); font-weight: 500; }
         .frag-wait::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
         @keyframes pulse { 50% { opacity: 0.25; } }
+        .mini-btn { display: inline-flex; align-items: center; justify-content: center; height: 30px; padding: 0 14px; border-radius: 99px; background: var(--accent); color: #fff; font-size: 0.8125rem; font-weight: 500; white-space: nowrap; }
+        .mini-btn.is-soft { background: var(--accent-soft); color: var(--accent-2); }
         .frag-actions { display: flex; gap: 8px; margin-top: 14px; }
         .frag-actions .mini-btn { height: 34px; padding: 0 16px; font-size: 0.875rem; }
         .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
@@ -393,24 +345,26 @@
         .roles div:last-child span { color: #9AA6FF; }
         .roles p { font-size: 1.0625rem; color: var(--on-night); text-wrap: pretty; }
 
-        /* pricing — free to start, pay as you go, a share of sales: three cards, one figure each, a short
-           list, and the number to remember at the bottom. A worded figure ("Pay as you go") is set smaller
-           so it fits one line, on the same baseline as the numbers: every figure box has the numbers' height. */
-        .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
-        .plan-card { display: flex; flex-direction: column; padding: clamp(26px, 3vw, 34px); border: 1px solid var(--line-2); border-radius: 24px; background: var(--bg); }
-        .plan-card.is-main { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 30px 60px -36px rgba(82, 102, 235, 0.5); }
-        .plan-card .label { margin-bottom: 18px; }
-        .plan-card.is-main .label { color: var(--accent-2); }
+        /* pricing — one plan, so one card. It reads left to right as three moments: when you start,
+           when your agent uses a paid service, when you sell. Each has one figure, a short list and
+           the number to remember at the bottom. No part is a tier: no borders, buttons or highlight
+           of its own. */
+        .plan { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 24px; background: var(--bg); box-shadow: 0 0 0 1.5px var(--accent), 0 30px 60px -36px rgba(82, 102, 235, 0.5); }
+        .plan-part { display: flex; flex-direction: column; padding: clamp(26px, 3vw, 34px); }
+        .plan-part + .plan-part { border-left: 1px solid var(--line); }
+        .plan-part .label { margin-bottom: 18px; color: var(--accent-2); }
         .plan-fig { display: flex; align-items: flex-end; height: clamp(3.25rem, 5.2vw, 4.25rem); font-size: clamp(3.25rem, 5.2vw, 4.25rem); font-weight: 400; line-height: 1; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
-        .plan-fig.is-words { font-size: clamp(2.125rem, 3.2vw, 2.75rem); letter-spacing: -0.035em; white-space: nowrap; }
         .plan-cap { margin-top: 12px; font-size: 1rem; color: var(--ink-2); text-wrap: pretty; }
         .plan-list { list-style: none; margin: 18px 0 26px; }
         .plan-list li { position: relative; padding: 5px 0 5px 20px; font-size: 1rem; line-height: 1.45; text-wrap: pretty; }
-        .plan-list li::before { content: ''; position: absolute; left: 2px; top: 0.92em; width: 7px; height: 7px; border-radius: 50%; background: var(--line-2); }
-        .plan-card.is-main .plan-list li::before { background: var(--accent); }
+        .plan-list li::before { content: ''; position: absolute; left: 2px; top: 0.92em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
         .plan-more { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.9375rem; color: var(--ink-2); text-wrap: pretty; }
-        .plan-more b { font-weight: 600; color: var(--ink); }
-        .plan-card.is-main .plan-more b { color: var(--accent-2); }
+        .plan-more b { font-weight: 600; color: var(--accent-2); }
+        @supports (grid-template-rows: subgrid) {
+            .plan-part { display: grid; grid-template-rows: subgrid; grid-row: span 5; align-content: start; }
+            .plan-more { margin-top: 0; align-self: start; }
+        }
+        .plan-links { margin-top: 24px; text-align: center; font-size: 1rem; color: var(--ink-2); }
         #pricing .actions { margin-top: 40px; }
 
         /* mission — one statement, given room */
@@ -456,9 +410,8 @@
             .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
             .chapter, .faq-grid { grid-template-columns: 1fr; }
             .chapter:nth-child(even) .chapter-copy { order: 0; }
-            .ideas, .catalog, .plans { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
-            .plan-fig.is-words { font-size: 2.5rem; }
-            .idea { display: grid; grid-template-columns: minmax(0, 1fr); }
+            .catalog, .plan { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
+            .plan-part + .plan-part { border-left: 0; border-top: 1px solid var(--line); }
         }
         @media (max-width: 640px) {
             .wrap { padding: 0 20px; }
@@ -471,26 +424,12 @@
             .sun { top: 62px; width: 120px; box-shadow: 0 0 0 9px rgba(246, 208, 106, 0.16), 0 0 50px 14px rgba(246, 208, 106, 0.24); }
             .ridges { top: 84px; }
 
-            /* the agent window: three suggestions instead of four, skills under the text */
+            /* the agent window: each step's name, with what it covers on the line below */
             .agent { border-radius: 16px; }
             .agent-path { display: none; }
-            .msg-me { max-width: 92%; font-size: 0.9375rem; }
-            .offers li { grid-template-columns: 24px minmax(0, 1fr); align-items: start; padding: 13px 14px; }
-            .offers .n { padding-top: 2px; }
-            .offers .tags { grid-column: 2; justify-content: flex-start; max-width: none; margin-top: 6px; }
-            .offers li:nth-child(4) { display: none; }
-            .agent-compose { height: 48px; font-size: 0.9375rem; }
-
-            /* ideas — a row to swipe instead of three screens of scrolling */
-            .ideas { display: flex; max-width: none; margin: 0 -20px; padding: 0 20px 4px; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-            .ideas::-webkit-scrollbar { display: none; }
-            .idea { flex: 0 0 88%; scroll-snap-align: center; }
-            .idea-scene { height: 214px; padding: 16px 14px 0; }
-            .mini { padding: 12px; font-size: 0.8125rem; }
-            .mini-row { grid-template-columns: 34px minmax(0, 1fr) auto; gap: 10px; }
-            .mini-row small { font-size: 0.75rem; }
-            .mini-row .mini-btn { height: 26px; padding: 0 10px; font-size: 0.75rem; }
-            .idea-copy { padding: 22px 20px 22px; }
+            .cycle { font-size: 0.9375rem; }
+            .cycle li { grid-template-columns: 1.2em minmax(0, 1fr); padding: 7px 0; }
+            .cycle li span:last-child { grid-column: 2; font-size: 0.875rem; }
 
             .frag { padding: 18px 16px 18px; font-size: 0.9375rem; }
             .frag-row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
@@ -507,7 +446,7 @@
             .roles { grid-template-columns: 1fr; }
             .roles div, .roles div + div { padding: 20px 0; border-left: 0; border-bottom: 1px solid var(--night-line); }
 
-            .plan-card { padding: 24px 22px; }
+            .plan-part { padding: 24px 22px; }
             .plan-fig { font-size: 3.25rem; }
 
             .facts { flex-direction: column; gap: 20px; }
@@ -526,7 +465,7 @@
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .agent, .agent-log span, .msg-ai > p, .offers li { animation: none; }
+            .agent, .cycle li { animation: none; }
             .frag-wait::before { animation: none; }
             .product:hover .product-shot { transform: none; }
         }
@@ -549,44 +488,35 @@
 </header>
 
 <main>
-    <!-- Hero: the outcome, the one action (connect your agent) and the product itself — the owner's
-         agent right after Egbe is connected, with the sun rising behind it. No idea field until the
-         idea reaches the agent. -->
+    <!-- Hero: what Egbe is in one sentence, the one action (connect your agent) and the product
+         itself — the owner's agent with Egbe connected and the four steps it can run, with the
+         sun rising behind it. -->
     <section class="hero panel">
         <div class="wrap">
-            <h1><span class="dim blk">Turn your idea</span><span class="blk">into a business.</span></h1>
-            <p class="lede"><strong>Connect your AI agent, like Claude Code or Codex, to Egbe.</strong> It gets tested business skills, tools and infrastructure to build your product, launch it and find your first customers.</p>
+            <h1><span class="dim blk">Egbe is the infrastructure AI agents use</span><span class="blk">to run and grow real businesses.</span></h1>
+            <p class="lede"><strong>Connect your AI agent, like Claude Code or Codex, to Egbe.</strong> It gets tested skills and tools for the whole cycle, from first idea to paying customer.</p>
             <div class="actions">
                 <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="hero_start_building">Connect your agent</a>
                 <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="btn btn-line btn-lg" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a>
             </div>
-            <p class="hero-free"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg>Free to start, no card needed</p>
+            <p class="hero-free"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg>Free to start, pay as you go</p>
             <!-- What a visitor needs before they click: the agent comes from them, on their own plan. -->
             <p class="hero-needs">Works with the AI agent you already use: Claude, Codex and others. <a href="#no-agent" data-umami-event="hero_no_agent">No agent yet?</a></p>
 
             <div class="stage">
                 <div class="scene" aria-hidden="true"><div class="sun"></div><div class="ridges"><svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMin slice"><path class="r1" d="M0,400 L0,150 L120,112 L250,166 L380,72 L500,136 L636,36 L724,118 L812,30 L940,104 L1070,62 L1200,140 L1320,88 L1440,120 L1440,400 Z"/><path class="r2" d="M0,400 L0,214 L150,180 L300,226 L440,150 L580,210 L700,170 L860,232 L1000,160 L1140,218 L1300,176 L1440,206 L1440,400 Z"/><path class="r3" d="M0,400 L0,268 L220,244 L440,272 L660,236 L880,266 L1100,240 L1320,268 L1440,252 L1440,400 Z"/></svg></div></div>
-            <figure class="agent" role="img" aria-label="An AI agent connected to Egbe. The owner asks it to connect the Kilnbook project; the agent confirms the project, installs Egbe's skills and offers four things it can do now: research demand, build and publish the booking site, prepare a Google Ads test for review, and report visits, signups and bookings.">
+            <figure class="agent" role="img" aria-label="An AI agent connected to Egbe, with the four steps it can run for your product: research (customers, competitors), build (product, hosting, payments), launch (landing pages, ads, cold email) and grow (analytics, what to test next).">
                 <div class="agent-bar" aria-hidden="true">
                     <span class="agent-dots"><i></i><i></i><i></i></span>
-                    <span class="agent-path">~/kilnbook</span>
+                    <span class="agent-path">~/your-product</span>
                     <span class="agent-status">Egbe connected</span>
                 </div>
-                <div class="agent-body" aria-hidden="true">
-                    <p class="msg-me">I want to start a booking tool for pottery studios. Connect this folder to Egbe.</p>
-                    <div class="agent-log"><span>Egbe project verified · Kilnbook</span><span>Egbe skills installed</span></div>
-                    <div class="msg-ai">
-                        <p><b>Egbe is connected.</b> Here’s what I can do for Kilnbook now:</p>
-                        <ol class="offers">
-                            <li><span class="n">01</span><div><b>“Research demand for studio booking”</b><small>Competitors, prices, and which studios to serve first</small></div><span class="tags"><span class="chip">Deep market research</span></span></li>
-                            <li><span class="n">02</span><div><b>“Build the booking site and publish it”</b><small>Accounts and payments, live on kilnbook.egbe.app</small></div><span class="tags"><span class="chip">Product development</span><span class="chip">Hosting &amp; databases</span></span></li>
-                            <li><span class="n">03</span><div><b>“Prepare a Google Ads test for review”</b><small>Ads, landing page and budget. Nothing runs until you approve.</small></div><span class="tags"><span class="chip">Google Ads</span></span></li>
-                            <li><span class="n">04</span><div><b>“Show me visits, signups and bookings”</b><small>Measured from the very first visitor</small></div><span class="tags"><span class="chip">Product analytics</span></span></li>
-                        </ol>
-                        <p>Where would you like to start?</p>
-                    </div>
-                </div>
-                <div class="agent-compose" aria-hidden="true"><span>Reply to your agent…</span><i><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg></i></div>
+                <ol class="cycle" aria-hidden="true">
+                    <li><span class="n">1</span><b>research</b><span>customers, competitors</span></li>
+                    <li><span class="n">2</span><b>build</b><span>product, hosting, payments</span></li>
+                    <li><span class="n">3</span><b>launch</b><span>landing pages, ads, cold email</span></li>
+                    <li><span class="n">4</span><b>grow</b><span>analytics, what to test next</span></li>
+                </ol>
             </figure>
             </div>
         </div>
@@ -621,108 +551,39 @@
         </div>
     </section>
 
-    <!-- What you could build: building got cheap, so small audiences are now enough for a business -->
-    <section class="section" id="ideas">
-        <div class="wrap">
-            <div class="head">
-                <span class="label">What you could build</span>
-                <h2><span class="dim blk">Software used to need a big market.</span><span class="blk">Now a small one is enough.</span></h2>
-                <p>AI has made building software cheap. That leaves room for businesses that serve one profession, one community or one neighborhood — started by the people who know them best.</p>
-            </div>
-            <div class="ideas">
-                <article class="idea">
-                    <div class="idea-scene" aria-hidden="true">
-                        <div class="mini">
-                            <div class="mini-h"><i>K</i><b>Kilnbook</b><span>Clay Room Studio</span></div>
-                            <div class="mini-cap">This week</div>
-                            <div class="mini-row"><span class="mini-date"><b>14</b>Wed</span><div><b>Wheel throwing</b><small>6:30 pm · 6 spots left</small></div><span class="mini-btn is-soft">Book</span></div>
-                            <div class="mini-row"><span class="mini-date"><b>17</b>Sat</span><div><b>Hand-building</b><small>10:00 am · 4 spots left</small></div><span class="mini-btn is-soft">Book</span></div>
-                        </div>
-                    </div>
-                    <div class="idea-copy">
-                        <span class="label">For pottery studios</span>
-                        <h3>Class bookings, without the DMs.</h3>
-                        <p>Most small studios still take signups over Instagram messages. A booking page with payments fixes that.</p>
-                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Customer accounts</span><span class="chip">Google Ads</span></div>
-                    </div>
-                </article>
-                <article class="idea">
-                    <div class="idea-scene" aria-hidden="true">
-                        <div class="mini">
-                            <div class="mini-h"><i>Q</i><b>Quote #142</b><span>Draft</span></div>
-                            <div class="mini-title">Website localization <em>EN → ES</em></div>
-                            <div class="mini-line is-total"><span>4,200 words × $0.12</span><b>$504.00</b></div>
-                            <div class="mini-line"><span>Payment</span><b>On delivery</b></div>
-                            <div class="mini-foot"><small>Valid for 14 days</small><span class="mini-btn">Send quote</span></div>
-                        </div>
-                    </div>
-                    <div class="idea-copy">
-                        <span class="label">For freelance translators</span>
-                        <h3>Quotes and invoices in one place.</h3>
-                        <p>Price a job by word count, send the quote, and get paid when the translation is delivered.</p>
-                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Payments &amp; subscriptions</span><span class="chip">Lead discovery</span></div>
-                    </div>
-                </article>
-                <article class="idea">
-                    <div class="idea-scene" aria-hidden="true">
-                        <div class="mini">
-                            <div class="mini-h"><i>B</i><b>Corner Bakery</b><span>Pickup Sat 9–12</span></div>
-                            <div class="mini-cap">Weekend bread</div>
-                            <div class="mini-line"><span>Sourdough loaf · $8</span><span class="mini-qty">− <b>2</b> +</span></div>
-                            <div class="mini-line"><span>Seeded rye · $9</span><span class="mini-qty">− <b>1</b> +</span></div>
-                            <div class="mini-foot"><small>Total $25</small><span class="mini-btn">Reserve</span></div>
-                        </div>
-                    </div>
-                    <div class="idea-copy">
-                        <span class="label">For a neighborhood bakery</span>
-                        <h3>Weekend preorders, baked to order.</h3>
-                        <p>Neighbors reserve their bread online, and the bakery knows exactly how much to bake.</p>
-                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Landing pages</span><span class="chip">Facebook &amp; Instagram Ads</span></div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Premise: why connect anything at all -->
-    <section class="section">
-        <div class="wrap">
-            <p class="statement"><span class="dim blk">Your AI agent can already write code.</span><span class="blk">Egbe gives it everything else a business needs.</span></p>
-        </div>
-    </section>
-
-    <!-- How it works: one example business, step by step, with what Egbe brings to each step -->
+    <!-- How it works: one head (an agent can already code; Egbe gives it the rest) and four steps.
+         Each step says what Egbe's skills and tools do, names them, and shows one example product. -->
     <section class="section" id="how">
         <div class="wrap">
-            <div class="head">
+            <div class="head is-wide">
                 <span class="label">How it works</span>
-                <h2><span class="dim blk">A tested playbook for every step.</span><span class="blk">And the means to carry it out.</span></h2>
-                <p>Egbe’s skills tell your agent what to do and in what order. Egbe’s tools and infrastructure let it do the work for real — from the first research to a live ad campaign.</p>
+                <h2><span class="dim blk">Your AI agent can already write code.</span><span class="blk">Egbe gives it everything else a business needs.</span></h2>
+                <p>Four steps, each with its own skills and tools.</p>
             </div>
             <div>
                 <article class="chapter">
                     <div class="chapter-copy">
                         <span class="label"><b>1.0</b> — Research</span>
                         <h3>Find the customers and the gap.</h3>
-                        <p>Egbe’s research skills take your agent through competitors, prices and demand. You decide what to build on evidence, not hunches.</p>
-                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Deep market research</span><span class="chip">Web &amp; places search</span><span class="chip">SaaS unit economics</span></div>
+                        <p>Egbe’s research skills take your agent through customers, competitors and the ads they keep running. You decide what to do next on evidence, not hunches.</p>
+                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Market research</span><span class="chip">Deep research</span><span class="chip">Web &amp; places search</span></div>
                     </div>
                     <div class="chapter-view" aria-hidden="true">
                         <div class="frag">
-                            <div class="frag-h"><span>Positioning brief</span><span>9 tools compared</span></div>
-                            <div class="frag-row"><b>Marketplaces</b><span>High commission; the studio loses the customer relationship</span></div>
-                            <div class="frag-row"><b>Generic schedulers</b><span>No wheel or kiln capacity; no class packs</span></div>
-                            <div class="frag-row"><b>DMs &amp; spreadsheets</b><span>Where most small studios still are</span></div>
-                            <div class="frag-pick"><b>Serve first</b><span>Independent studios running 2–6 classes a week</span></div>
+                            <div class="frag-h"><span>Research brief</span><span>Kilnbook</span></div>
+                            <div class="frag-row"><b>Customers</b><span>Independent studios running 2–6 classes a week</span></div>
+                            <div class="frag-row"><b>Competitors</b><span>9 tools compared. None handles kiln capacity.</span></div>
+                            <div class="frag-row"><b>Their ads</b><span>“Fill every class” has run on Meta for 11 months</span></div>
+                            <div class="frag-pick"><b>The gap</b><span>Simple booking with payments, built for small studios</span></div>
                         </div>
                     </div>
                 </article>
                 <article class="chapter">
                     <div class="chapter-copy">
                         <span class="label"><b>2.0</b> — Build</span>
-                        <h3>Build the product and put it online.</h3>
-                        <p>Product skills turn the plan into a working app. Egbe hosts it with a database, customer accounts and payments — no servers, keys or separate sign-ups to manage.</p>
-                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Product definition</span><span class="chip">Product development</span><span class="chip">Hosting &amp; databases</span><span class="chip">Payments &amp; subscriptions</span></div>
+                        <h3>Build the product and keep it running.</h3>
+                        <p>Product skills turn the plan into a working app. Egbe hosts it with a database, sign-in and Stripe payments — no servers, keys or separate sign-ups to manage.</p>
+                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Product development</span><span class="chip">Hosting &amp; databases</span><span class="chip">Customer accounts</span><span class="chip">Payments &amp; subscriptions</span></div>
                     </div>
                     <div class="chapter-view" aria-hidden="true">
                         <div class="frag">
@@ -740,16 +601,16 @@
                 <article class="chapter">
                     <div class="chapter-copy">
                         <span class="label"><b>3.0</b> — Launch</span>
-                        <h3>Reach your first customers.</h3>
-                        <p>Marketing skills plan the campaign. Egbe runs it on Google, Meta, Reddit, LinkedIn or OpenAI, or by email. Spend comes from your Wallet, and nothing starts until you approve it.</p>
-                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Google Ads</span><span class="chip">Campaign landing pages</span><span class="chip">Email outreach</span><span class="chip">Lead discovery</span></div>
+                        <h3>Reach new customers.</h3>
+                        <p>Marketing skills prepare a landing page for each audience and check the path from click to purchase. Egbe runs the test on Google, Meta, Reddit, LinkedIn or ChatGPT, or by cold email. Nothing starts until you approve it.</p>
+                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Campaign landing pages</span><span class="chip">Destination readiness</span><span class="chip">Google Ads</span><span class="chip">Email outreach</span></div>
                     </div>
                     <div class="chapter-view" aria-hidden="true">
                         <div class="frag">
                             <div class="frag-h"><span>Google Ads · search test</span><span class="frag-wait">Waiting for you</span></div>
                             <div class="frag-title">Pottery studio booking — US</div>
-                            <div class="frag-row"><b>Keywords</b><span>studio booking software, pottery class scheduling</span></div>
-                            <div class="frag-row"><b>Ads</b><span>3 variants, sending to kilnbook.egbe.app/studios</span></div>
+                            <div class="frag-row"><b>Landing page</b><span>kilnbook.egbe.app/studios, path to purchase checked</span></div>
+                            <div class="frag-row"><b>Ads</b><span>3 variants for “studio booking software”</span></div>
                             <div class="frag-row"><b>Budget</b><span>$15 a day for 14 days, from your Wallet</span></div>
                             <div class="frag-actions"><span class="mini-btn">Approve budget</span><span class="mini-btn is-soft">Edit</span></div>
                         </div>
@@ -759,8 +620,8 @@
                     <div class="chapter-copy">
                         <span class="label"><b>4.0</b> — Grow</span>
                         <h3>See what works. Do more of it.</h3>
-                        <p>Analytics tracks visits, signups and payments from day one. Egbe’s growth skills read the numbers and suggest the next test — you choose what to try.</p>
-                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Product analytics</span><span class="chip">Funnel review</span><span class="chip">Growth experiments</span></div>
+                        <p>Analytics tracks every step from first visit to first payment. Egbe’s skills read the numbers, find what’s broken and suggest the next test — you choose what to try.</p>
+                        <div class="with"><span class="with-k">With Egbe</span><span class="chip">Product analytics</span><span class="chip">SaaS unit economics</span><span class="chip">Error monitoring</span></div>
                     </div>
                     <div class="chapter-view" aria-hidden="true">
                         <div class="frag">
@@ -768,10 +629,11 @@
                             <div class="kpis">
                                 <div><span>Visitors</span><b>212</b><em>+38% this week</em></div>
                                 <div><span>Signups</span><b>27</b><em>12.7% of visitors</em></div>
-                                <div><span>Paid bookings</span><b>9</b><em>1 in 3 signups</em></div>
+                                <div><span>Paying studios</span><b>9</b><em>1 in 3 signups</em></div>
                             </div>
-                            <div class="frag-row"><b>Best channel</b><span>Google Search, 61% of signups</span></div>
-                            <div class="frag-pick is-next"><b>Next test</b><span>Five-class packs at $49 for returning students</span></div>
+                            <div class="frag-row"><b>Unit economics</b><span>$12 to win a studio that pays $29 a month</span></div>
+                            <div class="frag-row"><b>Broken</b><span>Sign-up fails in Safari. The fix is ready.</span></div>
+                            <div class="frag-pick is-next"><b>Next test</b><span>Ads for studios that teach kids’ classes</span></div>
                         </div>
                     </div>
                 </article>
@@ -785,31 +647,31 @@
             <div class="night-head">
                 <span class="label">The product</span>
                 <h2><span class="dim blk">Skills, tools and infrastructure.</span><span class="blk">One key for your agent.</span></h2>
-                <p>Egbe’s catalog covers each step of building a business. Your agent reaches all of it with a single project key: hosting, payments, email and ad accounts are ready to use, and spending runs through one Wallet.</p>
+                <p>Your agent reaches all of it with a single project key. Hosting, payments, email and ad accounts are ready to use, and spending runs through one Wallet.</p>
             </div>
             <div class="catalog">
                 <article class="pillar">
                     <span class="pillar-n">01</span>
                     <h3>Tested skills</h3>
-                    <p>Step-by-step workflows your agent follows — the know-how behind each stage of a business.</p>
+                    <p>Step-by-step playbooks your agent follows: the know-how behind each stage of a business.</p>
                     <ul>
-                        <li>Deep market research</li><li>Product definition</li><li>User experience planning</li><li>Product development</li><li>Landing pages</li><li>First-value experience</li><li>Campaign landing pages</li><li>Quiz funnels</li><li>Competitor-led campaigns</li><li>Growth experiments</li><li>Funnel review</li><li>SaaS unit economics</li>
+                        <li>Market research</li><li>Product development</li><li>Design systems</li><li>Landing pages</li><li>Campaign landing pages</li><li>Destination readiness</li><li>Quiz funnels</li><li>SaaS unit economics</li>
                     </ul>
                 </article>
                 <article class="pillar">
                     <span class="pillar-n">02</span>
                     <h3>Tools</h3>
-                    <p>Services your agent uses to research, create, and reach customers — through Egbe’s accounts.</p>
+                    <p>Services your agent uses to research, create and reach customers, through Egbe’s accounts.</p>
                     <ul>
-                        <li>Google Ads</li><li>Facebook &amp; Instagram Ads</li><li>Reddit Ads</li><li>LinkedIn Ads</li><li>OpenAI Ads</li><li>Email outreach</li><li>Lead discovery</li><li>Deep research</li><li>Web &amp; places search</li><li>Web data extraction</li><li>Image generation</li><li>Video &amp; creative research</li>
+                        <li>Google Ads</li><li>Facebook &amp; Instagram Ads</li><li>Reddit Ads</li><li>LinkedIn Ads</li><li>OpenAI Ads</li><li>Email outreach</li><li>Lead discovery</li><li>Deep research</li><li>Web &amp; places search</li><li>Images</li>
                     </ul>
                 </article>
                 <article class="pillar">
                     <span class="pillar-n">03</span>
                     <h3>Infrastructure</h3>
-                    <p>Where your product runs, takes payments, and gets measured — ready from the first deploy.</p>
+                    <p>Where your product runs, takes payments and gets measured, ready from the first deploy.</p>
                     <ul>
-                        <li>Hosting &amp; databases</li><li>Database access</li><li>Code repositories</li><li>Customer accounts</li><li>Google sign-in</li><li>Payments &amp; subscriptions</li><li>Mailbox on egbe.app</li><li>AI features</li><li>Product analytics</li><li>Error monitoring</li><li>Egbe Wallet</li>
+                        <li>Hosting &amp; databases</li><li>Code repositories</li><li>Customer accounts</li><li>Google sign-in</li><li>Payments &amp; subscriptions</li><li>Email</li><li>AI features</li><li>Product analytics</li><li>Error monitoring</li>
                     </ul>
                 </article>
             </div>
@@ -822,19 +684,17 @@
         </div>
     </section>
 
-    <!-- Pricing: free to start with $10 in the Wallet, paid services from the Wallet at cost, and Egbe's two
-         fees shown openly: 15% of sales and a 5% processing fee on Wallet top-ups. Decided with the team on
-         2026-10-13 (replaces the cost + 15% Wallet of 2026-10-09). The agent's own subscription is covered in the FAQ. -->
+    <!-- Pricing: one plan in one card. $0 to start, 15% on paid usage, no top-up fee, no Egbe revenue share. -->
     <section class="section" id="pricing">
         <div class="wrap">
             <div class="head">
                 <span class="label">Pricing</span>
-                <h2><span class="dim blk">Free to start.</span><span class="blk">Pay as you go.</span></h2>
+                <h2><span class="dim blk">One plan.</span><span class="blk">Free to start, pay as you go.</span></h2>
                 <p>No subscription and no card to sign up.</p>
             </div>
-            <div class="plans">
-                <article class="plan-card is-main">
-                    <span class="label">Free</span>
+            <div class="plan">
+                <div class="plan-part">
+                    <span class="label">When you start</span>
                     <div class="plan-fig">$0</div>
                     <p class="plan-cap">to connect your agent and start building.</p>
                     <ul class="plan-list">
@@ -842,32 +702,33 @@
                         <li>Your own address on egbe.app</li>
                         <li>Analytics and error monitoring</li>
                     </ul>
-                    <p class="plan-more"><b>$10</b> in your Wallet to start</p>
-                </article>
-                <article class="plan-card">
-                    <span class="label">Paid services</span>
-                    <div class="plan-fig is-words">Pay as you go</div>
-                    <p class="plan-cap">from your Wallet, at cost, with no markup.</p>
+                    <p class="plan-more"><b>$10</b> welcome credit per founder, valid for 30 days</p>
+                </div>
+                <div class="plan-part">
+                    <span class="label">When you use paid services</span>
+                    <div class="plan-fig">15%</div>
+                    <p class="plan-cap">service fee on paid usage.</p>
                     <ul class="plan-list">
                         <li>Ad spend on Google, Meta and more</li>
                         <li>AI research, text and images</li>
                         <li>Email outreach and lead search</li>
-                        <li>Hosting time for your apps</li>
+                        <li>$10 of usage + $1.50 Egbe fee = $11.50</li>
                     </ul>
-                    <p class="plan-more"><b>5%</b> processing fee on Wallet top-ups</p>
-                </article>
-                <article class="plan-card">
+                    <p class="plan-more">No top-up fees. Add $100, get $100 in your Wallet.</p>
+                </div>
+                <div class="plan-part">
                     <span class="label">When you sell</span>
-                    <div class="plan-fig">15%</div>
-                    <p class="plan-cap">of each sale made through Egbe’s checkout.</p>
+                    <div class="plan-fig">0%</div>
+                    <p class="plan-cap">Egbe revenue share. Your revenue is yours.</p>
                     <ul class="plan-list">
                         <li>Stripe checkout and subscriptions</li>
                         <li>Promo codes and customer billing</li>
-                        <li>The rest is paid out to you</li>
+                        <li>Payment processor fees, taxes, refunds and chargebacks may apply</li>
                     </ul>
                     <p class="plan-more"><a class="link" href="/terms/#fees">How payouts work</a></p>
-                </article>
+                </div>
             </div>
+            <p class="plan-links"><a class="link" href="/terms/#wallet">Pricing details</a></p>
             <div class="actions">
                 <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="pricing_start_building">Connect your agent</a>
                 <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="btn btn-line btn-lg" target="_blank" rel="noopener" data-umami-event="pricing_book_demo">Book a demo</a>
@@ -891,7 +752,7 @@
         <div class="wrap">
             <span class="label">Team</span>
             <h2>The people behind Egbe.</h2>
-            <p class="team-lead">We’re a small team building the skills, tools and infrastructure that help people start businesses with AI agents. Meet us and follow our progress on LinkedIn.</p>
+            <p class="team-lead">We’re a small team building the skills, tools and infrastructure that help people run and grow real businesses with AI agents. Meet us and follow our progress on LinkedIn.</p>
             <a href="https://www.linkedin.com/company/egbe-ai/" target="_blank" rel="noopener" class="btn btn-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg> See the team on LinkedIn</a>
             <dl class="facts">
                 <div><dt>Founded</dt><dd>2026</dd></div>
@@ -945,7 +806,7 @@
     <!-- Closing -->
     <section class="closing panel">
         <div class="wrap">
-            <h2><span class="dim blk">The idea is yours.</span><span class="blk">The playbook is ready.</span></h2>
+            <h2><span class="dim blk">Hand over one step</span><span class="blk">or the whole cycle.</span></h2>
             <p class="closing-sub">Connect your agent to Egbe and ask it where to start.</p>
             <div class="actions">
                 <a href="https://dashboard.egbe.ai" class="btn btn-accent btn-lg" data-umami-event="closing_start_building">Connect your agent</a>
