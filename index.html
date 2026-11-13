@@ -125,6 +125,17 @@
         src="https://analytics.hz.egbe.dev/recorder.js"
     ></script>
     <script src="/consent.js"></script>
+    <script>
+        // A link to a FAQ answer opens it, so "No agent yet?" lands on the answer, not a closed row.
+        function openLinkedFaq() { var d = document.getElementById(location.hash.slice(1)); if (d && d.tagName === 'DETAILS') d.open = true; }
+        addEventListener('hashchange', openLinkedFaq); addEventListener('DOMContentLoaded', openLinkedFaq);
+        // A repeat click leaves the hash unchanged, so no hashchange fires: open on the click itself too.
+        addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('a[href^="#"]');
+            var d = a && document.getElementById(a.getAttribute('href').slice(1));
+            if (d && d.tagName === 'DETAILS') d.open = true;
+        });
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -177,7 +188,7 @@
         :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
         .wrap { max-width: 1176px; margin: 0 auto; padding: 0 28px; }
-        section[id] { scroll-margin-top: 84px; }
+        section[id], details[id] { scroll-margin-top: 84px; }
         .panel { margin: 0 12px; border-radius: 28px; }
 
         h1, h2, h3 { font-weight: 500; text-wrap: balance; }
@@ -224,6 +235,8 @@
         .works b { font-weight: 500; color: var(--ink-2); }
         .hero-free { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 0.9375rem; font-weight: 500; color: var(--ink-2); }
         .hero-free svg { color: var(--ok); flex-shrink: 0; }
+        .hero-needs { margin: 8px auto 0; max-width: 34em; font-size: 0.9375rem; color: var(--ink-2); text-wrap: balance; }
+        .hero-needs a { color: var(--accent-2); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 
         /* the agent window: the owner's own agent with Egbe connected, and the four steps it can
            now run — the same four that "How it works" explains one by one */
@@ -487,6 +500,8 @@
                 <a href="https://calendly.com/azamat-khalilov-egbe/30min" class="btn btn-line btn-lg" target="_blank" rel="noopener" data-umami-event="hero_book_demo">Book a demo</a>
             </div>
             <p class="hero-free"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.2 11.7 13 4.8"/></svg>Free to start, pay as you go</p>
+            <!-- What a visitor needs before they click: the agent comes from them, on their own plan. -->
+            <p class="hero-needs">Works with the AI agent you already use: Claude, Codex and others. <a href="#no-agent" data-umami-event="hero_no_agent">No agent yet?</a></p>
 
             <div class="stage">
                 <div class="scene" aria-hidden="true"><div class="sun"></div><div class="ridges"><svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMin slice"><path class="r1" d="M0,400 L0,150 L120,112 L250,166 L380,72 L500,136 L636,36 L724,118 L812,30 L940,104 L1070,62 L1200,140 L1320,88 L1440,120 L1440,400 Z"/><path class="r2" d="M0,400 L0,214 L150,180 L300,226 L440,150 L580,210 L700,170 L860,232 L1000,160 L1140,218 L1300,176 L1440,206 L1440,400 Z"/><path class="r3" d="M0,400 L0,268 L220,244 L440,272 L660,236 L880,266 L1100,240 L1320,268 L1440,252 L1440,400 Z"/></svg></div></div>
@@ -754,7 +769,11 @@
             <div class="faq">
 <details open>
     <summary>Which AI agents work with Egbe?</summary>
-    <p>Claude Code, Codex, Hermes and OpenClaw. Egbe installs its skills into your project folder, and your agent runs on your own subscription.</p>
+    <p>Claude (in the browser, the desktop app or Claude Code), Codex, Hermes and OpenClaw. Your agent runs on your own subscription with that provider; Egbe adds the business skills, tools and infrastructure.</p>
+</details>
+<details id="no-agent">
+    <summary>I don’t have an AI agent yet. Where do I start?</summary>
+    <p>Start with Claude. Create an account at <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, then sign up for Egbe and choose <strong>Connect to Claude</strong>. Approve Egbe in Claude, then choose <strong>Start setup in Claude</strong> and send the message that’s ready there. There’s nothing to copy or install, and you talk to it in plain language in your browser.</p>
 </details>
 <details>
     <summary>How do I connect my agent?</summary>
