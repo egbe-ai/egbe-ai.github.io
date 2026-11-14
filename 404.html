@@ -16,35 +16,6 @@
         gtag('config', 'G-K4NHZYTGG6');
     </script>
     <script src="/consent.js"></script>
-    <script>
-        (function () {
-            var prefix = "/p/";
-            var path = window.location.pathname;
-
-            if (!path.startsWith(prefix)) {
-                return;
-            }
-
-            var promo = path.slice(prefix.length).replace(/^\/+|\/+$/g, "");
-            if (!promo) {
-                return;
-            }
-
-            var promoValue = promo;
-            try {
-                promoValue = decodeURIComponent(promo);
-            } catch (error) {
-                promoValue = promo;
-            }
-
-            var target = new URL("https://dashboard.egbe.ai/");
-            var params = new URLSearchParams(window.location.search);
-            params.set("promo", promoValue);
-            target.search = params.toString();
-            target.hash = window.location.hash;
-            window.location.replace(target.toString());
-        }());
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -91,8 +62,6 @@
 
         p { margin-bottom: 1.75rem; color: #54566B; text-wrap: pretty; }
 
-        code { font: 0.9375em ui-monospace, 'SF Mono', Menlo, monospace; color: #1B1C2E; background: #E3E5EE; border-radius: 6px; padding: 0.1em 0.4em; }
-
         .btn { display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 24px; border-radius: 99px; background: #5266EB; color: #fff; font-weight: 500; text-decoration: none; transition: background-color 0.15s; }
         .btn:hover { background: #4153D4; }
 
@@ -106,7 +75,7 @@
     <main>
         <div>
             <h1>Page not found</h1>
-            <p>If you expected a promo redirect here, check that the link includes a code after <code>/p/</code>.</p>
+            <p>Check the address or return to Egbe.</p>
             <a href="/" class="btn">Return to egbe.ai</a>
         </div>
     </main>
