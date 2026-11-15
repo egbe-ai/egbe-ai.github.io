@@ -1,0 +1,10 @@
+{
+  "resource": "https://egbe.ai",
+  "authorization_servers": [
+    "https://dashboard.egbe.ai/poppy"
+  ],
+  "scopes_supported": [
+    "businesses:read",
+    "businesses:write"
+  ]
+}
