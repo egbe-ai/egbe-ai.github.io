@@ -1,0 +1,30 @@
+{
+  "protocol_version": "1.0",
+  "organization": {
+    "name": "Egbe",
+    "domain": "egbe.ai"
+  },
+  "auth": {
+    "scopes": {
+      "businesses:read": "See your businesses, their setup status, and briefs you shared through this connection.",
+      "businesses:write": "Start free businesses from your briefs. Does not fund wallets, spend money, or publish products."
+    },
+    "scope_hints": {
+      "businesses:read": {
+        "changes": "none",
+        "personal_data": true
+      },
+      "businesses:write": {
+        "changes": "irreversible",
+        "personal_data": true
+      }
+    }
+  },
+  "apis": [
+    {
+      "type": "openapi",
+      "url": "https://dashboard.egbe.ai/poppy/openapi.json",
+      "description": "List your businesses and start a free business from a brief. No funding, spending or publishing."
+    }
+  ]
+}
